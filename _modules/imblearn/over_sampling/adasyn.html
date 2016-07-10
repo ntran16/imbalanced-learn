@@ -209,6 +209,23 @@
 
 <span class="sd">    The implementation is based on [1]_.</span>
 
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+
+<span class="sd">    &gt;&gt;&gt; import tempfile</span>
+<span class="sd">    &gt;&gt;&gt; from collections import Counter</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.datasets import fetch_mldata</span>
+<span class="sd">    &gt;&gt;&gt; from imblearn.over_sampling import ADASYN</span>
+<span class="sd">    &gt;&gt;&gt; test_data_home = tempfile.mkdtemp()</span>
+<span class="sd">    &gt;&gt;&gt; pima = fetch_mldata(&#39;diabetes_scale&#39;, data_home=test_data_home)</span>
+<span class="sd">    &gt;&gt;&gt; X, y = pima[&#39;data&#39;], pima[&#39;target&#39;]</span>
+<span class="sd">    &gt;&gt;&gt; print(&#39;Original dataset shape {}&#39;.format(Counter(y)))</span>
+<span class="sd">    Original dataset shape Counter({1: 500, -1: 268})</span>
+<span class="sd">    &gt;&gt;&gt; ada = ADASYN()</span>
+<span class="sd">    &gt;&gt;&gt; X_res, y_res = ada.fit_sample(X, y)</span>
+<span class="sd">    &gt;&gt;&gt; print(&#39;Resampled dataset shape {}&#39;.format(Counter(y_res)))</span>
+<span class="sd">    Resampled dataset shape Counter({1: 500, -1: 478})</span>
+
 <span class="sd">    References</span>
 <span class="sd">    ----------</span>
 <span class="sd">    .. [1] He, Haibo, Yang Bai, Edwardo A. Garcia, and Shutao Li. &quot;ADASYN:</span>
