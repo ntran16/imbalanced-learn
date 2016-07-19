@@ -148,17 +148,17 @@
             
   <h1>Source code for imblearn.over_sampling.smote</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Class to perform over-sampling using SMOTE.&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">division</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="kn">import</span> <span class="n">check_array</span>
-<span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="kn">import</span> <span class="n">check_random_state</span>
-<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">NearestNeighbors</span>
-<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+<span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="k">import</span> <span class="n">check_array</span>
+<span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="k">import</span> <span class="n">check_random_state</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="k">import</span> <span class="n">NearestNeighbors</span>
+<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="k">import</span> <span class="n">SVC</span>
 
-<span class="kn">from</span> <span class="nn">..base</span> <span class="kn">import</span> <span class="n">SamplerMixin</span>
+<span class="kn">from</span> <span class="nn">..base</span> <span class="k">import</span> <span class="n">SamplerMixin</span>
 
 
 <span class="n">SMOTE_KIND</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;regular&#39;</span><span class="p">,</span> <span class="s1">&#39;borderline1&#39;</span><span class="p">,</span> <span class="s1">&#39;borderline2&#39;</span><span class="p">,</span> <span class="s1">&#39;svm&#39;</span><span class="p">)</span>
@@ -255,7 +255,7 @@
 
 <div class="viewcode-block" id="SMOTE.__init__"><a class="viewcode-back" href="../../../generated/imblearn.over_sampling.SMOTE.html#imblearn.over_sampling.SMOTE.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">ratio</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span>
-                 <span class="n">random_state</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
                  <span class="n">m</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
                  <span class="n">out_step</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
@@ -298,7 +298,7 @@
         <span class="c1"># Find the NN for each samples</span>
         <span class="c1"># Exclude the sample itself</span>
         <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nearest_neighbour</span><span class="o">.</span><span class="n">kneighbors</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span>
-                                              <span class="n">return_distance</span><span class="o">=</span><span class="bp">False</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">:]</span>
+                                              <span class="n">return_distance</span><span class="o">=</span><span class="kc">False</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">:]</span>
 
         <span class="c1"># Count how many NN belong to the minority class</span>
         <span class="c1"># Find the class corresponding to the label in x</span>
@@ -450,7 +450,7 @@
             <span class="c1"># element.</span>
             <span class="n">nns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nearest_neighbour</span><span class="o">.</span><span class="n">kneighbors</span><span class="p">(</span>
                 <span class="n">X_min</span><span class="p">,</span>
-                <span class="n">return_distance</span><span class="o">=</span><span class="bp">False</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">:]</span>
+                <span class="n">return_distance</span><span class="o">=</span><span class="kc">False</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">:]</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Create synthetic samples ...&#39;</span><span class="p">)</span>
 
@@ -499,7 +499,7 @@
             <span class="c1"># nns...#</span>
             <span class="n">nns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nearest_neighbour</span><span class="o">.</span><span class="n">kneighbors</span><span class="p">(</span>
                 <span class="n">X_min</span><span class="p">[</span><span class="n">danger_index</span><span class="p">],</span>
-                <span class="n">return_distance</span><span class="o">=</span><span class="bp">False</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">:]</span>
+                <span class="n">return_distance</span><span class="o">=</span><span class="kc">False</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">:]</span>
 
             <span class="c1"># B1 and B2 types diverge here!!!</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">kind</span> <span class="o">==</span> <span class="s1">&#39;borderline1&#39;</span><span class="p">:</span>
@@ -616,7 +616,7 @@
             <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">danger_bool</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="n">nns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nearest_neighbour</span><span class="o">.</span><span class="n">kneighbors</span><span class="p">(</span>
                     <span class="n">support_vector</span><span class="p">[</span><span class="n">danger_bool</span><span class="p">],</span>
-                    <span class="n">return_distance</span><span class="o">=</span><span class="bp">False</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">:]</span>
+                    <span class="n">return_distance</span><span class="o">=</span><span class="kc">False</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">:]</span>
 
                 <span class="n">X_new_1</span><span class="p">,</span> <span class="n">y_new_1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_samples</span><span class="p">(</span>
                     <span class="n">support_vector</span><span class="p">[</span><span class="n">danger_bool</span><span class="p">],</span>
@@ -630,7 +630,7 @@
             <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">safety_bool</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="n">nns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nearest_neighbour</span><span class="o">.</span><span class="n">kneighbors</span><span class="p">(</span>
                     <span class="n">support_vector</span><span class="p">[</span><span class="n">safety_bool</span><span class="p">],</span>
-                    <span class="n">return_distance</span><span class="o">=</span><span class="bp">False</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">:]</span>
+                    <span class="n">return_distance</span><span class="o">=</span><span class="kc">False</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">:]</span>
 
                 <span class="n">X_new_2</span><span class="p">,</span> <span class="n">y_new_2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_samples</span><span class="p">(</span>
                     <span class="n">support_vector</span><span class="p">[</span><span class="n">safety_bool</span><span class="p">],</span>
