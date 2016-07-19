@@ -204,16 +204,18 @@
 <span class="sd">    --------</span>
 
 <span class="sd">    &gt;&gt;&gt; from collections import Counter</span>
-<span class="sd">    &gt;&gt;&gt; from sklearn.datasets import fetch_mldata</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.datasets import make_classification</span>
 <span class="sd">    &gt;&gt;&gt; from imblearn.over_sampling import RandomOverSampler</span>
-<span class="sd">    &gt;&gt;&gt; pima = fetch_mldata(&#39;diabetes_scale&#39;)</span>
-<span class="sd">    &gt;&gt;&gt; X, y = pima[&#39;data&#39;], pima[&#39;target&#39;]</span>
+<span class="sd">    &gt;&gt;&gt; X, y = make_classification(n_classes=2, class_sep=2, weights=[0.1, 0.9],</span>
+<span class="sd">    ...                            n_informative=3, n_redundant=1, flip_y=0,</span>
+<span class="sd">    ...                            n_features=20, n_clusters_per_class=1,</span>
+<span class="sd">    ...                            n_samples=1000, random_state=10)</span>
 <span class="sd">    &gt;&gt;&gt; print(&#39;Original dataset shape {}&#39;.format(Counter(y)))</span>
-<span class="sd">    Original dataset shape Counter({1: 500, -1: 268})</span>
-<span class="sd">    &gt;&gt;&gt; ros = RandomOverSampler()</span>
+<span class="sd">    Original dataset shape Counter({1: 900, 0: 100})</span>
+<span class="sd">    &gt;&gt;&gt; ros = RandomOverSampler(random_state=42)</span>
 <span class="sd">    &gt;&gt;&gt; X_res, y_res = ros.fit_sample(X, y)</span>
 <span class="sd">    &gt;&gt;&gt; print(&#39;Resampled dataset shape {}&#39;.format(Counter(y_res)))</span>
-<span class="sd">    Resampled dataset shape Counter({1: 500, -1: 500})</span>
+<span class="sd">    Resampled dataset shape Counter({0: 900, 1: 900})</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
