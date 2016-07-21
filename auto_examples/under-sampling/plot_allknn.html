@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Repeated Edited nearest-neighbours &mdash; imbalanced-learn 0.2.0.dev0 documentation</title>
+  <title>AllKNN &mdash; imbalanced-learn 0.2.0.dev0 documentation</title>
   
 
   
@@ -36,8 +36,8 @@
               href="../../about.html"/>
     <link rel="top" title="imbalanced-learn 0.2.0.dev0 documentation" href="../../index.html"/>
         <link rel="up" title="General examples" href="../index.html"/>
-        <link rel="next" title="AllKNN" href="plot_allknn.html"/>
-        <link rel="prev" title="Instance Hardness Threshold" href="plot_instance_hardness_threshold.html"/> 
+        <link rel="next" title="Release history" href="../../whats_new.html"/>
+        <link rel="prev" title="Repeated Edited nearest-neighbours" href="plot_repeated_edited_nearest_neighbours.html"/> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -114,8 +114,8 @@
 <li class="toctree-l3"><a class="reference internal" href="plot_neighbourhood_cleaning_rule.html">Neighbourhood Cleaning Rule</a></li>
 <li class="toctree-l3"><a class="reference internal" href="plot_condensed_nearest_neighbour.html">Condensed nearest-neighbour</a></li>
 <li class="toctree-l3"><a class="reference internal" href="plot_instance_hardness_threshold.html">Instance Hardness Threshold</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Repeated Edited nearest-neighbours</a></li>
-<li class="toctree-l3"><a class="reference internal" href="plot_allknn.html">AllKNN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_repeated_edited_nearest_neighbours.html">Repeated Edited nearest-neighbours</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">AllKNN</a></li>
 </ul>
 </li>
 </ul>
@@ -158,11 +158,11 @@
       
           <li><a href="../index.html">General examples</a> &raquo;</li>
       
-    <li>Repeated Edited nearest-neighbours</li>
+    <li>AllKNN</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../../_sources/auto_examples/under-sampling/plot_repeated_edited_nearest_neighbours.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/auto_examples/under-sampling/plot_allknn.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -172,13 +172,17 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="repeated-edited-nearest-neighbours">
-<span id="sphx-glr-auto-examples-under-sampling-plot-repeated-edited-nearest-neighbours-py"></span><h1>Repeated Edited nearest-neighbours<a class="headerlink" href="#repeated-edited-nearest-neighbours" title="Permalink to this headline">¶</a></h1>
-<p>An illustration of the repeated edited nearest-neighbours method.</p>
-<img alt="../../_images/sphx_glr_plot_repeated_edited_nearest_neighbours_001.png" class="align-center" src="../../_images/sphx_glr_plot_repeated_edited_nearest_neighbours_001.png" />
+  <div class="section" id="allknn">
+<span id="sphx-glr-auto-examples-under-sampling-plot-allknn-py"></span><h1>AllKNN<a class="headerlink" href="#allknn" title="Permalink to this headline">¶</a></h1>
+<p>An illustration of the AllKNN method.</p>
+<img alt="../../_images/sphx_glr_plot_allknn_001.png" class="align-center" src="../../_images/sphx_glr_plot_allknn_001.png" />
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-default"><div class="highlight"><pre><span></span>  <span class="n">ENN</span>
+<span class="n">Reduced</span> <span class="mf">5.64</span>\<span class="o">%</span>
 <span class="n">RENN</span>
+<span class="n">Reduced</span> <span class="mf">8.36</span>\<span class="o">%</span>
+<span class="n">AllKNN</span>
+<span class="n">Reduced</span> <span class="mf">6.94</span>\<span class="o">%</span>
 </pre></div>
 </div>
 <div class="line-block">
@@ -199,6 +203,7 @@
 
 <span class="kn">from</span> <span class="nn">imblearn.under_sampling</span> <span class="kn">import</span> <span class="n">EditedNearestNeighbours</span>
 <span class="kn">from</span> <span class="nn">imblearn.under_sampling</span> <span class="kn">import</span> <span class="n">RepeatedEditedNearestNeighbours</span>
+<span class="kn">from</span> <span class="nn">imblearn.under_sampling</span> <span class="kn">import</span> <span class="n">AllKNN</span>
 
 <span class="c1"># Generate the dataset</span>
 <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span><span class="n">n_classes</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">class_sep</span><span class="o">=</span><span class="mf">1.25</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">],</span>
@@ -212,7 +217,7 @@
 <span class="n">X_vis</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 
 <span class="c1"># Three subplots, unpack the axes array immediately</span>
-<span class="n">f</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">,</span> <span class="n">ax3</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">f</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">,</span> <span class="n">ax3</span><span class="p">,</span> <span class="n">ax4</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 
 <span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_vis</span><span class="p">[</span><span class="n">y</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_vis</span><span class="p">[</span><span class="n">y</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Class #0&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">5</span><span class="p">,</span>
             <span class="n">edgecolor</span><span class="o">=</span><span class="n">almost_black</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="n">palette</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.15</span><span class="p">)</span>
@@ -225,6 +230,7 @@
 <span class="n">enn</span> <span class="o">=</span> <span class="n">EditedNearestNeighbours</span><span class="p">()</span>
 <span class="n">X_resampled</span><span class="p">,</span> <span class="n">y_resampled</span> <span class="o">=</span> <span class="n">enn</span><span class="o">.</span><span class="n">fit_sample</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 <span class="n">X_res_vis</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_resampled</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Reduced {:.2f}\%&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_resampled</span><span class="p">))</span><span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">))))</span>
 
 <span class="n">ax2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_res_vis</span><span class="p">[</span><span class="n">y_resampled</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_res_vis</span><span class="p">[</span><span class="n">y_resampled</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
             <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Class #0&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">5</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="n">almost_black</span><span class="p">,</span>
@@ -239,6 +245,7 @@
 <span class="n">renn</span> <span class="o">=</span> <span class="n">RepeatedEditedNearestNeighbours</span><span class="p">()</span>
 <span class="n">X_resampled</span><span class="p">,</span> <span class="n">y_resampled</span> <span class="o">=</span> <span class="n">renn</span><span class="o">.</span><span class="n">fit_sample</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 <span class="n">X_res_vis</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_resampled</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Reduced {:.2f}\%&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_resampled</span><span class="p">))</span><span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">))))</span>
 
 <span class="n">ax3</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_res_vis</span><span class="p">[</span><span class="n">y_resampled</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_res_vis</span><span class="p">[</span><span class="n">y_resampled</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
             <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Class #0&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">5</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="n">almost_black</span><span class="p">,</span>
@@ -248,15 +255,30 @@
             <span class="n">facecolor</span><span class="o">=</span><span class="n">palette</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.15</span><span class="p">)</span>
 <span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Repeated Edited nearest neighbours&#39;</span><span class="p">)</span>
 
+<span class="c1"># Apply the AllKNN</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;AllKNN&#39;</span><span class="p">)</span>
+<span class="n">allknn</span> <span class="o">=</span> <span class="n">AllKNN</span><span class="p">()</span>
+<span class="n">X_resampled</span><span class="p">,</span> <span class="n">y_resampled</span> <span class="o">=</span> <span class="n">allknn</span><span class="o">.</span><span class="n">fit_sample</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">X_res_vis</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_resampled</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Reduced {:.2f}\%&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_resampled</span><span class="p">))</span><span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">))))</span>
+
+<span class="n">ax4</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_res_vis</span><span class="p">[</span><span class="n">y_resampled</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_res_vis</span><span class="p">[</span><span class="n">y_resampled</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+            <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Class #0&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">5</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="n">almost_black</span><span class="p">,</span>
+            <span class="n">facecolor</span><span class="o">=</span><span class="n">palette</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.15</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_res_vis</span><span class="p">[</span><span class="n">y_resampled</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_res_vis</span><span class="p">[</span><span class="n">y_resampled</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+            <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Class #1&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">5</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="n">almost_black</span><span class="p">,</span>
+            <span class="n">facecolor</span><span class="o">=</span><span class="n">palette</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.15</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;AllKNN&#39;</span><span class="p">)</span>
+
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 <p><strong>Total running time of the script:</strong>
-(0 minutes 1.673 seconds)</p>
+(0 minutes 2.539 seconds)</p>
 <div class="sphx-glr-download container">
-<strong>Download Python source code:</strong> <a class="reference download internal" href="../../_downloads/plot_repeated_edited_nearest_neighbours.py" download=""><code class="xref download docutils literal"><span class="pre">plot_repeated_edited_nearest_neighbours.py</span></code></a></div>
+<strong>Download Python source code:</strong> <a class="reference download internal" href="../../_downloads/plot_allknn.py" download=""><code class="xref download docutils literal"><span class="pre">plot_allknn.py</span></code></a></div>
 <div class="sphx-glr-download container">
-<strong>Download IPython notebook:</strong> <a class="reference download internal" href="../../_downloads/plot_repeated_edited_nearest_neighbours.ipynb" download=""><code class="xref download docutils literal"><span class="pre">plot_repeated_edited_nearest_neighbours.ipynb</span></code></a></div>
+<strong>Download IPython notebook:</strong> <a class="reference download internal" href="../../_downloads/plot_allknn.ipynb" download=""><code class="xref download docutils literal"><span class="pre">plot_allknn.ipynb</span></code></a></div>
 </div>
 
 
@@ -266,10 +288,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="plot_allknn.html" class="btn btn-neutral float-right" title="AllKNN" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../../whats_new.html" class="btn btn-neutral float-right" title="Release history" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="plot_instance_hardness_threshold.html" class="btn btn-neutral" title="Instance Hardness Threshold" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="plot_repeated_edited_nearest_neighbours.html" class="btn btn-neutral" title="Repeated Edited nearest-neighbours" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
