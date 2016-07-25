@@ -12,9 +12,6 @@ Version 0.2
 Changelog
 ---------
 
-Bug fixes
-~~~~~~~~~
-
 - Fixed a bug in :class:`under_sampling.NearMiss` which was not picking the right samples during under sampling for the method 3. By `Guillaume Lemaitre`_.
 - Fixed a bug in :class:`ensemble.EasyEnsemble`, correction of the `random_state` generation. By `Guillaume Lemaitre`_ and `Christos Aridas`_.
 - Fixed a bug in :class:`under_sampling.RepeatedEditedNearestNeighbours`, add additional stopping criterion to avoid that the minority class become a majority class or that a class disappear. By `Guillaume Lemaitre`_.
@@ -30,6 +27,7 @@ New features
 API changes summary
 ~~~~~~~~~~~~~~~~~~~
 
+- Renamed all occurrences of ``size_ngh`` to ``n_neighbors`` for consistency with scikit-learn. This applies to all estimators that accept the ``size_ngh`` as parameter.
 - Two base classes :class:`BaseBinaryclassSampler` and :class:`BaseMulticlassSampler` have been created to handle the target type and raise warning in case of abnormality. By `Guillaume Lemaitre`_ and `Christos Aridas`_.
 
 Enhancement
