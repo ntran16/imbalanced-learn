@@ -163,6 +163,7 @@
 
 <span class="kn">from</span> <span class="nn">sklearn.base</span> <span class="k">import</span> <span class="n">BaseEstimator</span>
 <span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="k">import</span> <span class="n">check_X_y</span>
+<span class="kn">from</span> <span class="nn">sklearn.utils.multiclass</span> <span class="k">import</span> <span class="n">type_of_target</span>
 <span class="kn">from</span> <span class="nn">sklearn.externals</span> <span class="k">import</span> <span class="n">six</span>
 
 <span class="kn">from</span> <span class="nn">six</span> <span class="k">import</span> <span class="n">string_types</span>
@@ -176,7 +177,7 @@
 <span class="sd">    instead.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">_estimator_type</span> <span class="o">=</span> <span class="s2">&quot;sampler&quot;</span>
+    <span class="n">_estimator_type</span> <span class="o">=</span> <span class="s1">&#39;sampler&#39;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ratio</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initialize this object and its instance variables.</span>
@@ -375,6 +376,77 @@
         <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">dict</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logger</span>
+
+
+<span class="k">class</span> <span class="nc">BaseBinarySampler</span><span class="p">(</span><span class="n">six</span><span class="o">.</span><span class="n">with_metaclass</span><span class="p">(</span><span class="n">ABCMeta</span><span class="p">,</span> <span class="n">SamplerMixin</span><span class="p">)):</span>
+    <span class="sd">&quot;&quot;&quot;Base class for all binary class sampler.</span>
+
+<span class="sd">    Warning: This class should not be used directly. Use derived classes</span>
+<span class="sd">    instead.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Find the classes statistics before to perform sampling.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : ndarray, shape (n_samples, n_features)</span>
+<span class="sd">            Matrix containing the data which have to be sampled.</span>
+
+<span class="sd">        y : ndarray, shape (n_samples, )</span>
+<span class="sd">            Corresponding label for each sample in X.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self : object,</span>
+<span class="sd">            Return self.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">BaseBinarySampler</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+        <span class="c1"># Check that the target type is binary</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">type_of_target</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;binary&#39;</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;The target type should be binary.&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span>
+
+
+<span class="k">class</span> <span class="nc">BaseMulticlassSampler</span><span class="p">(</span><span class="n">six</span><span class="o">.</span><span class="n">with_metaclass</span><span class="p">(</span><span class="n">ABCMeta</span><span class="p">,</span> <span class="n">SamplerMixin</span><span class="p">)):</span>
+    <span class="sd">&quot;&quot;&quot;Base class for all multiclass sampler.</span>
+
+<span class="sd">    Warning: This class should not be used directly. Use derived classes</span>
+<span class="sd">    instead.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Find the classes statistics before to perform sampling.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : ndarray, shape (n_samples, n_features)</span>
+<span class="sd">            Matrix containing the data which have to be sampled.</span>
+
+<span class="sd">        y : ndarray, shape (n_samples, )</span>
+<span class="sd">            Corresponding label for each sample in X.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self : object,</span>
+<span class="sd">            Return self.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">BaseMulticlassSampler</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+        <span class="c1"># Check that the target type is either binary or multiclass</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">type_of_target</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;binary&#39;</span> <span class="ow">or</span>
+                <span class="n">type_of_target</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;multiclass&#39;</span><span class="p">):</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;The target type should be binary or multiclass.&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span>
 </pre></div>
 
            </div>

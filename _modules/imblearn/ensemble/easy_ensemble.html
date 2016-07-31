@@ -152,11 +152,11 @@
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">..base</span> <span class="k">import</span> <span class="n">SamplerMixin</span>
+<span class="kn">from</span> <span class="nn">..base</span> <span class="k">import</span> <span class="n">BaseMulticlassSampler</span>
 <span class="kn">from</span> <span class="nn">..under_sampling</span> <span class="k">import</span> <span class="n">RandomUnderSampler</span>
 
 
-<div class="viewcode-block" id="EasyEnsemble"><a class="viewcode-back" href="../../../generated/imblearn.ensemble.EasyEnsemble.html#imblearn.ensemble.EasyEnsemble">[docs]</a><span class="k">class</span> <span class="nc">EasyEnsemble</span><span class="p">(</span><span class="n">SamplerMixin</span><span class="p">):</span>
+<div class="viewcode-block" id="EasyEnsemble"><a class="viewcode-back" href="../../../generated/imblearn.ensemble.EasyEnsemble.html#imblearn.ensemble.EasyEnsemble">[docs]</a><span class="k">class</span> <span class="nc">EasyEnsemble</span><span class="p">(</span><span class="n">BaseMulticlassSampler</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Create an ensemble sets by iteratively applying random under-sampling.</span>
 
 <span class="sd">    This method iteratively select a random subset and make an ensemble of the</span>
@@ -204,6 +204,8 @@
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
 <span class="sd">    The method is described in [1]_.</span>
+
+<span class="sd">    This method supports multiclass target type.</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>

@@ -153,10 +153,10 @@
 
 <span class="kn">from</span> <span class="nn">..over_sampling</span> <span class="k">import</span> <span class="n">SMOTE</span>
 <span class="kn">from</span> <span class="nn">..under_sampling</span> <span class="k">import</span> <span class="n">EditedNearestNeighbours</span>
-<span class="kn">from</span> <span class="nn">..base</span> <span class="k">import</span> <span class="n">SamplerMixin</span>
+<span class="kn">from</span> <span class="nn">..base</span> <span class="k">import</span> <span class="n">BaseBinarySampler</span>
 
 
-<div class="viewcode-block" id="SMOTEENN"><a class="viewcode-back" href="../../../generated/imblearn.combine.SMOTEENN.html#imblearn.combine.SMOTEENN">[docs]</a><span class="k">class</span> <span class="nc">SMOTEENN</span><span class="p">(</span><span class="n">SamplerMixin</span><span class="p">):</span>
+<div class="viewcode-block" id="SMOTEENN"><a class="viewcode-back" href="../../../generated/imblearn.combine.SMOTEENN.html#imblearn.combine.SMOTEENN">[docs]</a><span class="k">class</span> <span class="nc">SMOTEENN</span><span class="p">(</span><span class="n">BaseBinarySampler</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Class to perform over-sampling using SMOTE and cleaning using ENN.</span>
 
 <span class="sd">    Combine over- and under-sampling using SMOTE and Edited Nearest Neighbours.</span>

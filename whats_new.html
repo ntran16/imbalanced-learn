@@ -102,7 +102,13 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Release history</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#version-0-2">Version 0.2</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#changelog">Changelog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#changelog">Changelog</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#new-features">New features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#api-changes-summary">API changes summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#enhancement">Enhancement</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#documentation-changes">Documentation changes</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#version-0-1">Version 0.1</a><ul>
@@ -167,11 +173,31 @@
 <span id="changes-0-2"></span><h2>Version 0.2<a class="headerlink" href="#version-0-2" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="changelog">
 <h3>Changelog<a class="headerlink" href="#changelog" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="new-features">
+<h4>New features<a class="headerlink" href="#new-features" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
-<li>Added support for bumpversion.</li>
-<li>Added doctest in the documentation.</li>
 <li>Added AllKNN under sampling technique.</li>
 </ul>
+</div>
+<div class="section" id="api-changes-summary">
+<h4>API changes summary<a class="headerlink" href="#api-changes-summary" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Two base classes <code class="xref py py-class docutils literal"><span class="pre">BaseBinaryclassSampler</span></code> and <code class="xref py py-class docutils literal"><span class="pre">BaseMulticlassSampler</span></code> have been created to handle the target type and raise warning in case of abnormality.</li>
+</ul>
+</div>
+<div class="section" id="enhancement">
+<h4>Enhancement<a class="headerlink" href="#enhancement" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Added support for bumpversion.</li>
+<li>Validate the type of target in binary samplers. A warning is raised for the moment.</li>
+</ul>
+</div>
+<div class="section" id="documentation-changes">
+<h4>Documentation changes<a class="headerlink" href="#documentation-changes" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Added doctest in the documentation.</li>
+</ul>
+</div>
 </div>
 </div>
 <div class="section" id="version-0-1">

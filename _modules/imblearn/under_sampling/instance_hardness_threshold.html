@@ -158,14 +158,14 @@
 
 <span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="k">import</span> <span class="n">StratifiedKFold</span>
 
-<span class="kn">from</span> <span class="nn">..base</span> <span class="k">import</span> <span class="n">SamplerMixin</span>
+<span class="kn">from</span> <span class="nn">..base</span> <span class="k">import</span> <span class="n">BaseBinarySampler</span>
 
 
 <span class="n">ESTIMATOR_KIND</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;knn&#39;</span><span class="p">,</span> <span class="s1">&#39;decision-tree&#39;</span><span class="p">,</span> <span class="s1">&#39;random-forest&#39;</span><span class="p">,</span> <span class="s1">&#39;adaboost&#39;</span><span class="p">,</span>
                   <span class="s1">&#39;gradient-boosting&#39;</span><span class="p">,</span> <span class="s1">&#39;linear-svm&#39;</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="InstanceHardnessThreshold"><a class="viewcode-back" href="../../../generated/imblearn.under_sampling.InstanceHardnessThreshold.html#imblearn.under_sampling.InstanceHardnessThreshold">[docs]</a><span class="k">class</span> <span class="nc">InstanceHardnessThreshold</span><span class="p">(</span><span class="n">SamplerMixin</span><span class="p">):</span>
+<div class="viewcode-block" id="InstanceHardnessThreshold"><a class="viewcode-back" href="../../../generated/imblearn.under_sampling.InstanceHardnessThreshold.html#imblearn.under_sampling.InstanceHardnessThreshold">[docs]</a><span class="k">class</span> <span class="nc">InstanceHardnessThreshold</span><span class="p">(</span><span class="n">BaseBinarySampler</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Class to perform under-sampling based on the instance hardness</span>
 <span class="sd">    threshold.</span>
 

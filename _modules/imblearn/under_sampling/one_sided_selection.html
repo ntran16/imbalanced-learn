@@ -159,11 +159,11 @@
 <span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="k">import</span> <span class="n">NearestNeighbors</span>
 <span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="k">import</span> <span class="n">check_random_state</span>
 
-<span class="kn">from</span> <span class="nn">..base</span> <span class="k">import</span> <span class="n">SamplerMixin</span>
+<span class="kn">from</span> <span class="nn">..base</span> <span class="k">import</span> <span class="n">BaseBinarySampler</span>
 <span class="kn">from</span> <span class="nn">.tomek_links</span> <span class="k">import</span> <span class="n">TomekLinks</span>
 
 
-<div class="viewcode-block" id="OneSidedSelection"><a class="viewcode-back" href="../../../generated/imblearn.under_sampling.OneSidedSelection.html#imblearn.under_sampling.OneSidedSelection">[docs]</a><span class="k">class</span> <span class="nc">OneSidedSelection</span><span class="p">(</span><span class="n">SamplerMixin</span><span class="p">):</span>
+<div class="viewcode-block" id="OneSidedSelection"><a class="viewcode-back" href="../../../generated/imblearn.under_sampling.OneSidedSelection.html#imblearn.under_sampling.OneSidedSelection">[docs]</a><span class="k">class</span> <span class="nc">OneSidedSelection</span><span class="p">(</span><span class="n">BaseBinarySampler</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Class to perform under-sampling based on one-sided selection method.</span>
 
 <span class="sd">    Parameters</span>
@@ -209,6 +209,8 @@
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
 <span class="sd">    The method is based on [1]_.</span>
+
+<span class="sd">    This method support multiclass.</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
