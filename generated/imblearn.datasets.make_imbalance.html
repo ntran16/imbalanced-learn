@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>imblearn.pipeline.make_pipeline &mdash; imbalanced-learn 0.2.0.dev0 documentation</title>
+  <title>imblearn.datasets.make_imbalance &mdash; imbalanced-learn 0.2.0.dev0 documentation</title>
   
 
   
@@ -36,7 +36,8 @@
               href="../about.html"/>
     <link rel="top" title="imbalanced-learn 0.2.0.dev0 documentation" href="../index.html"/>
         <link rel="up" title="imbalanced-learn API" href="../api.html"/>
-        <link rel="next" title="imblearn.datasets.make_imbalance" href="imblearn.datasets.make_imbalance.html"/> 
+        <link rel="next" title="General examples" href="../auto_examples/index.html"/>
+        <link rel="prev" title="imblearn.pipeline.make_pipeline" href="imblearn.pipeline.make_pipeline.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -97,15 +98,14 @@
 <li class="toctree-l2"><a class="reference internal" href="../api.html#module-imblearn.over_sampling">Over-sampling methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#module-imblearn.combine">Combination of over- and under-sampling methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#module-imblearn.ensemble">Ensemble methods</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../api.html#module-imblearn.pipeline">Pipeline</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../api.html#id4">Classes</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="../api.html#functions">Functions</a><ul class="current">
-<li class="toctree-l4 current"><a class="current reference internal" href="#">imblearn.pipeline.make_pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-imblearn.pipeline">Pipeline</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../api.html#module-imblearn.datasets">Datasets</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../api.html#id5">Functions</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">imblearn.datasets.make_imbalance</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#module-imblearn.datasets">Datasets</a></li>
 </ul>
 </li>
 </ul>
@@ -150,11 +150,11 @@
       
           <li><a href="../api.html"><cite>imbalanced-learn</cite> API</a> &raquo;</li>
       
-    <li>imblearn.pipeline.make_pipeline</li>
+    <li>imblearn.datasets.make_imbalance</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/generated/imblearn.pipeline.make_pipeline.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/generated/imblearn.datasets.make_imbalance.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -164,20 +164,55 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="imblearn-pipeline-make-pipeline">
-<h1>imblearn.pipeline.make_pipeline<a class="headerlink" href="#imblearn-pipeline-make-pipeline" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="imblearn-datasets-make-imbalance">
+<h1>imblearn.datasets.make_imbalance<a class="headerlink" href="#imblearn-datasets-make-imbalance" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
-<dt id="imblearn.pipeline.make_pipeline">
-<code class="descclassname">imblearn.pipeline.</code><code class="descname">make_pipeline</code><span class="sig-paren">(</span><em>*steps</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/pipeline.html#make_pipeline"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.pipeline.make_pipeline" title="Permalink to this definition">¶</a></dt>
-<dd><p>Construct a Pipeline from the given estimators.</p>
-<p>This is a shorthand for the Pipeline constructor; it does not require, and
-does not permit, naming the estimators. Instead, their names will be set
-to the lowercase of their types automatically.</p>
+<dt id="imblearn.datasets.make_imbalance">
+<code class="descclassname">imblearn.datasets.</code><code class="descname">make_imbalance</code><span class="sig-paren">(</span><em>X</em>, <em>y</em>, <em>ratio</em>, <em>min_c_=None</em>, <em>random_state=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/datasets/imbalance.html#make_imbalance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.datasets.make_imbalance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turns a dataset into an imbalanced dataset at specific ratio.
+A simple toy dataset to visualize clustering and classification
+algorithms.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>p</strong> : Pipeline</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>X</strong> : ndarray, shape (n_samples, n_features)</p>
+<blockquote>
+<div><p>Matrix containing the data to be imbalanced.</p>
+</div></blockquote>
+<p><strong>y</strong> : ndarray, shape (n_samples, )</p>
+<blockquote>
+<div><p>Corresponding label for each sample in X.</p>
+</div></blockquote>
+<p><strong>ratio</strong> : float,</p>
+<blockquote>
+<div><p>The desired ratio given by the number of samples in
+the minority class over the the number of samples in
+the majority class. Thus the ratio should be in the interval [0., 1.]</p>
+</div></blockquote>
+<p><strong>min_c_</strong> : str or int, optional (default=None)</p>
+<blockquote>
+<div><p>The identifier of the class to be the minority class.
+If None, <a href="#id1"><span class="problematic" id="id2">min_c_</span></a> is set to be the current minority class.</p>
+</div></blockquote>
+<p><strong>random_state</strong> : int, RandomState instance or None, optional (default=None)</p>
+<blockquote>
+<div><p>If int, random_state is the seed used by the random number generator;
+If RandomState instance, random_state is the random number generator;
+If None, the random number generator is the RandomState instance used
+by np.random.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>X_resampled</strong> : ndarray, shape (n_samples_new, n_features)</p>
+<blockquote>
+<div><p>The array containing the imbalanced data.</p>
+</div></blockquote>
+<p><strong>y_resampled</strong> : ndarray, shape (n_samples_new)</p>
+<blockquote class="last">
+<div><p>The corresponding label of <cite>X_resampled</cite></p>
+</div></blockquote>
+</td>
 </tr>
 </tbody>
 </table>
@@ -192,8 +227,10 @@ to the lowercase of their types automatically.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="imblearn.datasets.make_imbalance.html" class="btn btn-neutral float-right" title="imblearn.datasets.make_imbalance" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../auto_examples/index.html" class="btn btn-neutral float-right" title="General examples" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
+      
+        <a href="imblearn.pipeline.make_pipeline.html" class="btn btn-neutral" title="imblearn.pipeline.make_pipeline" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
