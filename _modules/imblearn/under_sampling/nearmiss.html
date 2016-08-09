@@ -151,6 +151,8 @@
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">division</span>
 
+<span class="kn">import</span> <span class="nn">warnings</span>
+
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">Counter</span>
@@ -297,6 +299,17 @@
         <span class="c1"># Compute the distance considering the farthest neighbour</span>
         <span class="n">dist_avg_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dist_vec</span><span class="p">[:,</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">size_ngh</span><span class="p">:],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;The size of the distance matrix is </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span>
+                          <span class="n">dist_vec</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;The size of the samples that can be selected is </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span>
+                          <span class="n">X</span><span class="p">[</span><span class="n">y</span> <span class="o">==</span> <span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">dist_vec</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">X</span><span class="p">[</span><span class="n">y</span> <span class="o">==</span> <span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;The samples to be selected do not correspond&#39;</span>
+                               <span class="s1">&#39; to the distance matrix given. Ensure that&#39;</span>
+                               <span class="s1">&#39; both `X[y == key]` and `dist_vec` are&#39;</span>
+                               <span class="s1">&#39; related.&#39;</span><span class="p">)</span>
+
         <span class="c1"># Sort the list of distance and get the index</span>
         <span class="k">if</span> <span class="n">sel_strategy</span> <span class="o">==</span> <span class="s1">&#39;nearest&#39;</span><span class="p">:</span>
             <span class="n">sort_way</span> <span class="o">=</span> <span class="kc">False</span>
@@ -308,6 +321,12 @@
         <span class="n">sorted_idx</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dist_avg_vec</span><span class="p">)),</span>
                             <span class="n">key</span><span class="o">=</span><span class="n">dist_avg_vec</span><span class="o">.</span><span class="n">__getitem__</span><span class="p">,</span>
                             <span class="n">reverse</span><span class="o">=</span><span class="n">sort_way</span><span class="p">)</span>
+
+        <span class="c1"># Throw a warning to tell the user that we did not have enough samples</span>
+        <span class="c1"># to select and that we just select everything</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;The number of the samples to be selected is larger than&#39;</span>
+                      <span class="s1">&#39; the number of samples available. The balancing ratio&#39;</span>
+                      <span class="s1">&#39; cannot be ensure and all samples will be returned.&#39;</span><span class="p">)</span>
 
         <span class="c1"># Select the desired number of samples</span>
         <span class="n">sel_idx</span> <span class="o">=</span> <span class="n">sorted_idx</span><span class="p">[:</span><span class="n">num_samples</span><span class="p">]</span>
@@ -440,8 +459,8 @@
                     <span class="n">n_neighbors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">size_ngh</span><span class="p">)</span>
 
                 <span class="n">sel_x</span><span class="p">,</span> <span class="n">sel_y</span><span class="p">,</span> <span class="n">idx_tmp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_selection_dist_based</span><span class="p">(</span>
-                    <span class="n">X</span><span class="p">,</span>
-                    <span class="n">y</span><span class="p">,</span>
+                    <span class="n">sub_samples_x</span><span class="p">,</span>
+                    <span class="n">sub_samples_y</span><span class="p">,</span>
                     <span class="n">dist_vec</span><span class="p">,</span>
                     <span class="n">num_samples</span><span class="p">,</span>
                     <span class="n">key</span><span class="p">,</span>
