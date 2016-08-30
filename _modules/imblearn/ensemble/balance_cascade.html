@@ -335,7 +335,7 @@
         <span class="c1"># Keep the indices of the minority class somewhere if we need to</span>
         <span class="c1"># return them later</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_indices</span><span class="p">:</span>
-            <span class="n">idx_min</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_c_</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">idx_min</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flatnonzero</span><span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_c_</span><span class="p">)</span>
 
         <span class="c1"># Condition to initiliase before the search</span>
         <span class="n">b_subset_search</span> <span class="o">=</span> <span class="kc">True</span>
@@ -357,7 +357,7 @@
             <span class="c1"># Generate an appropriate number of index to extract</span>
             <span class="c1"># from the majority class depending of the false classification</span>
             <span class="c1"># rate of the previous iteration</span>
-            <span class="n">idx_sel_from_maj</span> <span class="o">=</span> <span class="n">random_state</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">b_sel_N</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">idx_sel_from_maj</span> <span class="o">=</span> <span class="n">random_state</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">flatnonzero</span><span class="p">(</span><span class="n">b_sel_N</span><span class="p">),</span>
                                                    <span class="n">size</span><span class="o">=</span><span class="n">num_samples</span><span class="p">,</span>
                                                    <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
             <span class="n">idx_sel_from_maj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">idx_mis_class</span><span class="p">,</span>
@@ -403,8 +403,8 @@
             <span class="c1"># next round</span>
 
             <span class="c1"># Find the misclassified index to keep them for the next round</span>
-            <span class="n">idx_mis_class</span> <span class="o">=</span> <span class="n">idx_sel_from_maj</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">pred_label</span> <span class="o">!=</span>
-                                                        <span class="n">N_y</span><span class="p">[</span><span class="n">idx_sel_from_maj</span><span class="p">])]</span>
+            <span class="n">idx_mis_class</span> <span class="o">=</span> <span class="n">idx_sel_from_maj</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">flatnonzero</span><span class="p">(</span>
+                <span class="n">pred_label</span> <span class="o">!=</span> <span class="n">N_y</span><span class="p">[</span><span class="n">idx_sel_from_maj</span><span class="p">])]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Elements misclassified: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">idx_mis_class</span><span class="p">)</span>
 
             <span class="c1"># Count how many random element will be selected</span>
@@ -424,7 +424,7 @@
                 <span class="k">if</span> <span class="n">n_subsets</span> <span class="o">==</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_max_subset</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
                     <span class="n">b_subset_search</span> <span class="o">=</span> <span class="kc">False</span>
                     <span class="c1"># Select the remaining data</span>
-                    <span class="n">idx_sel_from_maj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">b_sel_N</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="n">idx_sel_from_maj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flatnonzero</span><span class="p">(</span><span class="n">b_sel_N</span><span class="p">)</span>
                     <span class="n">idx_sel_from_maj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">idx_mis_class</span><span class="p">,</span>
                                                        <span class="n">idx_sel_from_maj</span><span class="p">),</span>
                                                       <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
@@ -454,7 +454,7 @@
             <span class="k">if</span> <span class="n">num_samples</span> <span class="o">&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">b_sel_N</span><span class="p">):</span>
                 <span class="n">b_subset_search</span> <span class="o">=</span> <span class="kc">False</span>
                 <span class="c1"># Select the remaining data</span>
-                <span class="n">idx_sel_from_maj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">b_sel_N</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">idx_sel_from_maj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flatnonzero</span><span class="p">(</span><span class="n">b_sel_N</span><span class="p">)</span>
                 <span class="n">idx_sel_from_maj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">idx_mis_class</span><span class="p">,</span>
                                                    <span class="n">idx_sel_from_maj</span><span class="p">),</span>
                                                   <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
