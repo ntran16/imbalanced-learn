@@ -324,9 +324,11 @@
 
         <span class="c1"># Throw a warning to tell the user that we did not have enough samples</span>
         <span class="c1"># to select and that we just select everything</span>
-        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;The number of the samples to be selected is larger than&#39;</span>
-                      <span class="s1">&#39; the number of samples available. The balancing ratio&#39;</span>
-                      <span class="s1">&#39; cannot be ensure and all samples will be returned.&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sorted_idx</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">num_samples</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;The number of the samples to be selected is larger&#39;</span>
+                          <span class="s1">&#39; than the number of samples available. The&#39;</span>
+                          <span class="s1">&#39; balancing ratio cannot be ensure and all samples&#39;</span>
+                          <span class="s1">&#39; will be returned.&#39;</span><span class="p">)</span>
 
         <span class="c1"># Select the desired number of samples</span>
         <span class="n">sel_idx</span> <span class="o">=</span> <span class="n">sorted_idx</span><span class="p">[:</span><span class="n">num_samples</span><span class="p">]</span>

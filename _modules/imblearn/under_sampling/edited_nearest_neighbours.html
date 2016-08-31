@@ -513,13 +513,55 @@
 
             <span class="n">prev_len</span> <span class="o">=</span> <span class="n">y_</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_indices</span><span class="p">:</span>
-                <span class="n">X_</span><span class="p">,</span> <span class="n">y_</span><span class="p">,</span> <span class="n">idx_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">enn_</span><span class="o">.</span><span class="n">fit_sample</span><span class="p">(</span><span class="n">X_</span><span class="p">,</span> <span class="n">y_</span><span class="p">)</span>
-                <span class="n">idx_under</span> <span class="o">=</span> <span class="n">idx_under</span><span class="p">[</span><span class="n">idx_</span><span class="p">]</span>
+                <span class="n">X_enn</span><span class="p">,</span> <span class="n">y_enn</span><span class="p">,</span> <span class="n">idx_enn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">enn_</span><span class="o">.</span><span class="n">fit_sample</span><span class="p">(</span><span class="n">X_</span><span class="p">,</span> <span class="n">y_</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">X_</span><span class="p">,</span> <span class="n">y_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">enn_</span><span class="o">.</span><span class="n">fit_sample</span><span class="p">(</span><span class="n">X_</span><span class="p">,</span> <span class="n">y_</span><span class="p">)</span>
+                <span class="n">X_enn</span><span class="p">,</span> <span class="n">y_enn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">enn_</span><span class="o">.</span><span class="n">fit_sample</span><span class="p">(</span><span class="n">X_</span><span class="p">,</span> <span class="n">y_</span><span class="p">)</span>
 
-            <span class="k">if</span> <span class="n">prev_len</span> <span class="o">==</span> <span class="n">y_</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="c1"># Check the stopping criterion</span>
+            <span class="c1"># 1. If there is no changes for the vector y</span>
+            <span class="c1"># 2. If the number of samples in the other class become inferior to</span>
+            <span class="c1"># the number of samples in the majority class</span>
+            <span class="c1"># 3. If one of the class is disappearing</span>
+
+            <span class="c1"># Case 1</span>
+            <span class="n">b_conv</span> <span class="o">=</span> <span class="p">(</span><span class="n">prev_len</span> <span class="o">==</span> <span class="n">y_enn</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+            <span class="c1"># Case 2</span>
+            <span class="n">stats_enn</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">y_enn</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Current ENN stats: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">stats_enn</span><span class="p">)</span>
+            <span class="c1"># Get the number of samples in the non-minority classes</span>
+            <span class="n">count_non_min</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">val</span> <span class="k">for</span> <span class="n">val</span><span class="p">,</span> <span class="n">key</span>
+                                      <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">stats_enn</span><span class="o">.</span><span class="n">itervalues</span><span class="p">(),</span>
+                                             <span class="n">stats_enn</span><span class="o">.</span><span class="n">iterkeys</span><span class="p">())</span>
+                                      <span class="k">if</span> <span class="n">key</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_c_</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Number of samples in the non-majority&#39;</span>
+                              <span class="s1">&#39; classes: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">count_non_min</span><span class="p">)</span>
+            <span class="c1"># Check the minority stop to be the minority</span>
+            <span class="n">b_min_bec_maj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">count_non_min</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">stats_c_</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">min_c_</span><span class="p">])</span>
+
+            <span class="c1"># Case 3</span>
+            <span class="n">b_remove_maj_class</span> <span class="o">=</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">stats_enn</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stats_c_</span><span class="p">))</span>
+
+            <span class="k">if</span> <span class="n">b_conv</span> <span class="ow">or</span> <span class="n">b_min_bec_maj</span> <span class="ow">or</span> <span class="n">b_remove_maj_class</span><span class="p">:</span>
+                <span class="c1"># If this is a normal convergence, get the last data</span>
+                <span class="k">if</span> <span class="n">b_conv</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_indices</span><span class="p">:</span>
+                        <span class="n">X_</span><span class="p">,</span> <span class="n">y_</span><span class="p">,</span> <span class="o">=</span> <span class="n">X_enn</span><span class="p">,</span> <span class="n">y_enn</span>
+                        <span class="n">idx_under</span> <span class="o">=</span> <span class="n">idx_under</span><span class="p">[</span><span class="n">idx_enn</span><span class="p">]</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">X_</span><span class="p">,</span> <span class="n">y_</span><span class="p">,</span> <span class="o">=</span> <span class="n">X_enn</span><span class="p">,</span> <span class="n">y_enn</span>
+                <span class="c1"># Log the variables to explain the stop of the algorithm</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RENN converged: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">b_conv</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RENN minority become majority: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span>
+                                  <span class="n">b_min_bec_maj</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;RENN remove one class: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span>
+                                  <span class="n">b_remove_maj_class</span><span class="p">)</span>
                 <span class="k">break</span>
+
+            <span class="c1"># Update the data for the next iteration</span>
+            <span class="n">X_</span><span class="p">,</span> <span class="n">y_</span><span class="p">,</span> <span class="o">=</span> <span class="n">X_enn</span><span class="p">,</span> <span class="n">y_enn</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_indices</span><span class="p">:</span>
+                <span class="n">idx_under</span> <span class="o">=</span> <span class="n">idx_under</span><span class="p">[</span><span class="n">idx_enn</span><span class="p">]</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Under-sampling performed: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">Counter</span><span class="p">(</span><span class="n">y_</span><span class="p">))</span>
 
@@ -686,10 +728,42 @@
             <span class="c1"># updating ENN size_ngh</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">enn_</span><span class="o">.</span><span class="n">size_ngh</span> <span class="o">=</span> <span class="n">curr_size_ngh</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_indices</span><span class="p">:</span>
-                <span class="n">X_</span><span class="p">,</span> <span class="n">y_</span><span class="p">,</span> <span class="n">idx_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">enn_</span><span class="o">.</span><span class="n">fit_sample</span><span class="p">(</span><span class="n">X_</span><span class="p">,</span> <span class="n">y_</span><span class="p">)</span>
-                <span class="n">idx_under</span> <span class="o">=</span> <span class="n">idx_under</span><span class="p">[</span><span class="n">idx_</span><span class="p">]</span>
+                <span class="n">X_enn</span><span class="p">,</span> <span class="n">y_enn</span><span class="p">,</span> <span class="n">idx_enn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">enn_</span><span class="o">.</span><span class="n">fit_sample</span><span class="p">(</span><span class="n">X_</span><span class="p">,</span> <span class="n">y_</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">X_</span><span class="p">,</span> <span class="n">y_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">enn_</span><span class="o">.</span><span class="n">fit_sample</span><span class="p">(</span><span class="n">X_</span><span class="p">,</span> <span class="n">y_</span><span class="p">)</span>
+                <span class="n">X_enn</span><span class="p">,</span> <span class="n">y_enn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">enn_</span><span class="o">.</span><span class="n">fit_sample</span><span class="p">(</span><span class="n">X_</span><span class="p">,</span> <span class="n">y_</span><span class="p">)</span>
+
+            <span class="c1"># Check the stopping criterion</span>
+            <span class="c1"># 1. If the number of samples in the other class become inferior to</span>
+            <span class="c1"># the number of samples in the majority class</span>
+            <span class="c1"># 2. If one of the class is disappearing</span>
+            <span class="c1"># Case 1</span>
+            <span class="n">stats_enn</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">y_enn</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Current ENN stats: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">stats_enn</span><span class="p">)</span>
+            <span class="c1"># Get the number of samples in the non-minority classes</span>
+            <span class="n">count_non_min</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">val</span> <span class="k">for</span> <span class="n">val</span><span class="p">,</span> <span class="n">key</span>
+                                      <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">stats_enn</span><span class="o">.</span><span class="n">itervalues</span><span class="p">(),</span>
+                                             <span class="n">stats_enn</span><span class="o">.</span><span class="n">iterkeys</span><span class="p">())</span>
+                                      <span class="k">if</span> <span class="n">key</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_c_</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Number of samples in the non-majority&#39;</span>
+                              <span class="s1">&#39; classes: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">count_non_min</span><span class="p">)</span>
+            <span class="c1"># Check the minority stop to be the minority</span>
+            <span class="n">b_min_bec_maj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">count_non_min</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">stats_c_</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">min_c_</span><span class="p">])</span>
+
+            <span class="c1"># Case 2</span>
+            <span class="n">b_remove_maj_class</span> <span class="o">=</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">stats_enn</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stats_c_</span><span class="p">))</span>
+
+            <span class="k">if</span> <span class="n">b_min_bec_maj</span> <span class="ow">or</span> <span class="n">b_remove_maj_class</span><span class="p">:</span>
+                <span class="c1"># Log the variables to explain the stop of the algorithm</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;AllKNN minority become majority: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span>
+                                  <span class="n">b_min_bec_maj</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;AllKNN remove one class: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span>
+                                  <span class="n">b_remove_maj_class</span><span class="p">)</span>
+                <span class="k">break</span>
+
+            <span class="c1"># Update the data for the next iteration</span>
+            <span class="n">X_</span><span class="p">,</span> <span class="n">y_</span><span class="p">,</span> <span class="o">=</span> <span class="n">X_enn</span><span class="p">,</span> <span class="n">y_enn</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_indices</span><span class="p">:</span>
+                <span class="n">idx_under</span> <span class="o">=</span> <span class="n">idx_under</span><span class="p">[</span><span class="n">idx_enn</span><span class="p">]</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Under-sampling performed: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">Counter</span><span class="p">(</span><span class="n">y_</span><span class="p">))</span>
 

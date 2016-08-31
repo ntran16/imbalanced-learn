@@ -354,6 +354,7 @@
 
         <span class="c1"># Loop to create the different subsets</span>
         <span class="k">while</span> <span class="n">b_subset_search</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Search boolean: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">b_subset_search</span><span class="p">)</span>
             <span class="c1"># Generate an appropriate number of index to extract</span>
             <span class="c1"># from the majority class depending of the false classification</span>
             <span class="c1"># rate of the previous iteration</span>
@@ -421,6 +422,7 @@
 
             <span class="c1"># Check if we have to make an early stopping</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_max_subset</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Current number of subset </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">n_subsets</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">n_subsets</span> <span class="o">==</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_max_subset</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
                     <span class="n">b_subset_search</span> <span class="o">=</span> <span class="kc">False</span>
                     <span class="c1"># Select the remaining data</span>
@@ -448,6 +450,10 @@
 
                     <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;The number of subset reached is&#39;</span>
                                       <span class="s1">&#39; maximum.&#39;</span><span class="p">)</span>
+                    <span class="k">break</span>
+                <span class="c1"># Specific case with n_max_subset = 1</span>
+                <span class="k">elif</span> <span class="n">n_subsets</span> <span class="o">&gt;</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_max_subset</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+                    <span class="k">break</span>
 
             <span class="c1"># Also check that we will have enough sample to extract at the</span>
             <span class="c1"># next round</span>
