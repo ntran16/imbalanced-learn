@@ -5,7 +5,8 @@ a dataset.
 
 from .random_under_sampler import RandomUnderSampler
 from .tomek_links import TomekLinks
-from .cluster_centroids import ClusterCentroids
+from .clustering import ClusterCentroids
+from .clustering import DensityBasedClustering
 from .nearmiss import NearMiss
 from .condensed_nearest_neighbour import CondensedNearestNeighbour
 from .one_sided_selection import OneSidedSelection
@@ -18,6 +19,7 @@ from .instance_hardness_threshold import InstanceHardnessThreshold
 __all__ = ['RandomUnderSampler',
            'TomekLinks',
            'ClusterCentroids',
+           'DensityBasedClustering',
            'NearMiss',
            'CondensedNearestNeighbour',
            'OneSidedSelection',

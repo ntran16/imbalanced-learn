@@ -38,6 +38,8 @@ conda install --yes libgfortran \
     scikit-learn=0.17.1 \
     six=1.10.0 
 
+conda install --yes -c conda-forge hdbscan=0.8.1
+
 if [[ "$COVERAGE" == "true" ]]; then
     pip install coverage coveralls
 fi
