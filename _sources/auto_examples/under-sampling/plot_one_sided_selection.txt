@@ -73,19 +73,19 @@ An illustration of the one-sided selection method.
 
     plt.show()
 
-**Total running time of the script:**
-(0 minutes 1.498 seconds)
+**Total running time of the script:** ( 0 minutes  1.433 seconds)
 
 
 
 .. container:: sphx-glr-download
 
-    **Download Python source code:** :download:`plot_one_sided_selection.py <plot_one_sided_selection.py>`
+    :download:`Download Python source code: plot_one_sided_selection.py <plot_one_sided_selection.py>`
+
 
 
 .. container:: sphx-glr-download
 
-    **Download IPython notebook:** :download:`plot_one_sided_selection.ipynb <plot_one_sided_selection.ipynb>`
+    :download:`Download Jupyter notebook: plot_one_sided_selection.ipynb <plot_one_sided_selection.ipynb>`
 
 .. rst-class:: sphx-glr-signature
 

@@ -73,19 +73,19 @@ An illustration of the random SMOTE SVM method.
 
     plt.show()
 
-**Total running time of the script:**
-(0 minutes 1.370 seconds)
+**Total running time of the script:** ( 0 minutes  1.437 seconds)
 
 
 
 .. container:: sphx-glr-download
 
-    **Download Python source code:** :download:`plot_smote_svm.py <plot_smote_svm.py>`
+    :download:`Download Python source code: plot_smote_svm.py <plot_smote_svm.py>`
+
 
 
 .. container:: sphx-glr-download
 
-    **Download IPython notebook:** :download:`plot_smote_svm.ipynb <plot_smote_svm.ipynb>`
+    :download:`Download Jupyter notebook: plot_smote_svm.ipynb <plot_smote_svm.ipynb>`
 
 .. rst-class:: sphx-glr-signature
 

@@ -75,19 +75,19 @@ An illustration of the instance hardness threshold method.
 
     plt.show()
 
-**Total running time of the script:**
-(0 minutes 17.771 seconds)
+**Total running time of the script:** ( 0 minutes  16.793 seconds)
 
 
 
 .. container:: sphx-glr-download
 
-    **Download Python source code:** :download:`plot_instance_hardness_threshold.py <plot_instance_hardness_threshold.py>`
+    :download:`Download Python source code: plot_instance_hardness_threshold.py <plot_instance_hardness_threshold.py>`
+
 
 
 .. container:: sphx-glr-download
 
-    **Download IPython notebook:** :download:`plot_instance_hardness_threshold.ipynb <plot_instance_hardness_threshold.ipynb>`
+    :download:`Download Jupyter notebook: plot_instance_hardness_threshold.ipynb <plot_instance_hardness_threshold.ipynb>`
 
 .. rst-class:: sphx-glr-signature
 

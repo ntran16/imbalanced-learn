@@ -74,19 +74,19 @@ Learning ADASYN method.
 
     plt.show()
 
-**Total running time of the script:**
-(0 minutes 1.322 seconds)
+**Total running time of the script:** ( 0 minutes  1.222 seconds)
 
 
 
 .. container:: sphx-glr-download
 
-    **Download Python source code:** :download:`plot_adasyn.py <plot_adasyn.py>`
+    :download:`Download Python source code: plot_adasyn.py <plot_adasyn.py>`
+
 
 
 .. container:: sphx-glr-download
 
-    **Download IPython notebook:** :download:`plot_adasyn.ipynb <plot_adasyn.ipynb>`
+    :download:`Download Jupyter notebook: plot_adasyn.ipynb <plot_adasyn.ipynb>`
 
 .. rst-class:: sphx-glr-signature
 
