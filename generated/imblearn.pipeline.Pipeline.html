@@ -34,6 +34,9 @@
   
         <link rel="author" title="About these documents"
               href="../about.html"/>
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="imbalanced-learn 0.2.0.dev0 documentation" href="../index.html"/>
         <link rel="up" title="imbalanced-learn API" href="../api.html"/> 
 
@@ -245,46 +248,46 @@ are chained, with the last object an estimator.</p>
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.decision_function" title="imblearn.pipeline.Pipeline.decision_function"><code class="xref py py-obj docutils literal"><span class="pre">decision_function</span></code></a>(*args,&nbsp;**kwargs)</td>
+<tr class="row-odd"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.decision_function" title="imblearn.pipeline.Pipeline.decision_function"><code class="xref py py-obj docutils literal"><span class="pre">decision_function</span></code></a>(\*args,&nbsp;\*\*kwargs)</td>
 <td>Applies transforms to the data, and the decision_function method of the final estimator.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.fit" title="imblearn.pipeline.Pipeline.fit"><code class="xref py py-obj docutils literal"><span class="pre">fit</span></code></a>(X[,&nbsp;y])</td>
 <td>Fit all the transforms and samples one after the other and transform the data, then fit the transformed data using the final estimator.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.fit_predict" title="imblearn.pipeline.Pipeline.fit_predict"><code class="xref py py-obj docutils literal"><span class="pre">fit_predict</span></code></a>(*args,&nbsp;**kwargs)</td>
+<tr class="row-odd"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.fit_predict" title="imblearn.pipeline.Pipeline.fit_predict"><code class="xref py py-obj docutils literal"><span class="pre">fit_predict</span></code></a>(\*args,&nbsp;\*\*kwargs)</td>
 <td>Applies fit_predict of last step in pipeline after transforms and samples.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.fit_sample" title="imblearn.pipeline.Pipeline.fit_sample"><code class="xref py py-obj docutils literal"><span class="pre">fit_sample</span></code></a>(*args,&nbsp;**kwargs)</td>
+<tr class="row-even"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.fit_sample" title="imblearn.pipeline.Pipeline.fit_sample"><code class="xref py py-obj docutils literal"><span class="pre">fit_sample</span></code></a>(\*args,&nbsp;\*\*kwargs)</td>
 <td>Fit all the transforms and samples one after the other and transform or sample the data, then use fit_sample on transformed data using the final estimator.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.fit_transform" title="imblearn.pipeline.Pipeline.fit_transform"><code class="xref py py-obj docutils literal"><span class="pre">fit_transform</span></code></a>(X[,&nbsp;y])</td>
 <td>Fit all the transforms and samples one after the other and transform or sample the data, then use fit_transform on transformed data using the final estimator.</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">get_params</span></code>([deep])</td>
-<td></td>
+<tr class="row-even"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.get_params" title="imblearn.pipeline.Pipeline.get_params"><code class="xref py py-obj docutils literal"><span class="pre">get_params</span></code></a>([deep])</td>
+<td>Get parameters for this estimator.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.inverse_transform" title="imblearn.pipeline.Pipeline.inverse_transform"><code class="xref py py-obj docutils literal"><span class="pre">inverse_transform</span></code></a>(*args,&nbsp;**kwargs)</td>
+<tr class="row-odd"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.inverse_transform" title="imblearn.pipeline.Pipeline.inverse_transform"><code class="xref py py-obj docutils literal"><span class="pre">inverse_transform</span></code></a>(\*args,&nbsp;\*\*kwargs)</td>
 <td>Applies inverse transform to the data.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.predict" title="imblearn.pipeline.Pipeline.predict"><code class="xref py py-obj docutils literal"><span class="pre">predict</span></code></a>(*args,&nbsp;**kwargs)</td>
+<tr class="row-even"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.predict" title="imblearn.pipeline.Pipeline.predict"><code class="xref py py-obj docutils literal"><span class="pre">predict</span></code></a>(\*args,&nbsp;\*\*kwargs)</td>
 <td>Applies transforms to the data, and the predict method of the final estimator.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.predict_log_proba" title="imblearn.pipeline.Pipeline.predict_log_proba"><code class="xref py py-obj docutils literal"><span class="pre">predict_log_proba</span></code></a>(*args,&nbsp;**kwargs)</td>
+<tr class="row-odd"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.predict_log_proba" title="imblearn.pipeline.Pipeline.predict_log_proba"><code class="xref py py-obj docutils literal"><span class="pre">predict_log_proba</span></code></a>(\*args,&nbsp;\*\*kwargs)</td>
 <td>Applies transforms to the data, and the predict_log_proba method of the final estimator.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.predict_proba" title="imblearn.pipeline.Pipeline.predict_proba"><code class="xref py py-obj docutils literal"><span class="pre">predict_proba</span></code></a>(*args,&nbsp;**kwargs)</td>
+<tr class="row-even"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.predict_proba" title="imblearn.pipeline.Pipeline.predict_proba"><code class="xref py py-obj docutils literal"><span class="pre">predict_proba</span></code></a>(\*args,&nbsp;\*\*kwargs)</td>
 <td>Applies transforms to the data, and the predict_proba method of the final estimator.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.sample" title="imblearn.pipeline.Pipeline.sample"><code class="xref py py-obj docutils literal"><span class="pre">sample</span></code></a>(*args,&nbsp;**kwargs)</td>
+<tr class="row-odd"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.sample" title="imblearn.pipeline.Pipeline.sample"><code class="xref py py-obj docutils literal"><span class="pre">sample</span></code></a>(\*args,&nbsp;\*\*kwargs)</td>
 <td>Applies transforms to the data, and the sample method of the final estimator.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.score" title="imblearn.pipeline.Pipeline.score"><code class="xref py py-obj docutils literal"><span class="pre">score</span></code></a>(*args,&nbsp;**kwargs)</td>
+<tr class="row-even"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.score" title="imblearn.pipeline.Pipeline.score"><code class="xref py py-obj docutils literal"><span class="pre">score</span></code></a>(\*args,&nbsp;\*\*kwargs)</td>
 <td>Applies transforms to the data, and the score method of the final estimator.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.set_params" title="imblearn.pipeline.Pipeline.set_params"><code class="xref py py-obj docutils literal"><span class="pre">set_params</span></code></a>(**params)</td>
+<tr class="row-odd"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.set_params" title="imblearn.pipeline.Pipeline.set_params"><code class="xref py py-obj docutils literal"><span class="pre">set_params</span></code></a>(\*\*kwargs)</td>
 <td>Set the parameters of this estimator.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.transform" title="imblearn.pipeline.Pipeline.transform"><code class="xref py py-obj docutils literal"><span class="pre">transform</span></code></a>(*args,&nbsp;**kwargs)</td>
+<tr class="row-even"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.transform" title="imblearn.pipeline.Pipeline.transform"><code class="xref py py-obj docutils literal"><span class="pre">transform</span></code></a>(\*args,&nbsp;\*\*kwargs)</td>
 <td>Applies transforms to the data, and the transform method of the final estimator.</td>
 </tr>
 </tbody>
@@ -304,46 +307,46 @@ are chained, with the last object an estimator.</p>
 <tr class="row-odd"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.__init__" title="imblearn.pipeline.Pipeline.__init__"><code class="xref py py-obj docutils literal"><span class="pre">__init__</span></code></a>(steps)</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.decision_function" title="imblearn.pipeline.Pipeline.decision_function"><code class="xref py py-obj docutils literal"><span class="pre">decision_function</span></code></a>(*args,&nbsp;**kwargs)</td>
+<tr class="row-even"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.decision_function" title="imblearn.pipeline.Pipeline.decision_function"><code class="xref py py-obj docutils literal"><span class="pre">decision_function</span></code></a>(\*args,&nbsp;\*\*kwargs)</td>
 <td>Applies transforms to the data, and the decision_function method of the final estimator.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.fit" title="imblearn.pipeline.Pipeline.fit"><code class="xref py py-obj docutils literal"><span class="pre">fit</span></code></a>(X[,&nbsp;y])</td>
 <td>Fit all the transforms and samples one after the other and transform the data, then fit the transformed data using the final estimator.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.fit_predict" title="imblearn.pipeline.Pipeline.fit_predict"><code class="xref py py-obj docutils literal"><span class="pre">fit_predict</span></code></a>(*args,&nbsp;**kwargs)</td>
+<tr class="row-even"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.fit_predict" title="imblearn.pipeline.Pipeline.fit_predict"><code class="xref py py-obj docutils literal"><span class="pre">fit_predict</span></code></a>(\*args,&nbsp;\*\*kwargs)</td>
 <td>Applies fit_predict of last step in pipeline after transforms and samples.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.fit_sample" title="imblearn.pipeline.Pipeline.fit_sample"><code class="xref py py-obj docutils literal"><span class="pre">fit_sample</span></code></a>(*args,&nbsp;**kwargs)</td>
+<tr class="row-odd"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.fit_sample" title="imblearn.pipeline.Pipeline.fit_sample"><code class="xref py py-obj docutils literal"><span class="pre">fit_sample</span></code></a>(\*args,&nbsp;\*\*kwargs)</td>
 <td>Fit all the transforms and samples one after the other and transform or sample the data, then use fit_sample on transformed data using the final estimator.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.fit_transform" title="imblearn.pipeline.Pipeline.fit_transform"><code class="xref py py-obj docutils literal"><span class="pre">fit_transform</span></code></a>(X[,&nbsp;y])</td>
 <td>Fit all the transforms and samples one after the other and transform or sample the data, then use fit_transform on transformed data using the final estimator.</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">get_params</span></code>([deep])</td>
-<td></td>
+<tr class="row-odd"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.get_params" title="imblearn.pipeline.Pipeline.get_params"><code class="xref py py-obj docutils literal"><span class="pre">get_params</span></code></a>([deep])</td>
+<td>Get parameters for this estimator.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.inverse_transform" title="imblearn.pipeline.Pipeline.inverse_transform"><code class="xref py py-obj docutils literal"><span class="pre">inverse_transform</span></code></a>(*args,&nbsp;**kwargs)</td>
+<tr class="row-even"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.inverse_transform" title="imblearn.pipeline.Pipeline.inverse_transform"><code class="xref py py-obj docutils literal"><span class="pre">inverse_transform</span></code></a>(\*args,&nbsp;\*\*kwargs)</td>
 <td>Applies inverse transform to the data.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.predict" title="imblearn.pipeline.Pipeline.predict"><code class="xref py py-obj docutils literal"><span class="pre">predict</span></code></a>(*args,&nbsp;**kwargs)</td>
+<tr class="row-odd"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.predict" title="imblearn.pipeline.Pipeline.predict"><code class="xref py py-obj docutils literal"><span class="pre">predict</span></code></a>(\*args,&nbsp;\*\*kwargs)</td>
 <td>Applies transforms to the data, and the predict method of the final estimator.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.predict_log_proba" title="imblearn.pipeline.Pipeline.predict_log_proba"><code class="xref py py-obj docutils literal"><span class="pre">predict_log_proba</span></code></a>(*args,&nbsp;**kwargs)</td>
+<tr class="row-even"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.predict_log_proba" title="imblearn.pipeline.Pipeline.predict_log_proba"><code class="xref py py-obj docutils literal"><span class="pre">predict_log_proba</span></code></a>(\*args,&nbsp;\*\*kwargs)</td>
 <td>Applies transforms to the data, and the predict_log_proba method of the final estimator.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.predict_proba" title="imblearn.pipeline.Pipeline.predict_proba"><code class="xref py py-obj docutils literal"><span class="pre">predict_proba</span></code></a>(*args,&nbsp;**kwargs)</td>
+<tr class="row-odd"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.predict_proba" title="imblearn.pipeline.Pipeline.predict_proba"><code class="xref py py-obj docutils literal"><span class="pre">predict_proba</span></code></a>(\*args,&nbsp;\*\*kwargs)</td>
 <td>Applies transforms to the data, and the predict_proba method of the final estimator.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.sample" title="imblearn.pipeline.Pipeline.sample"><code class="xref py py-obj docutils literal"><span class="pre">sample</span></code></a>(*args,&nbsp;**kwargs)</td>
+<tr class="row-even"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.sample" title="imblearn.pipeline.Pipeline.sample"><code class="xref py py-obj docutils literal"><span class="pre">sample</span></code></a>(\*args,&nbsp;\*\*kwargs)</td>
 <td>Applies transforms to the data, and the sample method of the final estimator.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.score" title="imblearn.pipeline.Pipeline.score"><code class="xref py py-obj docutils literal"><span class="pre">score</span></code></a>(*args,&nbsp;**kwargs)</td>
+<tr class="row-odd"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.score" title="imblearn.pipeline.Pipeline.score"><code class="xref py py-obj docutils literal"><span class="pre">score</span></code></a>(\*args,&nbsp;\*\*kwargs)</td>
 <td>Applies transforms to the data, and the score method of the final estimator.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.set_params" title="imblearn.pipeline.Pipeline.set_params"><code class="xref py py-obj docutils literal"><span class="pre">set_params</span></code></a>(**params)</td>
+<tr class="row-even"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.set_params" title="imblearn.pipeline.Pipeline.set_params"><code class="xref py py-obj docutils literal"><span class="pre">set_params</span></code></a>(\*\*kwargs)</td>
 <td>Set the parameters of this estimator.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.transform" title="imblearn.pipeline.Pipeline.transform"><code class="xref py py-obj docutils literal"><span class="pre">transform</span></code></a>(*args,&nbsp;**kwargs)</td>
+<tr class="row-odd"><td><a class="reference internal" href="#imblearn.pipeline.Pipeline.transform" title="imblearn.pipeline.Pipeline.transform"><code class="xref py py-obj docutils literal"><span class="pre">transform</span></code></a>(\*args,&nbsp;\*\*kwargs)</td>
 <td>Applies transforms to the data, and the transform method of the final estimator.</td>
 </tr>
 </tbody>
@@ -490,6 +493,31 @@ the pipeline.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="imblearn.pipeline.Pipeline.get_params">
+<code class="descname">get_params</code><span class="sig-paren">(</span><em>deep=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sklearn/pipeline.html#Pipeline.get_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.pipeline.Pipeline.get_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get parameters for this estimator.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>deep: boolean, optional</strong></p>
+<blockquote>
+<div><p>If True, will return the parameters for this estimator and
+contained subobjects that are estimators.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>params</strong> : mapping of string to any</p>
+<blockquote class="last">
+<div><p>Parameter names mapped to their values.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="imblearn.pipeline.Pipeline.inverse_transform">
 <code class="descname">inverse_transform</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/pipeline.html#Pipeline.inverse_transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.pipeline.Pipeline.inverse_transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Applies inverse transform to the data.
@@ -623,12 +651,9 @@ steps of the pipeline.</p>
 
 <dl class="method">
 <dt id="imblearn.pipeline.Pipeline.set_params">
-<code class="descname">set_params</code><span class="sig-paren">(</span><em>**params</em><span class="sig-paren">)</span><a class="headerlink" href="#imblearn.pipeline.Pipeline.set_params" title="Permalink to this definition">¶</a></dt>
+<code class="descname">set_params</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sklearn/pipeline.html#Pipeline.set_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.pipeline.Pipeline.set_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the parameters of this estimator.</p>
-<p>The method works on simple estimators as well as on nested objects
-(such as pipelines). The former have parameters of the form
-<code class="docutils literal"><span class="pre">&lt;component&gt;__&lt;parameter&gt;</span></code> so that it&#8217;s possible to update each
-component of a nested object.</p>
+<p>Valid parameter keys can be listed with <code class="docutils literal"><span class="pre">get_params()</span></code>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
