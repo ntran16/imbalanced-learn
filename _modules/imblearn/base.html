@@ -228,16 +228,17 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Compute classes statistics ...&#39;</span><span class="p">)</span>
 
-        <span class="c1"># Get all the unique elements in the target array</span>
-        <span class="n">uniques</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-
         <span class="c1"># # Raise an error if there is only one class</span>
         <span class="c1"># if uniques.size == 1:</span>
         <span class="c1">#     raise RuntimeError(&quot;Only one class detected, aborting...&quot;)</span>
         <span class="c1"># Raise a warning for the moment to be compatible with BaseEstimator</span>
-        <span class="k">if</span> <span class="n">uniques</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Only one class detected, something will get wrong&#39;</span><span class="p">,</span>
-                          <span class="ne">RuntimeWarning</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;The number of classes is </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Shall we raise a warning: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span>
+                          <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s1">&#39;always&#39;</span><span class="p">,</span> <span class="ne">UserWarning</span><span class="p">)</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Only one class detected, something will get wrong&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;The warning should has been raised.&#39;</span><span class="p">)</span>
 
         <span class="c1"># Store the size of X to check at sampling time if we have the</span>
         <span class="c1"># same data</span>
@@ -250,7 +251,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">min_c_</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stats_c_</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">stats_c_</span><span class="o">.</span><span class="n">get</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">maj_c_</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stats_c_</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">stats_c_</span><span class="o">.</span><span class="n">get</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> classes detected: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">uniques</span><span class="o">.</span><span class="n">size</span><span class="p">,</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> classes detected: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">,</span>
                          <span class="bp">self</span><span class="o">.</span><span class="n">stats_c_</span><span class="p">)</span>
 
         <span class="c1"># Check if the ratio provided at initialisation make sense</span>
@@ -406,6 +407,7 @@
 
         <span class="c1"># Check that the target type is binary</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">type_of_target</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;binary&#39;</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s1">&#39;always&#39;</span><span class="p">,</span> <span class="ne">UserWarning</span><span class="p">)</span>
             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;The target type should be binary.&#39;</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="bp">self</span>
@@ -442,6 +444,7 @@
         <span class="c1"># Check that the target type is either binary or multiclass</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">type_of_target</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;binary&#39;</span> <span class="ow">or</span>
                 <span class="n">type_of_target</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;multiclass&#39;</span><span class="p">):</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s1">&#39;always&#39;</span><span class="p">,</span> <span class="ne">UserWarning</span><span class="p">)</span>
             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;The target type should be binary or multiclass.&#39;</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="bp">self</span>
