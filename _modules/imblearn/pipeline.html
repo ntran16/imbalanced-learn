@@ -176,6 +176,32 @@
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Pipeline&#39;</span><span class="p">]</span>
 
 
+<span class="k">def</span> <span class="nf">_validate_step_methods</span><span class="p">(</span><span class="n">step</span><span class="p">):</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="s2">&quot;fit&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="s2">&quot;fit_transform&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">hasattr</span><span class="p">(</span>
+            <span class="n">step</span><span class="p">,</span> <span class="s2">&quot;fit_sample&quot;</span><span class="p">))</span> <span class="ow">or</span>
+            <span class="ow">not</span> <span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="s2">&quot;transform&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="s2">&quot;sample&quot;</span><span class="p">))):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+            <span class="s2">&quot;All intermediate steps of the chain should &quot;</span>
+            <span class="s2">&quot;be estimators that implement fit and transform or sample (but not both)&quot;</span>
+            <span class="s2">&quot; &#39;</span><span class="si">%s</span><span class="s2">&#39; (type </span><span class="si">%s</span><span class="s2">) doesn&#39;t)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">t</span><span class="p">)))</span>
+
+
+<span class="k">def</span> <span class="nf">_validate_step_behaviour</span><span class="p">(</span><span class="n">step</span><span class="p">):</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="s2">&quot;fit_sample&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="s2">&quot;fit_transform&quot;</span><span class="p">))</span> <span class="ow">or</span> <span class="p">(</span>
+            <span class="nb">hasattr</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="s2">&quot;sample&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="s2">&quot;transform&quot;</span><span class="p">)):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+            <span class="s2">&quot;All intermediate steps of the chain should &quot;</span>
+            <span class="s2">&quot;be estimators that implement fit and transform or sample.&quot;</span>
+            <span class="s2">&quot; &#39;</span><span class="si">%s</span><span class="s2">&#39; implements both)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">step</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">_validate_step_class</span><span class="p">(</span><span class="n">step</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">Pipeline</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+            <span class="s2">&quot;All intermediate steps of the chain should not be Pipelines&quot;</span><span class="p">)</span>
+
+
 <div class="viewcode-block" id="Pipeline"><a class="viewcode-back" href="../../generated/imblearn.pipeline.Pipeline.html#imblearn.pipeline.Pipeline">[docs]</a><span class="k">class</span> <span class="nc">Pipeline</span><span class="p">(</span><span class="n">pipeline</span><span class="o">.</span><span class="n">Pipeline</span><span class="p">):</span>
 
     <span class="sd">&quot;&quot;&quot;Pipeline of transforms and resamples with a final estimator.</span>
@@ -256,12 +282,9 @@
         <span class="n">estimator</span> <span class="o">=</span> <span class="n">estimators</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
         <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">transforms</span><span class="p">:</span>
-            <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="s2">&quot;fit&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="s2">&quot;fit_transform&quot;</span><span class="p">)</span> <span class="ow">or</span>
-                     <span class="nb">hasattr</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="s2">&quot;fit_sample&quot;</span><span class="p">))</span> <span class="ow">or</span>
-                    <span class="ow">not</span> <span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="s2">&quot;transform&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="s2">&quot;sample&quot;</span><span class="p">))):</span>
-                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;All intermediate steps of the chain should &quot;</span>
-                                <span class="s2">&quot;be transforms and implement fit and transform&quot;</span>
-                                <span class="s2">&quot; &#39;</span><span class="si">%s</span><span class="s2">&#39; (type </span><span class="si">%s</span><span class="s2">) doesn&#39;t)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">t</span><span class="p">)))</span>
+            <span class="n">_validate_step_methods</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+            <span class="n">_validate_step_behaviour</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+            <span class="n">_validate_step_class</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="s2">&quot;fit&quot;</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Last step of chain should implement fit &quot;</span>
