@@ -226,9 +226,12 @@
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;ratio&#39;</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_validate_ratio</span><span class="p">()</span>
 
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;size_ngh&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_validate_size_ngh_deprecation</span><span class="p">()</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Compute classes statistics ...&#39;</span><span class="p">)</span>
 
-        <span class="c1"># # Raise an error if there is only one class</span>
+        <span class="c1"># Raise an error if there is only one class</span>
         <span class="c1"># if uniques.size == 1:</span>
         <span class="c1">#     raise RuntimeError(&quot;Only one class detected, aborting...&quot;)</span>
         <span class="c1"># Raise a warning for the moment to be compatible with BaseEstimator</span>
@@ -301,6 +304,9 @@
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;ratio&#39;</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_validate_ratio</span><span class="p">()</span>
 
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;size_ngh&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_validate_size_ngh_deprecation</span><span class="p">()</span>
+
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sample</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">fit_sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
@@ -341,6 +347,15 @@
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Unknown string for the parameter ratio.&#39;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Unknown parameter type for ratio.&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_validate_size_ngh_deprecation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s2">&quot;Private function to warn about the deprecation about size_ngh.&quot;</span>
+
+        <span class="c1"># Announce deprecation if necessary</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">size_ngh</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;`size_ngh` will be replaced in version 0.4. Use&#39;</span>
+                          <span class="s1">&#39; `n_neighbors` instead.&#39;</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">n_neighbors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">size_ngh</span>
 
     <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">_sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>

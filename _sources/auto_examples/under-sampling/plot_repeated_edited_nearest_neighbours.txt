@@ -101,19 +101,22 @@ An illustration of the repeated edited nearest-neighbours method.
 
     plt.show()
 
-**Total running time of the script:** ( 0 minutes  1.607 seconds)
+**Total running time of the script:** ( 0 minutes  1.498 seconds)
 
 
 
-.. container:: sphx-glr-download
-
-    :download:`Download Python source code: plot_repeated_edited_nearest_neighbours.py <plot_repeated_edited_nearest_neighbours.py>`
+.. container:: sphx-glr-footer
 
 
+  .. container:: sphx-glr-download
 
-.. container:: sphx-glr-download
+     :download:`Download Python source code: plot_repeated_edited_nearest_neighbours.py <plot_repeated_edited_nearest_neighbours.py>`
 
-    :download:`Download Jupyter notebook: plot_repeated_edited_nearest_neighbours.ipynb <plot_repeated_edited_nearest_neighbours.ipynb>`
+
+
+  .. container:: sphx-glr-download
+
+     :download:`Download Jupyter notebook: plot_repeated_edited_nearest_neighbours.ipynb <plot_repeated_edited_nearest_neighbours.ipynb>`
 
 .. rst-class:: sphx-glr-signature
 

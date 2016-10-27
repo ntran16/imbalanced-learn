@@ -153,6 +153,8 @@
 <span></span><span class="sd">&quot;&quot;&quot;Class to perform over-sampling using SMOTE and cleaning using ENN.&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span>
 
+<span class="kn">import</span> <span class="nn">warnings</span>
+
 <span class="kn">from</span> <span class="nn">..base</span> <span class="k">import</span> <span class="n">BaseBinarySampler</span>
 <span class="kn">from</span> <span class="nn">..over_sampling</span> <span class="k">import</span> <span class="n">SMOTE</span>
 <span class="kn">from</span> <span class="nn">..under_sampling</span> <span class="k">import</span> <span class="n">EditedNearestNeighbours</span>
@@ -192,7 +194,14 @@
 <span class="sd">        The type of SMOTE algorithm to use one of the following</span>
 <span class="sd">        options: &#39;regular&#39;, &#39;borderline1&#39;, &#39;borderline2&#39;, &#39;svm&#39;.</span>
 
-<span class="sd">    size_ngh : int, optional (default=3)</span>
+<span class="sd">    size_ngh : int, optional (default=None)</span>
+<span class="sd">        Size of the neighbourhood to consider to compute the average</span>
+<span class="sd">        distance to the minority point samples.</span>
+
+<span class="sd">        NOTE: size_ngh is deprecated from 0.2 and will be replaced in 0.4</span>
+<span class="sd">        Use ``n_neighbors`` instead.</span>
+
+<span class="sd">    n_neighbors : int, optional (default=3)</span>
 <span class="sd">        Size of the neighbourhood to consider to compute the average</span>
 <span class="sd">        distance to the minority point samples.</span>
 
@@ -255,7 +264,8 @@
 
 <div class="viewcode-block" id="SMOTEENN.__init__"><a class="viewcode-back" href="../../../generated/imblearn.combine.SMOTEENN.html#imblearn.combine.SMOTEENN.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ratio</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">out_step</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">kind_smote</span><span class="o">=</span><span class="s1">&#39;regular&#39;</span><span class="p">,</span>
-                 <span class="n">size_ngh</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">kind_enn</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+                 <span class="n">size_ngh</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">kind_enn</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+                 <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 
         <span class="nb">super</span><span class="p">(</span><span class="n">SMOTEENN</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">ratio</span><span class="o">=</span><span class="n">ratio</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">random_state</span> <span class="o">=</span> <span class="n">random_state</span>
@@ -264,6 +274,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">out_step</span> <span class="o">=</span> <span class="n">out_step</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">kind_smote</span> <span class="o">=</span> <span class="n">kind_smote</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">size_ngh</span> <span class="o">=</span> <span class="n">size_ngh</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_neighbors</span> <span class="o">=</span> <span class="n">n_neighbors</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">kind_enn</span> <span class="o">=</span> <span class="n">kind_enn</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span> <span class="o">=</span> <span class="n">n_jobs</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span> <span class="o">=</span> <span class="n">kwargs</span>
@@ -273,6 +284,7 @@
                         <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">enn</span> <span class="o">=</span> <span class="n">EditedNearestNeighbours</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state</span><span class="p">,</span>
                                            <span class="n">size_ngh</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">size_ngh</span><span class="p">,</span>
+                                           <span class="n">n_neighbors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_neighbors</span><span class="p">,</span>
                                            <span class="n">kind_sel</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kind_enn</span><span class="p">,</span>
                                            <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">)</span></div>
 
@@ -295,6 +307,12 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="nb">super</span><span class="p">(</span><span class="n">SMOTEENN</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+        <span class="c1"># Annonce deprecation if necessary</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">size_ngh</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;`size_ngh` will be replaced in version 0.4. Use&#39;</span>
+                          <span class="s1">&#39; `n_neighbors` instead.&#39;</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">n_neighbors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">size_ngh</span>
 
         <span class="c1"># Fit using SMOTE</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>

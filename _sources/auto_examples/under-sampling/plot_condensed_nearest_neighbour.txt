@@ -75,19 +75,22 @@ An illustration of the condensed nearest-neighbour method.
 
     plt.show()
 
-**Total running time of the script:** ( 0 minutes  12.305 seconds)
+**Total running time of the script:** ( 0 minutes  14.157 seconds)
 
 
 
-.. container:: sphx-glr-download
-
-    :download:`Download Python source code: plot_condensed_nearest_neighbour.py <plot_condensed_nearest_neighbour.py>`
+.. container:: sphx-glr-footer
 
 
+  .. container:: sphx-glr-download
 
-.. container:: sphx-glr-download
+     :download:`Download Python source code: plot_condensed_nearest_neighbour.py <plot_condensed_nearest_neighbour.py>`
 
-    :download:`Download Jupyter notebook: plot_condensed_nearest_neighbour.ipynb <plot_condensed_nearest_neighbour.ipynb>`
+
+
+  .. container:: sphx-glr-download
+
+     :download:`Download Jupyter notebook: plot_condensed_nearest_neighbour.ipynb <plot_condensed_nearest_neighbour.ipynb>`
 
 .. rst-class:: sphx-glr-signature
 

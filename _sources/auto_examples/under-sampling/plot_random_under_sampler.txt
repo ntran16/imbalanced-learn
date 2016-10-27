@@ -75,19 +75,22 @@ An illustration of the random under-sampling method.
 
     plt.show()
 
-**Total running time of the script:** ( 0 minutes  0.676 seconds)
+**Total running time of the script:** ( 0 minutes  0.642 seconds)
 
 
 
-.. container:: sphx-glr-download
-
-    :download:`Download Python source code: plot_random_under_sampler.py <plot_random_under_sampler.py>`
+.. container:: sphx-glr-footer
 
 
+  .. container:: sphx-glr-download
 
-.. container:: sphx-glr-download
+     :download:`Download Python source code: plot_random_under_sampler.py <plot_random_under_sampler.py>`
 
-    :download:`Download Jupyter notebook: plot_random_under_sampler.ipynb <plot_random_under_sampler.ipynb>`
+
+
+  .. container:: sphx-glr-download
+
+     :download:`Download Jupyter notebook: plot_random_under_sampler.ipynb <plot_random_under_sampler.ipynb>`
 
 .. rst-class:: sphx-glr-signature
 

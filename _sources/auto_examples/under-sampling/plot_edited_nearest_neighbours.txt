@@ -75,19 +75,22 @@ An illustration of the edited nearest-neighbours method.
 
     plt.show()
 
-**Total running time of the script:** ( 0 minutes  1.752 seconds)
+**Total running time of the script:** ( 0 minutes  1.644 seconds)
 
 
 
-.. container:: sphx-glr-download
-
-    :download:`Download Python source code: plot_edited_nearest_neighbours.py <plot_edited_nearest_neighbours.py>`
+.. container:: sphx-glr-footer
 
 
+  .. container:: sphx-glr-download
 
-.. container:: sphx-glr-download
+     :download:`Download Python source code: plot_edited_nearest_neighbours.py <plot_edited_nearest_neighbours.py>`
 
-    :download:`Download Jupyter notebook: plot_edited_nearest_neighbours.ipynb <plot_edited_nearest_neighbours.ipynb>`
+
+
+  .. container:: sphx-glr-download
+
+     :download:`Download Jupyter notebook: plot_edited_nearest_neighbours.ipynb <plot_edited_nearest_neighbours.ipynb>`
 
 .. rst-class:: sphx-glr-signature
 

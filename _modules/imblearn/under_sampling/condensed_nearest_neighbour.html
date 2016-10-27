@@ -154,6 +154,8 @@
 <span class="sd">method.&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span>
 
+<span class="kn">import</span> <span class="nn">warnings</span>
+
 <span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">Counter</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -179,7 +181,14 @@
 <span class="sd">        If None, the random number generator is the RandomState instance used</span>
 <span class="sd">        by np.random.</span>
 
-<span class="sd">    size_ngh : int, optional (default=1)</span>
+<span class="sd">    size_ngh : int, optional (default=None)</span>
+<span class="sd">        Size of the neighbourhood to consider to compute the average</span>
+<span class="sd">        distance to the minority point samples.</span>
+
+<span class="sd">        NOTE: size_ngh is deprecated from 0.2 and will be replaced in 0.4</span>
+<span class="sd">        Use ``n_neighbors`` instead.</span>
+
+<span class="sd">    n_neighbors : int, optional (default=1)</span>
 <span class="sd">        Size of the neighbourhood to consider to compute the average</span>
 <span class="sd">        distance to the minority point samples.</span>
 
@@ -238,12 +247,14 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="CondensedNearestNeighbour.__init__"><a class="viewcode-back" href="../../../generated/imblearn.under_sampling.CondensedNearestNeighbour.html#imblearn.under_sampling.CondensedNearestNeighbour.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">return_indices</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                 <span class="n">size_ngh</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_seeds_S</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+                 <span class="n">size_ngh</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_seeds_S</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+                 <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">CondensedNearestNeighbour</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">return_indices</span> <span class="o">=</span> <span class="n">return_indices</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">random_state</span> <span class="o">=</span> <span class="n">random_state</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">size_ngh</span> <span class="o">=</span> <span class="n">size_ngh</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_neighbors</span> <span class="o">=</span> <span class="n">n_neighbors</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_seeds_S</span> <span class="o">=</span> <span class="n">n_seeds_S</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span> <span class="o">=</span> <span class="n">n_jobs</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span> <span class="o">=</span> <span class="n">kwargs</span></div>
@@ -310,7 +321,7 @@
             <span class="n">S_y</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">y</span> <span class="o">==</span> <span class="n">key</span><span class="p">]</span>
 
             <span class="c1"># Create a k-NN classifier</span>
-            <span class="n">knn</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">size_ngh</span><span class="p">,</span>
+            <span class="n">knn</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_neighbors</span><span class="p">,</span>
                                        <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">,</span>
                                        <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span>
 

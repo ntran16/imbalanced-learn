@@ -75,19 +75,22 @@ An illustration of the nearmiss 3 method.
 
     plt.show()
 
-**Total running time of the script:** ( 0 minutes  0.822 seconds)
+**Total running time of the script:** ( 0 minutes  1.047 seconds)
 
 
 
-.. container:: sphx-glr-download
-
-    :download:`Download Python source code: plot_nearmiss_3.py <plot_nearmiss_3.py>`
+.. container:: sphx-glr-footer
 
 
+  .. container:: sphx-glr-download
 
-.. container:: sphx-glr-download
+     :download:`Download Python source code: plot_nearmiss_3.py <plot_nearmiss_3.py>`
 
-    :download:`Download Jupyter notebook: plot_nearmiss_3.ipynb <plot_nearmiss_3.ipynb>`
+
+
+  .. container:: sphx-glr-download
+
+     :download:`Download Jupyter notebook: plot_nearmiss_3.ipynb <plot_nearmiss_3.ipynb>`
 
 .. rst-class:: sphx-glr-signature
 

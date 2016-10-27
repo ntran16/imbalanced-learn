@@ -75,19 +75,22 @@ An illustration of the Tomek links method.
 
     plt.show()
 
-**Total running time of the script:** ( 0 minutes  1.593 seconds)
+**Total running time of the script:** ( 0 minutes  1.641 seconds)
 
 
 
-.. container:: sphx-glr-download
-
-    :download:`Download Python source code: plot_tomek_links.py <plot_tomek_links.py>`
+.. container:: sphx-glr-footer
 
 
+  .. container:: sphx-glr-download
 
-.. container:: sphx-glr-download
+     :download:`Download Python source code: plot_tomek_links.py <plot_tomek_links.py>`
 
-    :download:`Download Jupyter notebook: plot_tomek_links.ipynb <plot_tomek_links.ipynb>`
+
+
+  .. container:: sphx-glr-download
+
+     :download:`Download Jupyter notebook: plot_tomek_links.ipynb <plot_tomek_links.ipynb>`
 
 .. rst-class:: sphx-glr-signature
 

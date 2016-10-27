@@ -187,7 +187,14 @@
 <span class="sd">        Version of the NearMiss to use. Possible values</span>
 <span class="sd">        are 1, 2 or 3.</span>
 
-<span class="sd">    size_ngh : int, optional (default=3)</span>
+<span class="sd">    size_ngh : int, optional (default=None)</span>
+<span class="sd">        Size of the neighbourhood to consider to compute the average</span>
+<span class="sd">        distance to the minority point samples.</span>
+
+<span class="sd">        NOTE: size_ngh is deprecated from 0.2 and will be replaced in 0.4</span>
+<span class="sd">        Use ``n_neighbors`` instead.</span>
+
+<span class="sd">    n_neighbors : int, optional (default=3)</span>
 <span class="sd">        Size of the neighbourhood to consider to compute the</span>
 <span class="sd">        average distance to the minority point samples.</span>
 
@@ -249,12 +256,14 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="NearMiss.__init__"><a class="viewcode-back" href="../../../generated/imblearn.under_sampling.NearMiss.html#imblearn.under_sampling.NearMiss.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ratio</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">return_indices</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                 <span class="n">version</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size_ngh</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">ver3_samp_ngh</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+                 <span class="n">version</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size_ngh</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">ver3_samp_ngh</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                 <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">NearMiss</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">ratio</span><span class="o">=</span><span class="n">ratio</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">return_indices</span> <span class="o">=</span> <span class="n">return_indices</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">random_state</span> <span class="o">=</span> <span class="n">random_state</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">version</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">size_ngh</span> <span class="o">=</span> <span class="n">size_ngh</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_neighbors</span> <span class="o">=</span> <span class="n">n_neighbors</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ver3_samp_ngh</span> <span class="o">=</span> <span class="n">ver3_samp_ngh</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span> <span class="o">=</span> <span class="n">n_jobs</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span> <span class="o">=</span> <span class="n">kwargs</span></div>
@@ -297,7 +306,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Compute the distance considering the farthest neighbour</span>
-        <span class="n">dist_avg_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dist_vec</span><span class="p">[:,</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">size_ngh</span><span class="p">:],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">dist_avg_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dist_vec</span><span class="p">[:,</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">n_neighbors</span><span class="p">:],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;The size of the distance matrix is </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span>
                           <span class="n">dist_vec</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
@@ -388,7 +397,7 @@
         <span class="c1"># For each element of the current class, find the set of NN</span>
         <span class="c1"># of the minority class</span>
         <span class="c1"># Call the constructor of the NN</span>
-        <span class="n">nn_obj</span> <span class="o">=</span> <span class="n">NearestNeighbors</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">size_ngh</span><span class="p">,</span>
+        <span class="n">nn_obj</span> <span class="o">=</span> <span class="n">NearestNeighbors</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_neighbors</span><span class="p">,</span>
                                   <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">,</span>
                                   <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -411,7 +420,7 @@
                 <span class="c1"># Find the NN</span>
                 <span class="n">dist_vec</span><span class="p">,</span> <span class="n">idx_vec</span> <span class="o">=</span> <span class="n">nn_obj</span><span class="o">.</span><span class="n">kneighbors</span><span class="p">(</span>
                     <span class="n">sub_samples_x</span><span class="p">,</span>
-                    <span class="n">n_neighbors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">size_ngh</span><span class="p">)</span>
+                    <span class="n">n_neighbors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_neighbors</span><span class="p">)</span>
 
                 <span class="c1"># Select the right samples</span>
                 <span class="n">sel_x</span><span class="p">,</span> <span class="n">sel_y</span><span class="p">,</span> <span class="n">idx_tmp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_selection_dist_based</span><span class="p">(</span>
@@ -458,7 +467,7 @@
                 <span class="c1"># Compute the NN considering the current class</span>
                 <span class="n">dist_vec</span><span class="p">,</span> <span class="n">idx_vec</span> <span class="o">=</span> <span class="n">nn_obj</span><span class="o">.</span><span class="n">kneighbors</span><span class="p">(</span>
                     <span class="n">sub_samples_x</span><span class="p">,</span>
-                    <span class="n">n_neighbors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">size_ngh</span><span class="p">)</span>
+                    <span class="n">n_neighbors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_neighbors</span><span class="p">)</span>
 
                 <span class="n">sel_x</span><span class="p">,</span> <span class="n">sel_y</span><span class="p">,</span> <span class="n">idx_tmp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_selection_dist_based</span><span class="p">(</span>
                     <span class="n">sub_samples_x</span><span class="p">,</span>

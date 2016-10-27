@@ -75,19 +75,22 @@ An illustration of the random SMOTE regular method.
 
     plt.show()
 
-**Total running time of the script:** ( 0 minutes  0.867 seconds)
+**Total running time of the script:** ( 0 minutes  0.825 seconds)
 
 
 
-.. container:: sphx-glr-download
-
-    :download:`Download Python source code: plot_smote.py <plot_smote.py>`
+.. container:: sphx-glr-footer
 
 
+  .. container:: sphx-glr-download
 
-.. container:: sphx-glr-download
+     :download:`Download Python source code: plot_smote.py <plot_smote.py>`
 
-    :download:`Download Jupyter notebook: plot_smote.ipynb <plot_smote.ipynb>`
+
+
+  .. container:: sphx-glr-download
+
+     :download:`Download Jupyter notebook: plot_smote.ipynb <plot_smote.ipynb>`
 
 .. rst-class:: sphx-glr-signature
 

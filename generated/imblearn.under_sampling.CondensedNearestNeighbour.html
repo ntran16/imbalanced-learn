@@ -178,7 +178,7 @@
 <h1>imblearn.under_sampling.CondensedNearestNeighbour<a class="headerlink" href="#imblearn-under-sampling-condensednearestneighbour" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="imblearn.under_sampling.CondensedNearestNeighbour">
-<em class="property">class </em><code class="descclassname">imblearn.under_sampling.</code><code class="descname">CondensedNearestNeighbour</code><span class="sig-paren">(</span><em>return_indices=False</em>, <em>random_state=None</em>, <em>size_ngh=1</em>, <em>n_seeds_S=1</em>, <em>n_jobs=-1</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/condensed_nearest_neighbour.html#CondensedNearestNeighbour"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.CondensedNearestNeighbour" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">imblearn.under_sampling.</code><code class="descname">CondensedNearestNeighbour</code><span class="sig-paren">(</span><em>return_indices=False</em>, <em>random_state=None</em>, <em>size_ngh=None</em>, <em>n_neighbors=1</em>, <em>n_seeds_S=1</em>, <em>n_jobs=-1</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/condensed_nearest_neighbour.html#CondensedNearestNeighbour"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.CondensedNearestNeighbour" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class to perform under-sampling based on the condensed nearest neighbour
 method.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -197,7 +197,14 @@ If RandomState instance, random_state is the random number generator;
 If None, the random number generator is the RandomState instance used
 by np.random.</p>
 </div></blockquote>
-<p><strong>size_ngh</strong> : int, optional (default=1)</p>
+<p><strong>size_ngh</strong> : int, optional (default=None)</p>
+<blockquote>
+<div><p>Size of the neighbourhood to consider to compute the average
+distance to the minority point samples.</p>
+<p>NOTE: size_ngh is deprecated from 0.2 and will be replaced in 0.4
+Use <code class="docutils literal"><span class="pre">n_neighbors</span></code> instead.</p>
+</div></blockquote>
+<p><strong>n_neighbors</strong> : int, optional (default=1)</p>
 <blockquote>
 <div><p>Size of the neighbourhood to consider to compute the average
 distance to the minority point samples.</p>
@@ -291,7 +298,7 @@ pp. 515-516, 1968.</td></tr>
 </table>
 <dl class="method">
 <dt id="imblearn.under_sampling.CondensedNearestNeighbour.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>return_indices=False</em>, <em>random_state=None</em>, <em>size_ngh=1</em>, <em>n_seeds_S=1</em>, <em>n_jobs=-1</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/condensed_nearest_neighbour.html#CondensedNearestNeighbour.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.CondensedNearestNeighbour.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>return_indices=False</em>, <em>random_state=None</em>, <em>size_ngh=None</em>, <em>n_neighbors=1</em>, <em>n_seeds_S=1</em>, <em>n_jobs=-1</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/condensed_nearest_neighbour.html#CondensedNearestNeighbour.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.CondensedNearestNeighbour.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p class="rubric">Methods</p>

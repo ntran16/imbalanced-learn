@@ -75,19 +75,22 @@ An illustration of the random SMOTE borderline 2 method.
 
     plt.show()
 
-**Total running time of the script:** ( 0 minutes  0.993 seconds)
+**Total running time of the script:** ( 0 minutes  0.937 seconds)
 
 
 
-.. container:: sphx-glr-download
-
-    :download:`Download Python source code: plot_smote_bordeline_2.py <plot_smote_bordeline_2.py>`
+.. container:: sphx-glr-footer
 
 
+  .. container:: sphx-glr-download
 
-.. container:: sphx-glr-download
+     :download:`Download Python source code: plot_smote_bordeline_2.py <plot_smote_bordeline_2.py>`
 
-    :download:`Download Jupyter notebook: plot_smote_bordeline_2.ipynb <plot_smote_bordeline_2.ipynb>`
+
+
+  .. container:: sphx-glr-download
+
+     :download:`Download Jupyter notebook: plot_smote_bordeline_2.ipynb <plot_smote_bordeline_2.ipynb>`
 
 .. rst-class:: sphx-glr-signature
 
