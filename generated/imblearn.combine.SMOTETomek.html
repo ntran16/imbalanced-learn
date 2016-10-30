@@ -170,7 +170,7 @@
 <h1>imblearn.combine.SMOTETomek<a class="headerlink" href="#imblearn-combine-smotetomek" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="imblearn.combine.SMOTETomek">
-<em class="property">class </em><code class="descclassname">imblearn.combine.</code><code class="descname">SMOTETomek</code><span class="sig-paren">(</span><em>ratio='auto'</em>, <em>random_state=None</em>, <em>k=5</em>, <em>m=10</em>, <em>out_step=0.5</em>, <em>kind_smote='regular'</em>, <em>n_jobs=-1</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/combine/smote_tomek.html#SMOTETomek"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.combine.SMOTETomek" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">imblearn.combine.</code><code class="descname">SMOTETomek</code><span class="sig-paren">(</span><em>ratio='auto'</em>, <em>random_state=None</em>, <em>smote=None</em>, <em>tomek=None</em>, <em>k=None</em>, <em>m=None</em>, <em>out_step=None</em>, <em>kind_smote=None</em>, <em>n_jobs=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/combine/smote_tomek.html#SMOTETomek"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.combine.SMOTETomek" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class to perform over-sampling using SMOTE and cleaning using
 Tomek links.</p>
 <p>Combine over- and under-sampling using SMOTE and Tomek links.</p>
@@ -192,38 +192,50 @@ If RandomState instance, random_state is the random number generator;
 If None, the random number generator is the RandomState instance used
 by np.random.</p>
 </div></blockquote>
-<p><strong>k</strong> : int, optional (default=5)</p>
+<p><strong>smote</strong> : object, optional (default=SMOTE())</p>
+<blockquote>
+<div><p>The SMOTE object to use. If not given, a SMOTE object with default
+parameters will be given.</p>
+</div></blockquote>
+<p><strong>tomek</strong> : object, optional (default=Tomek())</p>
+<blockquote>
+<div><p>The Tomek object to use. If not given, a Tomek object with default
+parameters will be given.</p>
+</div></blockquote>
+<p><strong>k</strong> : int, optional (default=None)</p>
 <blockquote>
 <div><p>Number of nearest neighbours to used to construct synthetic
 samples.</p>
+<p>NOTE: <cite>k</cite> is deprecated from 0.2 and will be replaced in 0.4
+Give directly a SMOTE object.</p>
 </div></blockquote>
-<p><strong>m</strong> : int, optional (default=10)</p>
+<p><strong>m</strong> : int, optional (default=None)</p>
 <blockquote>
 <div><p>Number of nearest neighbours to use to determine if a minority
 sample is in danger.</p>
+<p>NOTE: <cite>m</cite> is deprecated from 0.2 and will be replaced in 0.4
+Give directly a SMOTE object.</p>
 </div></blockquote>
-<p><strong>out_step</strong> : float, optional (default=0.5)</p>
+<p><strong>out_step</strong> : float, optional (default=None)</p>
 <blockquote>
 <div><p>Step size when extrapolating.</p>
+<p>NOTE: <cite>out_step</cite> is deprecated from 0.2 and will be replaced in 0.4
+Give directly a SMOTE object.</p>
 </div></blockquote>
-<p><strong>kind_smote</strong> : str, optional (default=&#8217;regular&#8217;)</p>
+<p><strong>kind_smote</strong> : str, optional (default=None)</p>
 <blockquote>
 <div><p>The type of SMOTE algorithm to use one of the following
-options: &#8216;regular&#8217;, &#8216;borderline1&#8217;, &#8216;borderline2&#8217;, &#8216;svm&#8217;</p>
+options: &#8216;regular&#8217;, &#8216;borderline1&#8217;, &#8216;borderline2&#8217;, &#8216;svm&#8217;.</p>
 </div></blockquote>
-<p><strong>kind_sel</strong> : str, optional (default=&#8217;all&#8217;)</p>
+<p><strong>NOTE: `kind_smote` is deprecated from 0.2 and will be replaced in 0.4</strong></p>
 <blockquote>
-<div><p>Strategy to use in order to exclude samples.</p>
-<ul class="simple">
-<li>If &#8216;all&#8217;, all neighbours will have to agree with the samples of</li>
-</ul>
-<p>interest to not be excluded.
-- If &#8216;mode&#8217;, the majority vote of the neighbours will be used in
-order to exclude a sample.</p>
+<div><p>Give directly a SMOTE object.</p>
 </div></blockquote>
-<p><strong>n_jobs</strong> : int, optional (default=-1)</p>
+<p><strong>n_jobs</strong> : int, optional (default=None)</p>
 <blockquote class="last">
 <div><p>The number of threads to open if possible.</p>
+<p>NOTE: <cite>n_jobs</cite> is deprecated from 0.2 and will be replaced in 0.4
+Give directly a SMOTE object.</p>
 </div></blockquote>
 </td>
 </tr>
@@ -303,7 +315,7 @@ Automated Annotation of Keywords: a Case Study,&#8221; In WOB, 10-18, 2003.</td>
 </table>
 <dl class="method">
 <dt id="imblearn.combine.SMOTETomek.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>ratio='auto'</em>, <em>random_state=None</em>, <em>k=5</em>, <em>m=10</em>, <em>out_step=0.5</em>, <em>kind_smote='regular'</em>, <em>n_jobs=-1</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/combine/smote_tomek.html#SMOTETomek.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.combine.SMOTETomek.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>ratio='auto'</em>, <em>random_state=None</em>, <em>smote=None</em>, <em>tomek=None</em>, <em>k=None</em>, <em>m=None</em>, <em>out_step=None</em>, <em>kind_smote=None</em>, <em>n_jobs=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/combine/smote_tomek.html#SMOTETomek.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.combine.SMOTETomek.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p class="rubric">Methods</p>
@@ -313,7 +325,7 @@ Automated Annotation of Keywords: a Case Study,&#8221; In WOB, 10-18, 2003.</td>
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#imblearn.combine.SMOTETomek.__init__" title="imblearn.combine.SMOTETomek.__init__"><code class="xref py py-obj docutils literal"><span class="pre">__init__</span></code></a>([ratio,&nbsp;random_state,&nbsp;k,&nbsp;m,&nbsp;...])</td>
+<tr class="row-odd"><td><a class="reference internal" href="#imblearn.combine.SMOTETomek.__init__" title="imblearn.combine.SMOTETomek.__init__"><code class="xref py py-obj docutils literal"><span class="pre">__init__</span></code></a>([ratio,&nbsp;random_state,&nbsp;smote,&nbsp;...])</td>
 <td></td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#imblearn.combine.SMOTETomek.fit" title="imblearn.combine.SMOTETomek.fit"><code class="xref py py-obj docutils literal"><span class="pre">fit</span></code></a>(X,&nbsp;y)</td>
