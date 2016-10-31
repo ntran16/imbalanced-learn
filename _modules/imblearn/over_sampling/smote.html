@@ -185,10 +185,23 @@
 <span class="sd">        If None, the random number generator is the RandomState instance used</span>
 <span class="sd">        by np.random.</span>
 
-<span class="sd">    k : int, optional (default=5)</span>
+<span class="sd">    k : int, optional (default=None)</span>
 <span class="sd">        Number of nearest neighbours to used to construct synthetic samples.</span>
 
-<span class="sd">    m : int, optional (default=10)</span>
+<span class="sd">        NOTE: `k` is deprecated from 0.2 and will be replaced in 0.4</span>
+<span class="sd">        Use ``k_neighbors`` instead.</span>
+
+<span class="sd">    k_neighbors : int, optional (default=5)</span>
+<span class="sd">        Number of nearest neighbours to used to construct synthetic samples.</span>
+
+<span class="sd">    m : int, optional (default=None)</span>
+<span class="sd">        Number of nearest neighbours to use to determine if a minority sample</span>
+<span class="sd">        is in danger.</span>
+
+<span class="sd">        NOTE: `m` is deprecated from 0.2 and will be replaced in 0.4</span>
+<span class="sd">        Use ``m_neighbors`` instead.</span>
+
+<span class="sd">    m_neighbors : int, optional (default=10)</span>
 <span class="sd">        Number of nearest neighbours to use to determine if a minority sample</span>
 <span class="sd">        is in danger.</span>
 
@@ -254,12 +267,15 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="SMOTE.__init__"><a class="viewcode-back" href="../../../generated/imblearn.over_sampling.SMOTE.html#imblearn.over_sampling.SMOTE.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ratio</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-                 <span class="n">out_step</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;regular&#39;</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="SMOTE.__init__"><a class="viewcode-back" href="../../../generated/imblearn.over_sampling.SMOTE.html#imblearn.over_sampling.SMOTE.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ratio</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">k_neighbors</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                 <span class="n">m</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">m_neighbors</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">out_step</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;regular&#39;</span><span class="p">,</span>
+                 <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">SMOTE</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">ratio</span><span class="o">=</span><span class="n">ratio</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">kind</span> <span class="o">=</span> <span class="n">kind</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="o">=</span> <span class="n">k</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">k_neighbors</span> <span class="o">=</span> <span class="n">k_neighbors</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="o">=</span> <span class="n">m</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">m_neighbors</span> <span class="o">=</span> <span class="n">m_neighbors</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">out_step</span> <span class="o">=</span> <span class="n">out_step</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span> <span class="o">=</span> <span class="n">n_jobs</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span> <span class="o">=</span> <span class="n">kwargs</span></div>
@@ -301,11 +317,11 @@
 
         <span class="k">if</span> <span class="n">kind</span> <span class="o">==</span> <span class="s1">&#39;danger&#39;</span><span class="p">:</span>
             <span class="c1"># Samples are in danger for m/2 &lt;= m&#39; &lt; m</span>
-            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">bitwise_and</span><span class="p">(</span><span class="n">n_maj</span> <span class="o">&gt;=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">,</span>
-                                  <span class="n">n_maj</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">bitwise_and</span><span class="p">(</span><span class="n">n_maj</span> <span class="o">&gt;=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">m_neighbors</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">,</span>
+                                  <span class="n">n_maj</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_neighbors</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">kind</span> <span class="o">==</span> <span class="s1">&#39;noise&#39;</span><span class="p">:</span>
             <span class="c1"># Samples are noise for m = m&#39;</span>
-            <span class="k">return</span> <span class="n">n_maj</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">m</span>
+            <span class="k">return</span> <span class="n">n_maj</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_neighbors</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
@@ -433,7 +449,8 @@
         <span class="c1"># If regular SMOTE is to be performed</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">kind</span> <span class="o">==</span> <span class="s1">&#39;regular&#39;</span><span class="p">:</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Finding the </span><span class="si">%s</span><span class="s1"> nearest neighbours ...&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Finding the </span><span class="si">%s</span><span class="s1"> nearest neighbours ...&#39;</span><span class="p">,</span>
+                              <span class="bp">self</span><span class="o">.</span><span class="n">k_neighbors</span><span class="p">)</span>
 
             <span class="c1"># Look for k-th nearest neighbours, excluding, of course, the</span>
             <span class="c1"># point itself.</span>
@@ -464,7 +481,8 @@
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">kind</span> <span class="o">==</span> <span class="s1">&#39;borderline1&#39;</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">kind</span> <span class="o">==</span> <span class="s1">&#39;borderline2&#39;</span><span class="p">:</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Finding the </span><span class="si">%s</span><span class="s1"> nearest neighbours ...&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Finding the </span><span class="si">%s</span><span class="s1"> nearest neighbours ...&#39;</span><span class="p">,</span>
+                              <span class="bp">self</span><span class="o">.</span><span class="n">m_neighbors</span><span class="p">)</span>
 
             <span class="c1"># Find the NNs for all samples in the data set.</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">nearest_neighbour</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
@@ -486,7 +504,8 @@
             <span class="c1">#</span>
             <span class="c1"># We start by changing the number of NNs to consider from m + 1</span>
             <span class="c1"># to k + 1</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">nearest_neighbour</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s1">&#39;n_neighbors&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">})</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nearest_neighbour</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s1">&#39;n_neighbors&#39;</span><span class="p">:</span>
+                                                 <span class="bp">self</span><span class="o">.</span><span class="n">k_neighbors</span> <span class="o">+</span> <span class="mi">1</span><span class="p">})</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">nearest_neighbour</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_min</span><span class="p">)</span>
 
             <span class="c1"># nns...#</span>
@@ -510,7 +529,7 @@
 
                 <span class="c1"># Reset the k-neighbours to m+1 neighbours</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">nearest_neighbour</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span>
-                    <span class="o">**</span><span class="p">{</span><span class="s1">&#39;n_neighbors&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">})</span>
+                    <span class="o">**</span><span class="p">{</span><span class="s1">&#39;n_neighbors&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_neighbors</span> <span class="o">+</span> <span class="mi">1</span><span class="p">})</span>
 
                 <span class="k">return</span> <span class="n">X_resampled</span><span class="p">,</span> <span class="n">y_resampled</span>
 
@@ -547,7 +566,7 @@
 
                 <span class="c1"># Reset the k-neighbours to m+1 neighbours</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">nearest_neighbour</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span>
-                    <span class="o">**</span><span class="p">{</span><span class="s1">&#39;n_neighbors&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">})</span>
+                    <span class="o">**</span><span class="p">{</span><span class="s1">&#39;n_neighbors&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_neighbors</span> <span class="o">+</span> <span class="mi">1</span><span class="p">})</span>
 
                 <span class="k">return</span> <span class="n">X_resampled</span><span class="p">,</span> <span class="n">y_resampled</span>
 
@@ -568,7 +587,8 @@
 
             <span class="c1"># First, find the nn of all the samples to identify samples</span>
             <span class="c1"># in danger and noisy ones</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Finding the </span><span class="si">%s</span><span class="s1"> nearest neighbours ...&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Finding the </span><span class="si">%s</span><span class="s1"> nearest neighbours ...&#39;</span><span class="p">,</span>
+                              <span class="bp">self</span><span class="o">.</span><span class="n">m_neighbors</span><span class="p">)</span>
 
             <span class="c1"># As usual, fit a nearest neighbour model to the data</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">nearest_neighbour</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
@@ -591,9 +611,11 @@
                               <span class="n">safety_bool</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))</span>
 
             <span class="c1"># Proceed to find support vectors NNs among the minority class</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Finding the </span><span class="si">%s</span><span class="s1"> nearest neighbours ...&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Finding the </span><span class="si">%s</span><span class="s1"> nearest neighbours ...&#39;</span><span class="p">,</span>
+                              <span class="bp">self</span><span class="o">.</span><span class="n">k_neighbors</span><span class="p">)</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">nearest_neighbour</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s1">&#39;n_neighbors&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">})</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nearest_neighbour</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s1">&#39;n_neighbors&#39;</span><span class="p">:</span>
+                                                 <span class="bp">self</span><span class="o">.</span><span class="n">k_neighbors</span> <span class="o">+</span> <span class="mi">1</span><span class="p">})</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">nearest_neighbour</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_min</span><span class="p">)</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Create synthetic samples ...&#39;</span><span class="p">)</span>
@@ -648,7 +670,8 @@
                 <span class="n">y_resampled</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">y</span><span class="p">,</span> <span class="n">y_new_1</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
             <span class="c1"># Reset the k-neighbours to m+1 neighbours</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">nearest_neighbour</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s1">&#39;n_neighbors&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">})</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nearest_neighbour</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s1">&#39;n_neighbors&#39;</span><span class="p">:</span>
+                                                 <span class="bp">self</span><span class="o">.</span><span class="n">m_neighbors</span> <span class="o">+</span> <span class="mi">1</span><span class="p">})</span>
 
             <span class="k">return</span> <span class="n">X_resampled</span><span class="p">,</span> <span class="n">y_resampled</span>
 
@@ -661,8 +684,9 @@
             <span class="c1"># Regular smote does not look for samples in danger, instead it</span>
             <span class="c1"># creates synthetic samples directly from the k-th nearest</span>
             <span class="c1"># neighbours with not filtering</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">nearest_neighbour</span> <span class="o">=</span> <span class="n">NearestNeighbors</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
-                                                      <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nearest_neighbour</span> <span class="o">=</span> <span class="n">NearestNeighbors</span><span class="p">(</span>
+                <span class="n">n_neighbors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">k_neighbors</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="c1"># Borderline1, 2 and SVM variations of smote must first look for</span>
             <span class="c1"># samples that could be considered noise and samples that live</span>
@@ -670,8 +694,9 @@
             <span class="c1"># creating synthetic samples from the k-th nns, it first look</span>
             <span class="c1"># for m nearest neighbors to decide whether or not a sample is</span>
             <span class="c1"># noise or near the boundary.</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">nearest_neighbour</span> <span class="o">=</span> <span class="n">NearestNeighbors</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
-                                                      <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nearest_neighbour</span> <span class="o">=</span> <span class="n">NearestNeighbors</span><span class="p">(</span>
+                <span class="n">n_neighbors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">m_neighbors</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">)</span>
 
         <span class="c1"># --- SVM smote</span>
         <span class="c1"># Unlike the borderline variations, the SVM variation uses the support</span>
