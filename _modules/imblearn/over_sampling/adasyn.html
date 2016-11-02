@@ -157,6 +157,7 @@
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="k">import</span> <span class="n">NearestNeighbors</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors.base</span> <span class="k">import</span> <span class="n">KNeighborsMixin</span>
 <span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="k">import</span> <span class="n">check_random_state</span>
 
 <span class="kn">from</span> <span class="nn">..base</span> <span class="k">import</span> <span class="n">BaseBinarySampler</span>
@@ -189,8 +190,12 @@
 <span class="sd">        NOTE: `k` is deprecated from 0.2 and will be replaced in 0.4</span>
 <span class="sd">        Use ``n_neighbors`` instead.</span>
 
-<span class="sd">    n_neighbours : int, optional (default=5)</span>
-<span class="sd">        Number of nearest neighbours to used to construct synthetic samples.</span>
+<span class="sd">    n_neighbours : int int or object, optional (default=5)</span>
+<span class="sd">        If int, number of nearest neighbours to used to construct</span>
+<span class="sd">        synthetic samples.</span>
+<span class="sd">        If object, an estimator that inherits from</span>
+<span class="sd">        `sklearn.neighbors.base.KNeighborsMixin` that will be used to find</span>
+<span class="sd">        the k_neighbors.</span>
 
 <span class="sd">    n_jobs : int, optional (default=1)</span>
 <span class="sd">        Number of threads to run the algorithm when it is possible.</span>
@@ -247,10 +252,43 @@
         <span class="nb">super</span><span class="p">(</span><span class="n">ADASYN</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">ratio</span><span class="o">=</span><span class="n">ratio</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="o">=</span> <span class="n">k</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_neighbors</span> <span class="o">=</span> <span class="n">n_neighbors</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span> <span class="o">=</span> <span class="n">n_jobs</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">nearest_neighbour</span> <span class="o">=</span> <span class="n">NearestNeighbors</span><span class="p">(</span>
-            <span class="n">n_neighbors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_neighbors</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
-            <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span> <span class="o">=</span> <span class="n">n_jobs</span></div>
+
+    <span class="k">def</span> <span class="nf">_validate_estimator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Private function to create the NN estimator&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_neighbors</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nn_</span> <span class="o">=</span> <span class="n">NearestNeighbors</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_neighbors</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+                                        <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_neighbors</span><span class="p">,</span> <span class="n">KNeighborsMixin</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nn_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_neighbors</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;`n_neighbors` has to be be either int or a&#39;</span>
+                             <span class="s1">&#39; subclass of KNeighborsMixin.&#39;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ADASYN.fit"><a class="viewcode-back" href="../../../generated/imblearn.over_sampling.ADASYN.html#imblearn.over_sampling.ADASYN.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Find the classes statistics before to perform sampling.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : ndarray, shape (n_samples, n_features)</span>
+<span class="sd">            Matrix containing the data which have to be sampled.</span>
+
+<span class="sd">        y : ndarray, shape (n_samples, )</span>
+<span class="sd">            Corresponding label for each sample in X.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self : object,</span>
+<span class="sd">            Return self.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">ADASYN</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_validate_estimator</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="bp">self</span></div>
 
     <span class="k">def</span> <span class="nf">_sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Resample the dataset.</span>
@@ -292,18 +330,18 @@
 
         <span class="c1"># Print if verbose is true</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Finding the </span><span class="si">%s</span><span class="s1"> nearest neighbours ...&#39;</span><span class="p">,</span>
-                          <span class="bp">self</span><span class="o">.</span><span class="n">n_neighbors</span><span class="p">)</span>
+                          <span class="bp">self</span><span class="o">.</span><span class="n">nn_</span><span class="o">.</span><span class="n">n_neighbors</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
 
         <span class="c1"># Look for k-th nearest neighbours, excluding, of course, the</span>
         <span class="c1"># point itself.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">nearest_neighbour</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nn_</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 
         <span class="c1"># Get the distance to the NN</span>
-        <span class="n">_</span><span class="p">,</span> <span class="n">ind_nn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nearest_neighbour</span><span class="o">.</span><span class="n">kneighbors</span><span class="p">(</span><span class="n">X_min</span><span class="p">)</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">ind_nn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nn_</span><span class="o">.</span><span class="n">kneighbors</span><span class="p">(</span><span class="n">X_min</span><span class="p">)</span>
 
         <span class="c1"># Compute the ratio of majority samples next to minority samples</span>
         <span class="n">ratio_nn</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">ind_nn</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">maj_c_</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">n_neighbors</span><span class="p">)</span>
+                    <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nn_</span><span class="o">.</span><span class="n">n_neighbors</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
         <span class="c1"># Check that we found at least some neighbours belonging to the</span>
         <span class="c1"># majority class</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">ratio_nn</span><span class="p">):</span>
@@ -321,7 +359,7 @@
         <span class="k">for</span> <span class="n">x_i</span><span class="p">,</span> <span class="n">x_i_nn</span><span class="p">,</span> <span class="n">num_sample_i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">X_min</span><span class="p">,</span> <span class="n">ind_nn</span><span class="p">,</span> <span class="n">num_samples_nn</span><span class="p">):</span>
 
             <span class="c1"># Pick-up the neighbors wanted</span>
-            <span class="n">nn_zs</span> <span class="o">=</span> <span class="n">random_state</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_neighbors</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="n">nn_zs</span> <span class="o">=</span> <span class="n">random_state</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">nn_</span><span class="o">.</span><span class="n">n_neighbors</span><span class="p">,</span>
                                          <span class="n">size</span><span class="o">=</span><span class="n">num_sample_i</span><span class="p">)</span>
 
             <span class="c1"># Create a new sample</span>

@@ -199,9 +199,13 @@ by np.random.</p>
 <p>NOTE: <cite>k</cite> is deprecated from 0.2 and will be replaced in 0.4
 Use <code class="docutils literal"><span class="pre">n_neighbors</span></code> instead.</p>
 </div></blockquote>
-<p><strong>n_neighbours</strong> : int, optional (default=5)</p>
+<p><strong>n_neighbours</strong> : int int or object, optional (default=5)</p>
 <blockquote>
-<div><p>Number of nearest neighbours to used to construct synthetic samples.</p>
+<div><p>If int, number of nearest neighbours to used to construct
+synthetic samples.
+If object, an estimator that inherits from
+<cite>sklearn.neighbors.base.KNeighborsMixin</cite> that will be used to find
+the k_neighbors.</p>
 </div></blockquote>
 <p><strong>n_jobs</strong> : int, optional (default=1)</p>
 <blockquote class="last">
@@ -319,7 +323,7 @@ on Computational Intelligence), pp. 1322-1328, 2008.</td></tr>
 </table>
 <dl class="method">
 <dt id="imblearn.over_sampling.ADASYN.fit">
-<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#imblearn.over_sampling.ADASYN.fit" title="Permalink to this definition">¶</a></dt>
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/over_sampling/adasyn.html#ADASYN.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.over_sampling.ADASYN.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find the classes statistics before to perform sampling.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />

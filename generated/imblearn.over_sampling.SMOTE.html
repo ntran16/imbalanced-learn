@@ -200,9 +200,13 @@ by np.random.</p>
 <p>NOTE: <cite>k</cite> is deprecated from 0.2 and will be replaced in 0.4
 Use <code class="docutils literal"><span class="pre">k_neighbors</span></code> instead.</p>
 </div></blockquote>
-<p><strong>k_neighbors</strong> : int, optional (default=5)</p>
+<p><strong>k_neighbors</strong> : int or object, optional (default=5)</p>
 <blockquote>
-<div><p>Number of nearest neighbours to used to construct synthetic samples.</p>
+<div><p>If int, number of nearest neighbours to used to construct
+synthetic samples.
+If object, an estimator that inherits from
+<cite>sklearn.neighbors.base.KNeighborsMixin</cite> that will be used to find
+the k_neighbors.</p>
 </div></blockquote>
 <p><strong>m</strong> : int, optional (default=None)</p>
 <blockquote>
@@ -211,10 +215,13 @@ is in danger.</p>
 <p>NOTE: <cite>m</cite> is deprecated from 0.2 and will be replaced in 0.4
 Use <code class="docutils literal"><span class="pre">m_neighbors</span></code> instead.</p>
 </div></blockquote>
-<p><strong>m_neighbors</strong> : int, optional (default=10)</p>
+<p><strong>m_neighbors</strong> : int int or object, optional (default=10)</p>
 <blockquote>
-<div><p>Number of nearest neighbours to use to determine if a minority sample
-is in danger.</p>
+<div><p>If int, number of nearest neighbours to use to determine if a minority
+sample is in danger.
+If object, an estimator that inherits from
+<cite>sklearn.neighbors.base.KNeighborsMixin</cite> that will be used to find
+the k_neighbors.</p>
 </div></blockquote>
 <p><strong>out_step</strong> : float, optional (default=0.5)</p>
 <blockquote>
@@ -353,7 +360,7 @@ Engineering and Soft Data Paradigms, 3(1), pp.4-21, 2001.</td></tr>
 </table>
 <dl class="method">
 <dt id="imblearn.over_sampling.SMOTE.fit">
-<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#imblearn.over_sampling.SMOTE.fit" title="Permalink to this definition">¶</a></dt>
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/over_sampling/smote.html#SMOTE.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.over_sampling.SMOTE.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find the classes statistics before to perform sampling.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />

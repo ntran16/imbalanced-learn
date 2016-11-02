@@ -178,7 +178,7 @@
 <h1>imblearn.under_sampling.NearMiss<a class="headerlink" href="#imblearn-under-sampling-nearmiss" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="imblearn.under_sampling.NearMiss">
-<em class="property">class </em><code class="descclassname">imblearn.under_sampling.</code><code class="descname">NearMiss</code><span class="sig-paren">(</span><em>ratio='auto'</em>, <em>return_indices=False</em>, <em>random_state=None</em>, <em>version=1</em>, <em>size_ngh=None</em>, <em>n_neighbors=3</em>, <em>ver3_samp_ngh=3</em>, <em>n_jobs=-1</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/nearmiss.html#NearMiss"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.NearMiss" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">imblearn.under_sampling.</code><code class="descname">NearMiss</code><span class="sig-paren">(</span><em>ratio='auto'</em>, <em>return_indices=False</em>, <em>random_state=None</em>, <em>version=1</em>, <em>size_ngh=None</em>, <em>n_neighbors=3</em>, <em>ver3_samp_ngh=None</em>, <em>n_neighbors_ver3=3</em>, <em>n_jobs=-1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/nearmiss.html#NearMiss"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.NearMiss" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class to perform under-sampling based on NearMiss methods.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -215,24 +215,34 @@ distance to the minority point samples.</p>
 <p>NOTE: size_ngh is deprecated from 0.2 and will be replaced in 0.4
 Use <code class="docutils literal"><span class="pre">n_neighbors</span></code> instead.</p>
 </div></blockquote>
-<p><strong>n_neighbors</strong> : int, optional (default=3)</p>
+<p><strong>n_neighbors</strong> : int or object, optional (default=3)</p>
 <blockquote>
-<div><p>Size of the neighbourhood to consider to compute the
-average distance to the minority point samples.</p>
+<div><p>If int, size of the neighbourhood to consider to compute the average
+distance to the minority point samples.
+If object, an estimator that inherits from
+<cite>sklearn.neighbors.base.KNeighborsMixin</cite> that will be used to find
+the k_neighbors.</p>
 </div></blockquote>
 <p><strong>ver3_samp_ngh</strong> : int, optional (default=3)</p>
 <blockquote>
 <div><p>NearMiss-3 algorithm start by a phase of re-sampling. This
 parameter correspond to the number of neighbours selected
 create the sub_set in which the selection will be performed.</p>
+<p>NOTE: <cite>ver3_samp_ngh</cite> is deprecated from 0.2 and will be replaced
+in 0.4. Use <code class="docutils literal"><span class="pre">n_neighbors_ver3</span></code> instead.</p>
+</div></blockquote>
+<p><strong>n_neighbors_ver3</strong> : int or object, optional (default=3)</p>
+<blockquote>
+<div><p>If int, NearMiss-3 algorithm start by a phase of re-sampling. This
+parameter correspond to the number of neighbours selected
+create the sub_set in which the selection will be performed.
+If object, an estimator that inherits from
+<cite>sklearn.neighbors.base.KNeighborsMixin</cite> that will be used to find
+the k_neighbors.</p>
 </div></blockquote>
 <p><strong>n_jobs</strong> : int, optional (default=-1)</p>
-<blockquote>
-<div><p>The number of threads to open if possible.</p>
-</div></blockquote>
-<p><strong>**kwargs</strong> : keywords</p>
 <blockquote class="last">
-<div><p>Parameter to use for the Nearest Neighbours object.</p>
+<div><p>The number of threads to open if possible.</p>
 </div></blockquote>
 </td>
 </tr>
@@ -313,7 +323,7 @@ workshop on learning from imbalanced datasets, 2003.</td></tr>
 </table>
 <dl class="method">
 <dt id="imblearn.under_sampling.NearMiss.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>ratio='auto'</em>, <em>return_indices=False</em>, <em>random_state=None</em>, <em>version=1</em>, <em>size_ngh=None</em>, <em>n_neighbors=3</em>, <em>ver3_samp_ngh=3</em>, <em>n_jobs=-1</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/nearmiss.html#NearMiss.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.NearMiss.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>ratio='auto'</em>, <em>return_indices=False</em>, <em>random_state=None</em>, <em>version=1</em>, <em>size_ngh=None</em>, <em>n_neighbors=3</em>, <em>ver3_samp_ngh=None</em>, <em>n_neighbors_ver3=3</em>, <em>n_jobs=-1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/nearmiss.html#NearMiss.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.NearMiss.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p class="rubric">Methods</p>
@@ -345,7 +355,7 @@ workshop on learning from imbalanced datasets, 2003.</td></tr>
 </table>
 <dl class="method">
 <dt id="imblearn.under_sampling.NearMiss.fit">
-<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#imblearn.under_sampling.NearMiss.fit" title="Permalink to this definition">¶</a></dt>
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/nearmiss.html#NearMiss.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.NearMiss.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find the classes statistics before to perform sampling.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
