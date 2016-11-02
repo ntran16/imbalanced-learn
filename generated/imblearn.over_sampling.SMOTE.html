@@ -171,7 +171,7 @@
 <h1>imblearn.over_sampling.SMOTE<a class="headerlink" href="#imblearn-over-sampling-smote" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="imblearn.over_sampling.SMOTE">
-<em class="property">class </em><code class="descclassname">imblearn.over_sampling.</code><code class="descname">SMOTE</code><span class="sig-paren">(</span><em>ratio='auto'</em>, <em>random_state=None</em>, <em>k=None</em>, <em>k_neighbors=5</em>, <em>m=None</em>, <em>m_neighbors=10</em>, <em>out_step=0.5</em>, <em>kind='regular'</em>, <em>n_jobs=-1</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/over_sampling/smote.html#SMOTE"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.over_sampling.SMOTE" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">imblearn.over_sampling.</code><code class="descname">SMOTE</code><span class="sig-paren">(</span><em>ratio='auto'</em>, <em>random_state=None</em>, <em>k=None</em>, <em>k_neighbors=5</em>, <em>m=None</em>, <em>m_neighbors=10</em>, <em>out_step=0.5</em>, <em>kind='regular'</em>, <em>n_jobs=1</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/over_sampling/smote.html#SMOTE"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.over_sampling.SMOTE" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class to perform over-sampling using SMOTE.</p>
 <p>This object is an implementation of SMOTE - Synthetic Minority
 Over-sampling Technique, and the variants Borderline SMOTE 1, 2 and
@@ -228,9 +228,13 @@ the k_neighbors.</p>
 <div><p>Step size when extrapolating.</p>
 </div></blockquote>
 <p><strong>kind</strong> : str, optional (default=&#8217;regular&#8217;)</p>
-<blockquote class="last">
+<blockquote>
 <div><p>The type of SMOTE algorithm to use one of the following options:
 &#8216;regular&#8217;, &#8216;borderline1&#8217;, &#8216;borderline2&#8217;, &#8216;svm&#8217;.</p>
+</div></blockquote>
+<p><strong>n_jobs</strong> : int, optional (default=1)</p>
+<blockquote class="last">
+<div><p>The number of threads to open if possible.</p>
 </div></blockquote>
 </td>
 </tr>
@@ -328,7 +332,7 @@ Engineering and Soft Data Paradigms, 3(1), pp.4-21, 2001.</td></tr>
 </table>
 <dl class="method">
 <dt id="imblearn.over_sampling.SMOTE.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>ratio='auto'</em>, <em>random_state=None</em>, <em>k=None</em>, <em>k_neighbors=5</em>, <em>m=None</em>, <em>m_neighbors=10</em>, <em>out_step=0.5</em>, <em>kind='regular'</em>, <em>n_jobs=-1</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/over_sampling/smote.html#SMOTE.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.over_sampling.SMOTE.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>ratio='auto'</em>, <em>random_state=None</em>, <em>k=None</em>, <em>k_neighbors=5</em>, <em>m=None</em>, <em>m_neighbors=10</em>, <em>out_step=0.5</em>, <em>kind='regular'</em>, <em>n_jobs=1</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/over_sampling/smote.html#SMOTE.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.over_sampling.SMOTE.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p class="rubric">Methods</p>

@@ -196,7 +196,7 @@
 <span class="sd">    cv : int, optional (default=5)</span>
 <span class="sd">        Number of folds to be used when estimating samples&#39; instance hardness.</span>
 
-<span class="sd">    n_jobs : int, optional (default=-1)</span>
+<span class="sd">    n_jobs : int, optional (default=1)</span>
 <span class="sd">        The number of threads to open if possible.</span>
 
 <span class="sd">    Attributes</span>
@@ -249,7 +249,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="InstanceHardnessThreshold.__init__"><a class="viewcode-back" href="../../../generated/imblearn.under_sampling.InstanceHardnessThreshold.html#imblearn.under_sampling.InstanceHardnessThreshold.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">estimator</span><span class="o">=</span><span class="s1">&#39;linear-svm&#39;</span><span class="p">,</span> <span class="n">ratio</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span>
-                 <span class="n">return_indices</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+                 <span class="n">return_indices</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
                  <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">InstanceHardnessThreshold</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span>
             <span class="n">ratio</span><span class="o">=</span><span class="n">ratio</span><span class="p">,</span>

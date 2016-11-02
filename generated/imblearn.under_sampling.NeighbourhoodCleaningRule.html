@@ -178,7 +178,7 @@
 <h1>imblearn.under_sampling.NeighbourhoodCleaningRule<a class="headerlink" href="#imblearn-under-sampling-neighbourhoodcleaningrule" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="imblearn.under_sampling.NeighbourhoodCleaningRule">
-<em class="property">class </em><code class="descclassname">imblearn.under_sampling.</code><code class="descname">NeighbourhoodCleaningRule</code><span class="sig-paren">(</span><em>return_indices=False</em>, <em>random_state=None</em>, <em>size_ngh=None</em>, <em>n_neighbors=3</em>, <em>n_jobs=-1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/neighbourhood_cleaning_rule.html#NeighbourhoodCleaningRule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.NeighbourhoodCleaningRule" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">imblearn.under_sampling.</code><code class="descname">NeighbourhoodCleaningRule</code><span class="sig-paren">(</span><em>return_indices=False</em>, <em>random_state=None</em>, <em>size_ngh=None</em>, <em>n_neighbors=3</em>, <em>n_jobs=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/neighbourhood_cleaning_rule.html#NeighbourhoodCleaningRule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.NeighbourhoodCleaningRule" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class performing under-sampling based on the neighbourhood cleaning
 rule.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -212,7 +212,7 @@ If object, an estimator that inherits from
 <cite>sklearn.neighbors.base.KNeighborsMixin</cite> that will be used to find
 the k_neighbors.</p>
 </div></blockquote>
-<p><strong>n_jobs</strong> : int, optional (default=-1)</p>
+<p><strong>n_jobs</strong> : int, optional (default=1)</p>
 <blockquote class="last">
 <div><p>The number of threads to open if possible.</p>
 </div></blockquote>
@@ -293,7 +293,7 @@ by balancing class distribution,&#8221; Springer Berlin Heidelberg, 2001.</td></
 </table>
 <dl class="method">
 <dt id="imblearn.under_sampling.NeighbourhoodCleaningRule.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>return_indices=False</em>, <em>random_state=None</em>, <em>size_ngh=None</em>, <em>n_neighbors=3</em>, <em>n_jobs=-1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/neighbourhood_cleaning_rule.html#NeighbourhoodCleaningRule.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.NeighbourhoodCleaningRule.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>return_indices=False</em>, <em>random_state=None</em>, <em>size_ngh=None</em>, <em>n_neighbors=3</em>, <em>n_jobs=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/neighbourhood_cleaning_rule.html#NeighbourhoodCleaningRule.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.NeighbourhoodCleaningRule.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p class="rubric">Methods</p>

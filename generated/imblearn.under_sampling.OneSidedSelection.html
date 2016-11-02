@@ -178,7 +178,7 @@
 <h1>imblearn.under_sampling.OneSidedSelection<a class="headerlink" href="#imblearn-under-sampling-onesidedselection" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="imblearn.under_sampling.OneSidedSelection">
-<em class="property">class </em><code class="descclassname">imblearn.under_sampling.</code><code class="descname">OneSidedSelection</code><span class="sig-paren">(</span><em>return_indices=False</em>, <em>random_state=None</em>, <em>size_ngh=None</em>, <em>n_neighbors=1</em>, <em>n_seeds_S=1</em>, <em>n_jobs=-1</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/one_sided_selection.html#OneSidedSelection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.OneSidedSelection" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">imblearn.under_sampling.</code><code class="descname">OneSidedSelection</code><span class="sig-paren">(</span><em>return_indices=False</em>, <em>random_state=None</em>, <em>size_ngh=None</em>, <em>n_neighbors=1</em>, <em>n_seeds_S=1</em>, <em>n_jobs=1</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/one_sided_selection.html#OneSidedSelection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.OneSidedSelection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class to perform under-sampling based on one-sided selection method.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -212,7 +212,7 @@ distance to the minority point samples.</p>
 <blockquote>
 <div><p>Number of samples to extract in order to build the set S.</p>
 </div></blockquote>
-<p><strong>n_jobs</strong> : int, optional (default=-1)</p>
+<p><strong>n_jobs</strong> : int, optional (default=1)</p>
 <blockquote>
 <div><p>The number of threads to open if possible.</p>
 </div></blockquote>
@@ -298,7 +298,7 @@ sets: one-sided selection,&#8221; In ICML, vol. 97, pp. 179-186, 1997.</td></tr>
 </table>
 <dl class="method">
 <dt id="imblearn.under_sampling.OneSidedSelection.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>return_indices=False</em>, <em>random_state=None</em>, <em>size_ngh=None</em>, <em>n_neighbors=1</em>, <em>n_seeds_S=1</em>, <em>n_jobs=-1</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/one_sided_selection.html#OneSidedSelection.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.OneSidedSelection.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>return_indices=False</em>, <em>random_state=None</em>, <em>size_ngh=None</em>, <em>n_neighbors=1</em>, <em>n_seeds_S=1</em>, <em>n_jobs=1</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/one_sided_selection.html#OneSidedSelection.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.OneSidedSelection.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p class="rubric">Methods</p>

@@ -178,7 +178,7 @@
 <h1>imblearn.under_sampling.EditedNearestNeighbours<a class="headerlink" href="#imblearn-under-sampling-editednearestneighbours" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="imblearn.under_sampling.EditedNearestNeighbours">
-<em class="property">class </em><code class="descclassname">imblearn.under_sampling.</code><code class="descname">EditedNearestNeighbours</code><span class="sig-paren">(</span><em>return_indices=False</em>, <em>random_state=None</em>, <em>size_ngh=None</em>, <em>n_neighbors=3</em>, <em>kind_sel='all'</em>, <em>n_jobs=-1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/edited_nearest_neighbours.html#EditedNearestNeighbours"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.EditedNearestNeighbours" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">imblearn.under_sampling.</code><code class="descname">EditedNearestNeighbours</code><span class="sig-paren">(</span><em>return_indices=False</em>, <em>random_state=None</em>, <em>size_ngh=None</em>, <em>n_neighbors=3</em>, <em>kind_sel='all'</em>, <em>n_jobs=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/edited_nearest_neighbours.html#EditedNearestNeighbours"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.EditedNearestNeighbours" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class to perform under-sampling based on the edited nearest neighbour
 method.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -224,7 +224,7 @@ the k_neighbors.</p>
 - If &#8216;mode&#8217;, the majority vote of the neighbours will be used in
 order to exclude a sample.</p>
 </div></blockquote>
-<p><strong>n_jobs</strong> : int, optional (default=-1)</p>
+<p><strong>n_jobs</strong> : int, optional (default=1)</p>
 <blockquote class="last">
 <div><p>The number of threads to open if possible.</p>
 </div></blockquote>
@@ -307,7 +307,7 @@ vol. 2 (3), pp. 408-421, 1972.</td></tr>
 </table>
 <dl class="method">
 <dt id="imblearn.under_sampling.EditedNearestNeighbours.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>return_indices=False</em>, <em>random_state=None</em>, <em>size_ngh=None</em>, <em>n_neighbors=3</em>, <em>kind_sel='all'</em>, <em>n_jobs=-1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/edited_nearest_neighbours.html#EditedNearestNeighbours.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.EditedNearestNeighbours.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>return_indices=False</em>, <em>random_state=None</em>, <em>size_ngh=None</em>, <em>n_neighbors=3</em>, <em>kind_sel='all'</em>, <em>n_jobs=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/edited_nearest_neighbours.html#EditedNearestNeighbours.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.EditedNearestNeighbours.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p class="rubric">Methods</p>
