@@ -1,19 +1,19 @@
 
 
-.. _sphx_glr_auto_examples_combine_plot_smote_enn.py:
+.. _sphx_glr_auto_examples_under-sampling_plot_random_under_sampler.py:
 
 
-===========
-SMOTE + ENN
-===========
+=====================
+Random under-sampling
+=====================
 
-An illustration of the SMOTE + ENN method.
-
-
+An illustration of the random under-sampling method.
 
 
 
-.. image:: /auto_examples/combine/images/sphx_glr_plot_smote_enn_001.png
+
+
+.. image:: /auto_examples/under-sampling/images/sphx_glr_plot_random_under_sampler_001.png
     :align: center
 
 
@@ -23,21 +23,20 @@ An illustration of the SMOTE + ENN method.
 .. code-block:: python
 
 
-    print(__doc__)
-
     import matplotlib.pyplot as plt
     import seaborn as sns
     from sklearn.datasets import make_classification
     from sklearn.decomposition import PCA
 
-    from imblearn.combine import SMOTEENN
+    from imblearn.under_sampling import RandomUnderSampler
+
+    print(__doc__)
 
     sns.set()
 
     # Define some color for the plotting
     almost_black = '#262626'
     palette = sns.color_palette()
-
 
 
     # Generate the dataset
@@ -51,9 +50,9 @@ An illustration of the SMOTE + ENN method.
     # Fit and transform x to visualise inside a 2D feature space
     X_vis = pca.fit_transform(X)
 
-    # Apply SMOTE + ENN
-    sm = SMOTEENN()
-    X_resampled, y_resampled = sm.fit_sample(X, y)
+    # Apply the random under-sampling
+    rus = RandomUnderSampler()
+    X_resampled, y_resampled = rus.fit_sample(X, y)
     X_res_vis = pca.transform(X_resampled)
 
     # Two subplots, unpack the axes array immediately
@@ -71,11 +70,11 @@ An illustration of the SMOTE + ENN method.
     ax2.scatter(X_res_vis[y_resampled == 1, 0], X_res_vis[y_resampled == 1, 1],
                 label="Class #1", alpha=.5, edgecolor=almost_black,
                 facecolor=palette[2], linewidth=0.15)
-    ax2.set_title('SMOTE + ENN')
+    ax2.set_title('Random under-sampling')
 
     plt.show()
 
-**Total running time of the script:** ( 0 minutes  2.074 seconds)
+**Total running time of the script:** ( 0 minutes  0.730 seconds)
 
 
 
@@ -84,13 +83,13 @@ An illustration of the SMOTE + ENN method.
 
   .. container:: sphx-glr-download
 
-     :download:`Download Python source code: plot_smote_enn.py <plot_smote_enn.py>`
+     :download:`Download Python source code: plot_random_under_sampler.py <plot_random_under_sampler.py>`
 
 
 
   .. container:: sphx-glr-download
 
-     :download:`Download Jupyter notebook: plot_smote_enn.ipynb <plot_smote_enn.ipynb>`
+     :download:`Download Jupyter notebook: plot_random_under_sampler.ipynb <plot_random_under_sampler.ipynb>`
 
 .. rst-class:: sphx-glr-signature
 

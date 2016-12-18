@@ -157,7 +157,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/generated/imblearn.over_sampling.SMOTE.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/generated/imblearn.over_sampling.SMOTE.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -171,7 +171,7 @@
 <h1>imblearn.over_sampling.SMOTE<a class="headerlink" href="#imblearn-over-sampling-smote" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="imblearn.over_sampling.SMOTE">
-<em class="property">class </em><code class="descclassname">imblearn.over_sampling.</code><code class="descname">SMOTE</code><span class="sig-paren">(</span><em>ratio='auto'</em>, <em>random_state=None</em>, <em>k=None</em>, <em>k_neighbors=5</em>, <em>m=None</em>, <em>m_neighbors=10</em>, <em>out_step=0.5</em>, <em>kind='regular'</em>, <em>n_jobs=1</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/over_sampling/smote.html#SMOTE"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.over_sampling.SMOTE" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">imblearn.over_sampling.</code><code class="descname">SMOTE</code><span class="sig-paren">(</span><em>ratio='auto'</em>, <em>random_state=None</em>, <em>k=None</em>, <em>k_neighbors=5</em>, <em>m=None</em>, <em>m_neighbors=10</em>, <em>out_step=0.5</em>, <em>kind='regular'</em>, <em>svm_estimator=None</em>, <em>n_jobs=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/over_sampling/smote.html#SMOTE"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.over_sampling.SMOTE" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class to perform over-sampling using SMOTE.</p>
 <p>This object is an implementation of SMOTE - Synthetic Minority
 Over-sampling Technique, and the variants Borderline SMOTE 1, 2 and
@@ -232,6 +232,11 @@ the k_neighbors.</p>
 <div><p>The type of SMOTE algorithm to use one of the following options:
 &#8216;regular&#8217;, &#8216;borderline1&#8217;, &#8216;borderline2&#8217;, &#8216;svm&#8217;.</p>
 </div></blockquote>
+<p><strong>svm_estimator</strong> : object, optional (default=SVC())</p>
+<blockquote>
+<div><p>If <cite>kind=&#8217;svm&#8217;</cite>, a parametrized <cite>sklearn.svm.SVC</cite> classifier can
+be passed.</p>
+</div></blockquote>
 <p><strong>n_jobs</strong> : int, optional (default=1)</p>
 <blockquote class="last">
 <div><p>The number of threads to open if possible.</p>
@@ -241,30 +246,30 @@ the k_neighbors.</p>
 </tbody>
 </table>
 <p class="rubric">Notes</p>
-<p>See the original papers: <a class="reference internal" href="#r22" id="id1">[R22]</a>, <a class="reference internal" href="#r23" id="id2">[R23]</a>, <a class="reference internal" href="#r24" id="id3">[R24]</a> for more details.</p>
+<p>See the original papers: <a class="reference internal" href="#r23" id="id1">[R23]</a>, <a class="reference internal" href="#r24" id="id2">[R24]</a>, <a class="reference internal" href="#r25" id="id3">[R25]</a> for more details.</p>
 <p>It does not support multiple classes automatically, but can be called
 multiple times.</p>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r22" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[R22]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id4">2</a>)</em> N. V. Chawla, K. W. Bowyer, L. O.Hall, W. P. Kegelmeyer, &#8220;SMOTE:
-synthetic minority over-sampling technique,&#8221; Journal of artificial
-intelligence research, 321-357, 2002.</td></tr>
-</tbody>
-</table>
 <table class="docutils citation" frame="void" id="r23" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[R23]</td><td><em>(<a class="fn-backref" href="#id2">1</a>, <a class="fn-backref" href="#id5">2</a>)</em> H. Han, W. Wen-Yuan, M. Bing-Huan, &#8220;Borderline-SMOTE: a new
-over-sampling method in imbalanced data sets learning,&#8221; Advances in
-intelligent computing, 878-887, 2005.</td></tr>
+<tr><td class="label">[R23]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id4">2</a>)</em> N. V. Chawla, K. W. Bowyer, L. O.Hall, W. P. Kegelmeyer, &#8220;SMOTE:
+synthetic minority over-sampling technique,&#8221; Journal of artificial
+intelligence research, 321-357, 2002.</td></tr>
 </tbody>
 </table>
 <table class="docutils citation" frame="void" id="r24" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[R24]</td><td><em>(<a class="fn-backref" href="#id3">1</a>, <a class="fn-backref" href="#id6">2</a>)</em> H. M. Nguyen, E. W. Cooper, K. Kamei, &#8220;Borderline over-sampling for
+<tr><td class="label">[R24]</td><td><em>(<a class="fn-backref" href="#id2">1</a>, <a class="fn-backref" href="#id5">2</a>)</em> H. Han, W. Wen-Yuan, M. Bing-Huan, &#8220;Borderline-SMOTE: a new
+over-sampling method in imbalanced data sets learning,&#8221; Advances in
+intelligent computing, 878-887, 2005.</td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="r25" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[R25]</td><td><em>(<a class="fn-backref" href="#id3">1</a>, <a class="fn-backref" href="#id6">2</a>)</em> H. M. Nguyen, E. W. Cooper, K. Kamei, &#8220;Borderline over-sampling for
 imbalanced data classification,&#8221; International Journal of Knowledge
 Engineering and Soft Data Paradigms, 3(1), pp.4-21, 2001.</td></tr>
 </tbody>
@@ -332,7 +337,7 @@ Engineering and Soft Data Paradigms, 3(1), pp.4-21, 2001.</td></tr>
 </table>
 <dl class="method">
 <dt id="imblearn.over_sampling.SMOTE.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>ratio='auto'</em>, <em>random_state=None</em>, <em>k=None</em>, <em>k_neighbors=5</em>, <em>m=None</em>, <em>m_neighbors=10</em>, <em>out_step=0.5</em>, <em>kind='regular'</em>, <em>n_jobs=1</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/over_sampling/smote.html#SMOTE.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.over_sampling.SMOTE.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>ratio='auto'</em>, <em>random_state=None</em>, <em>k=None</em>, <em>k_neighbors=5</em>, <em>m=None</em>, <em>m_neighbors=10</em>, <em>out_step=0.5</em>, <em>kind='regular'</em>, <em>svm_estimator=None</em>, <em>n_jobs=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/over_sampling/smote.html#SMOTE.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.over_sampling.SMOTE.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p class="rubric">Methods</p>
@@ -430,7 +435,7 @@ Engineering and Soft Data Paradigms, 3(1), pp.4-21, 2001.</td></tr>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>deep: boolean, optional</strong></p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>deep</strong> : boolean, optional</p>
 <blockquote>
 <div><p>If True, will return the parameters for this estimator and
 contained subobjects that are estimators.</p>

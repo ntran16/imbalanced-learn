@@ -156,7 +156,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/generated/imblearn.ensemble.BalanceCascade.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/generated/imblearn.ensemble.BalanceCascade.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -170,7 +170,7 @@
 <h1>imblearn.ensemble.BalanceCascade<a class="headerlink" href="#imblearn-ensemble-balancecascade" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="imblearn.ensemble.BalanceCascade">
-<em class="property">class </em><code class="descclassname">imblearn.ensemble.</code><code class="descname">BalanceCascade</code><span class="sig-paren">(</span><em>ratio='auto'</em>, <em>return_indices=False</em>, <em>random_state=None</em>, <em>n_max_subset=None</em>, <em>classifier='knn'</em>, <em>bootstrap=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/ensemble/balance_cascade.html#BalanceCascade"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.ensemble.BalanceCascade" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">imblearn.ensemble.</code><code class="descname">BalanceCascade</code><span class="sig-paren">(</span><em>ratio='auto'</em>, <em>return_indices=False</em>, <em>random_state=None</em>, <em>n_max_subset=None</em>, <em>classifier=None</em>, <em>estimator=None</em>, <em>bootstrap=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/ensemble/balance_cascade.html#BalanceCascade"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.ensemble.BalanceCascade" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create an ensemble of balanced sets by iteratively under-sampling the
 imbalanced dataset using an estimator.</p>
 <p>This method iteratively select subset and make an ensemble of the
@@ -204,12 +204,19 @@ by np.random.</p>
 the training will be selected that could lead to a large number of
 subsets. We can probably deduce this number empirically.</p>
 </div></blockquote>
-<p><strong>classifier</strong> : str, optional (default=&#8217;knn&#8217;)</p>
+<p><strong>classifier</strong> : str, optional (default=None)</p>
 <blockquote>
 <div><p>The classifier that will be selected to confront the prediction
 with the real labels. The choices are the following: &#8216;knn&#8217;,
 &#8216;decision-tree&#8217;, &#8216;random-forest&#8217;, &#8216;adaboost&#8217;, &#8216;gradient-boosting&#8217;
 and &#8216;linear-svm&#8217;.</p>
+<p>NOTE: <cite>classifier</cite> is deprecated from 0.2 and will be replaced in 0.4.
+Use <cite>estimator</cite> instead.</p>
+</div></blockquote>
+<p><strong>estimator</strong> : object, optional (default=KNeighborsClassifier())</p>
+<blockquote>
+<div><p>An estimator inherited from <cite>sklearn.base.ClassifierMixin</cite> and having
+an attribute <cite>predict_proba</cite>.</p>
 </div></blockquote>
 <p><strong>bootstrap</strong> : bool, optional (default=True)</p>
 <blockquote>
@@ -218,19 +225,22 @@ and &#8216;linear-svm&#8217;.</p>
 <p><strong>**kwargs</strong> : keywords</p>
 <blockquote class="last">
 <div><p>The parameters associated with the classifier provided.</p>
+<p>NOTE: <cite>**kwargs</cite> has been deprecated from 0.2 and will be replaced in
+0.4. Use <cite>estimator</cite> object instead to pass parameters associated
+to an estimator.</p>
 </div></blockquote>
 </td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Notes</p>
-<p>The method is described in <a class="reference internal" href="#r19" id="id1">[R19]</a>.</p>
+<p>The method is described in <a class="reference internal" href="#r20" id="id1">[R20]</a>.</p>
 <p>This class does not support multi-class.</p>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r19" rules="none">
+<table class="docutils citation" frame="void" id="r20" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[R19]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> X. Y. Liu, J. Wu and Z. H. Zhou, &#8220;Exploratory Undersampling for
+<tr><td class="label">[R20]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> X. Y. Liu, J. Wu and Z. H. Zhou, &#8220;Exploratory Undersampling for
 Class-Imbalance Learning,&#8221; in IEEE Transactions on Systems, Man, and
 Cybernetics, Part B (Cybernetics), vol. 39, no. 2, pp. 539-550,
 April 2009.</td></tr>
@@ -299,7 +309,7 @@ April 2009.</td></tr>
 </table>
 <dl class="method">
 <dt id="imblearn.ensemble.BalanceCascade.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>ratio='auto'</em>, <em>return_indices=False</em>, <em>random_state=None</em>, <em>n_max_subset=None</em>, <em>classifier='knn'</em>, <em>bootstrap=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/ensemble/balance_cascade.html#BalanceCascade.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.ensemble.BalanceCascade.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>ratio='auto'</em>, <em>return_indices=False</em>, <em>random_state=None</em>, <em>n_max_subset=None</em>, <em>classifier=None</em>, <em>estimator=None</em>, <em>bootstrap=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/ensemble/balance_cascade.html#BalanceCascade.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.ensemble.BalanceCascade.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p class="rubric">Methods</p>
@@ -331,7 +341,7 @@ April 2009.</td></tr>
 </table>
 <dl class="method">
 <dt id="imblearn.ensemble.BalanceCascade.fit">
-<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#imblearn.ensemble.BalanceCascade.fit" title="Permalink to this definition">¶</a></dt>
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/ensemble/balance_cascade.html#BalanceCascade.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.ensemble.BalanceCascade.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find the classes statistics before to perform sampling.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -397,7 +407,7 @@ April 2009.</td></tr>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>deep: boolean, optional</strong></p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>deep</strong> : boolean, optional</p>
 <blockquote>
 <div><p>If True, will return the parameters for this estimator and
 contained subobjects that are estimators.</p>

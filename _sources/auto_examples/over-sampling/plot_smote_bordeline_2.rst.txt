@@ -1,19 +1,19 @@
 
 
-.. _sphx_glr_auto_examples_ensemble_plot_easy_ensemble.py:
+.. _sphx_glr_auto_examples_over-sampling_plot_smote_bordeline_2.py:
 
 
-=============
-Easy ensemble
-=============
+==================
+SMOTE borderline 2
+==================
 
-An illustration of the easy ensemble method.
-
-
+An illustration of the random SMOTE borderline 2 method.
 
 
 
-.. image:: /auto_examples/ensemble/images/sphx_glr_plot_easy_ensemble_001.png
+
+
+.. image:: /auto_examples/over-sampling/images/sphx_glr_plot_smote_bordeline_2_001.png
     :align: center
 
 
@@ -23,22 +23,20 @@ An illustration of the easy ensemble method.
 .. code-block:: python
 
 
-    print(__doc__)
-
     import matplotlib.pyplot as plt
-    import numpy as np
     import seaborn as sns
     from sklearn.datasets import make_classification
     from sklearn.decomposition import PCA
 
-    from imblearn.ensemble import EasyEnsemble
+    from imblearn.over_sampling import SMOTE
+
+    print(__doc__)
 
     sns.set()
 
     # Define some color for the plotting
     almost_black = '#262626'
     palette = sns.color_palette()
-
 
 
     # Generate the dataset
@@ -52,12 +50,10 @@ An illustration of the easy ensemble method.
     # Fit and transform x to visualise inside a 2D feature space
     X_vis = pca.fit_transform(X)
 
-    # Apply Easy Ensemble
-    ee = EasyEnsemble()
-    X_resampled, y_resampled = ee.fit_sample(X, y)
-    X_res_vis = []
-    for X_res in X_resampled:
-        X_res_vis.append(pca.transform(X_res))
+    # Apply Borderline SMOTE 2
+    sm = SMOTE(kind='borderline2')
+    X_resampled, y_resampled = sm.fit_sample(X, y)
+    X_res_vis = pca.transform(X_resampled)
 
     # Two subplots, unpack the axes array immediately
     f, (ax1, ax2) = plt.subplots(1, 2)
@@ -68,17 +64,17 @@ An illustration of the easy ensemble method.
                 edgecolor=almost_black, facecolor=palette[2], linewidth=0.15)
     ax1.set_title('Original set')
 
-    ax2.scatter(X_vis[y == 0, 0], X_vis[y == 0, 1], label="Class #0", alpha=0.5,
-                edgecolor=almost_black, facecolor=palette[0], linewidth=0.15)
-    for iy, e in enumerate(X_res_vis):
-        ax2.scatter(e[y_resampled[iy] == 1, 0], e[y_resampled[iy] == 1, 1],
-                    label="Class #1", alpha=0.5, edgecolor=almost_black,
-                    facecolor=np.random.rand(3,), linewidth=0.15)
-    ax2.set_title('Easy ensemble')
+    ax2.scatter(X_res_vis[y_resampled == 0, 0], X_res_vis[y_resampled == 0, 1],
+                label="Class #0", alpha=.5, edgecolor=almost_black,
+                facecolor=palette[0], linewidth=0.15)
+    ax2.scatter(X_res_vis[y_resampled == 1, 0], X_res_vis[y_resampled == 1, 1],
+                label="Class #1", alpha=.5, edgecolor=almost_black,
+                facecolor=palette[2], linewidth=0.15)
+    ax2.set_title('SMOTE borderline 2')
 
     plt.show()
 
-**Total running time of the script:** ( 0 minutes  0.740 seconds)
+**Total running time of the script:** ( 0 minutes  0.887 seconds)
 
 
 
@@ -87,13 +83,13 @@ An illustration of the easy ensemble method.
 
   .. container:: sphx-glr-download
 
-     :download:`Download Python source code: plot_easy_ensemble.py <plot_easy_ensemble.py>`
+     :download:`Download Python source code: plot_smote_bordeline_2.py <plot_smote_bordeline_2.py>`
 
 
 
   .. container:: sphx-glr-download
 
-     :download:`Download Jupyter notebook: plot_easy_ensemble.ipynb <plot_easy_ensemble.ipynb>`
+     :download:`Download Jupyter notebook: plot_smote_bordeline_2.ipynb <plot_smote_bordeline_2.ipynb>`
 
 .. rst-class:: sphx-glr-signature
 

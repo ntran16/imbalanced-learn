@@ -101,6 +101,7 @@
 <li class="toctree-l4"><a class="reference internal" href="imblearn.under_sampling.CondensedNearestNeighbour.html">imblearn.under_sampling.CondensedNearestNeighbour</a></li>
 <li class="toctree-l4"><a class="reference internal" href="imblearn.under_sampling.EditedNearestNeighbours.html">imblearn.under_sampling.EditedNearestNeighbours</a></li>
 <li class="toctree-l4"><a class="reference internal" href="imblearn.under_sampling.RepeatedEditedNearestNeighbours.html">imblearn.under_sampling.RepeatedEditedNearestNeighbours</a></li>
+<li class="toctree-l4"><a class="reference internal" href="imblearn.under_sampling.AllKNN.html">imblearn.under_sampling.AllKNN</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">imblearn.under_sampling.InstanceHardnessThreshold</a></li>
 <li class="toctree-l4"><a class="reference internal" href="imblearn.under_sampling.NearMiss.html">imblearn.under_sampling.NearMiss</a></li>
 <li class="toctree-l4"><a class="reference internal" href="imblearn.under_sampling.NeighbourhoodCleaningRule.html">imblearn.under_sampling.NeighbourhoodCleaningRule</a></li>
@@ -164,7 +165,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/generated/imblearn.under_sampling.InstanceHardnessThreshold.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/generated/imblearn.under_sampling.InstanceHardnessThreshold.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -178,19 +179,24 @@
 <h1>imblearn.under_sampling.InstanceHardnessThreshold<a class="headerlink" href="#imblearn-under-sampling-instancehardnessthreshold" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="imblearn.under_sampling.InstanceHardnessThreshold">
-<em class="property">class </em><code class="descclassname">imblearn.under_sampling.</code><code class="descname">InstanceHardnessThreshold</code><span class="sig-paren">(</span><em>estimator='linear-svm'</em>, <em>ratio='auto'</em>, <em>return_indices=False</em>, <em>random_state=None</em>, <em>cv=5</em>, <em>n_jobs=1</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/instance_hardness_threshold.html#InstanceHardnessThreshold"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.InstanceHardnessThreshold" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">imblearn.under_sampling.</code><code class="descname">InstanceHardnessThreshold</code><span class="sig-paren">(</span><em>estimator=None</em>, <em>ratio='auto'</em>, <em>return_indices=False</em>, <em>random_state=None</em>, <em>cv=5</em>, <em>n_jobs=1</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/instance_hardness_threshold.html#InstanceHardnessThreshold"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.InstanceHardnessThreshold" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class to perform under-sampling based on the instance hardness
 threshold.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>estimator</strong> : str, optional (default=&#8217;linear-svm&#8217;)</p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>estimator</strong> : object, optional (default=RandomForestClassifier())</p>
 <blockquote>
-<div><p>Classifier to be used in to estimate instance hardness of the samples.
-The choices are the following: &#8216;knn&#8217;,
+<div><p>Classifier to be used to estimate instance hardness of the samples.
+By default a RandomForestClassifer will be used.
+If str, the choices using a string are the following: &#8216;knn&#8217;,
 &#8216;decision-tree&#8217;, &#8216;random-forest&#8217;, &#8216;adaboost&#8217;, &#8216;gradient-boosting&#8217;
-and &#8216;linear-svm&#8217;.</p>
+and &#8216;linear-svm&#8217;.
+If object, an estimator inherited from <cite>sklearn.base.ClassifierMixin</cite>
+and having an attribute <cite>predict_proba</cite>.</p>
+<p>NOTE: <cite>estimator</cite> as a string object is deprecated from 0.2 and will be
+replaced in 0.4. Use <cite>ClassifierMixin</cite> object instead.</p>
 </div></blockquote>
 <p><strong>ratio</strong> : str or float, optional (default=&#8217;auto&#8217;)</p>
 <blockquote>
@@ -216,21 +222,28 @@ by np.random.</p>
 <div><p>Number of folds to be used when estimating samples&#8217; instance hardness.</p>
 </div></blockquote>
 <p><strong>n_jobs</strong> : int, optional (default=1)</p>
-<blockquote class="last">
+<blockquote>
 <div><p>The number of threads to open if possible.</p>
+</div></blockquote>
+<p><strong>**kwargs:</strong></p>
+<blockquote class="last">
+<div><p>Option for the different classifier.</p>
+<p>NOTE: <cite>**kwargs</cite> has been deprecated from 0.2 and will be replaced in
+0.4. Use <cite>ClassifierMixin</cite> object instead to pass parameter associated
+to an estimator.</p>
 </div></blockquote>
 </td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Notes</p>
-<p>The method is based on <a class="reference internal" href="#r27" id="id1">[R27]</a>.</p>
+<p>The method is based on <a class="reference internal" href="#r29" id="id1">[R29]</a>.</p>
 <p>This class does not support multi-class.</p>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r27" rules="none">
+<table class="docutils citation" frame="void" id="r29" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[R27]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> D. Smith, Michael R., Tony Martinez, and Christophe Giraud-Carrier.
+<tr><td class="label">[R29]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> D. Smith, Michael R., Tony Martinez, and Christophe Giraud-Carrier.
 &#8220;An instance level analysis of data complexity.&#8221; Machine learning
 95.2 (2014): 225-256.</td></tr>
 </tbody>
@@ -301,7 +314,7 @@ by np.random.</p>
 </table>
 <dl class="method">
 <dt id="imblearn.under_sampling.InstanceHardnessThreshold.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>estimator='linear-svm'</em>, <em>ratio='auto'</em>, <em>return_indices=False</em>, <em>random_state=None</em>, <em>cv=5</em>, <em>n_jobs=1</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/instance_hardness_threshold.html#InstanceHardnessThreshold.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.InstanceHardnessThreshold.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>estimator=None</em>, <em>ratio='auto'</em>, <em>return_indices=False</em>, <em>random_state=None</em>, <em>cv=5</em>, <em>n_jobs=1</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/instance_hardness_threshold.html#InstanceHardnessThreshold.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.InstanceHardnessThreshold.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p class="rubric">Methods</p>
@@ -333,7 +346,7 @@ by np.random.</p>
 </table>
 <dl class="method">
 <dt id="imblearn.under_sampling.InstanceHardnessThreshold.fit">
-<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#imblearn.under_sampling.InstanceHardnessThreshold.fit" title="Permalink to this definition">¶</a></dt>
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/instance_hardness_threshold.html#InstanceHardnessThreshold.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.InstanceHardnessThreshold.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find the classes statistics before to perform sampling.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -399,7 +412,7 @@ by np.random.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>deep: boolean, optional</strong></p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>deep</strong> : boolean, optional</p>
 <blockquote>
 <div><p>If True, will return the parameters for this estimator and
 contained subobjects that are estimators.</p>

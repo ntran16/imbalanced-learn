@@ -220,6 +220,10 @@
 <span class="sd">        The type of SMOTE algorithm to use one of the following options:</span>
 <span class="sd">        &#39;regular&#39;, &#39;borderline1&#39;, &#39;borderline2&#39;, &#39;svm&#39;.</span>
 
+<span class="sd">    svm_estimator : object, optional (default=SVC())</span>
+<span class="sd">        If `kind=&#39;svm&#39;`, a parametrized `sklearn.svm.SVC` classifier can</span>
+<span class="sd">        be passed.</span>
+
 <span class="sd">    n_jobs : int, optional (default=1)</span>
 <span class="sd">        The number of threads to open if possible.</span>
 
@@ -280,7 +284,7 @@
 
 <div class="viewcode-block" id="SMOTE.__init__"><a class="viewcode-back" href="../../../generated/imblearn.over_sampling.SMOTE.html#imblearn.over_sampling.SMOTE.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ratio</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">k_neighbors</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
                  <span class="n">m</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">m_neighbors</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">out_step</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;regular&#39;</span><span class="p">,</span>
-                 <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+                 <span class="n">svm_estimator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">SMOTE</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">ratio</span><span class="o">=</span><span class="n">ratio</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">kind</span> <span class="o">=</span> <span class="n">kind</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="o">=</span> <span class="n">k</span>
@@ -288,8 +292,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="o">=</span> <span class="n">m</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">m_neighbors</span> <span class="o">=</span> <span class="n">m_neighbors</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">out_step</span> <span class="o">=</span> <span class="n">out_step</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span> <span class="o">=</span> <span class="n">n_jobs</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span> <span class="o">=</span> <span class="n">kwargs</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">svm_estimator</span> <span class="o">=</span> <span class="n">svm_estimator</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span> <span class="o">=</span> <span class="n">n_jobs</span></div>
 
     <span class="k">def</span> <span class="nf">_in_danger_noise</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">samples</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;danger&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Estimate if a set of sample are in danger or noise.</span>
@@ -468,8 +472,13 @@
         <span class="c1"># in danger (near the boundary). The level of extrapolation is</span>
         <span class="c1"># controled by the out_step.</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">kind</span> <span class="o">==</span> <span class="s1">&#39;svm&#39;</span><span class="p">:</span>
-            <span class="c1"># Store SVM object with any parameters</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">svm</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">svm_estimator</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="c1"># Store SVM object with any parameters</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">svm_estimator_</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">svm_estimator</span><span class="p">,</span> <span class="n">SVC</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">svm_estimator_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">svm_estimator</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;`svm_estimator` has to be an SVC object&#39;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="SMOTE.fit"><a class="viewcode-back" href="../../../generated/imblearn.over_sampling.SMOTE.html#imblearn.over_sampling.SMOTE.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Find the classes statistics before to perform sampling.</span>
@@ -655,11 +664,11 @@
             <span class="c1"># belonging to each class.</span>
 
             <span class="c1"># Fit SVM to the full data#</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">svm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">svm_estimator_</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
             <span class="c1"># Find the support vectors and their corresponding indexes</span>
-            <span class="n">support_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">svm</span><span class="o">.</span><span class="n">support_</span><span class="p">[</span><span class="n">y</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">svm</span><span class="o">.</span><span class="n">support_</span><span class="p">]</span> <span class="o">==</span>
-                                              <span class="bp">self</span><span class="o">.</span><span class="n">min_c_</span><span class="p">]</span>
+            <span class="n">support_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">svm_estimator_</span><span class="o">.</span><span class="n">support_</span><span class="p">[</span>
+                <span class="n">y</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">svm_estimator_</span><span class="o">.</span><span class="n">support_</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_c_</span><span class="p">]</span>
             <span class="n">support_vector</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">support_index</span><span class="p">]</span>
 
             <span class="c1"># First, find the nn of all the samples to identify samples</span>

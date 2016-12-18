@@ -101,6 +101,7 @@
 <li class="toctree-l4"><a class="reference internal" href="imblearn.under_sampling.CondensedNearestNeighbour.html">imblearn.under_sampling.CondensedNearestNeighbour</a></li>
 <li class="toctree-l4"><a class="reference internal" href="imblearn.under_sampling.EditedNearestNeighbours.html">imblearn.under_sampling.EditedNearestNeighbours</a></li>
 <li class="toctree-l4"><a class="reference internal" href="imblearn.under_sampling.RepeatedEditedNearestNeighbours.html">imblearn.under_sampling.RepeatedEditedNearestNeighbours</a></li>
+<li class="toctree-l4"><a class="reference internal" href="imblearn.under_sampling.AllKNN.html">imblearn.under_sampling.AllKNN</a></li>
 <li class="toctree-l4"><a class="reference internal" href="imblearn.under_sampling.InstanceHardnessThreshold.html">imblearn.under_sampling.InstanceHardnessThreshold</a></li>
 <li class="toctree-l4"><a class="reference internal" href="imblearn.under_sampling.NearMiss.html">imblearn.under_sampling.NearMiss</a></li>
 <li class="toctree-l4"><a class="reference internal" href="imblearn.under_sampling.NeighbourhoodCleaningRule.html">imblearn.under_sampling.NeighbourhoodCleaningRule</a></li>
@@ -164,7 +165,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/generated/imblearn.under_sampling.OneSidedSelection.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/generated/imblearn.under_sampling.OneSidedSelection.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -178,7 +179,7 @@
 <h1>imblearn.under_sampling.OneSidedSelection<a class="headerlink" href="#imblearn-under-sampling-onesidedselection" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="imblearn.under_sampling.OneSidedSelection">
-<em class="property">class </em><code class="descclassname">imblearn.under_sampling.</code><code class="descname">OneSidedSelection</code><span class="sig-paren">(</span><em>return_indices=False</em>, <em>random_state=None</em>, <em>size_ngh=None</em>, <em>n_neighbors=1</em>, <em>n_seeds_S=1</em>, <em>n_jobs=1</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/one_sided_selection.html#OneSidedSelection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.OneSidedSelection" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">imblearn.under_sampling.</code><code class="descname">OneSidedSelection</code><span class="sig-paren">(</span><em>return_indices=False</em>, <em>random_state=None</em>, <em>size_ngh=None</em>, <em>n_neighbors=None</em>, <em>n_seeds_S=1</em>, <em>n_jobs=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/one_sided_selection.html#OneSidedSelection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.OneSidedSelection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class to perform under-sampling based on one-sided selection method.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -203,35 +204,33 @@ distance to the minority point samples.</p>
 <p>NOTE: size_ngh is deprecated from 0.2 and will be replaced in 0.4
 Use <code class="docutils literal"><span class="pre">n_neighbors</span></code> instead.</p>
 </div></blockquote>
-<p><strong>n_neighbors</strong> : int, optional (default=1)</p>
+<p><strong>n_neighbors</strong> : int or object, optional (default=KNeighborsClassifier(n_neighbors=1))</p>
 <blockquote>
-<div><p>Size of the neighbourhood to consider to compute the average
-distance to the minority point samples.</p>
+<div><p>If int, size of the neighbourhood to consider to compute the average
+distance to the minority point samples.
+If object, an object inherited from
+<cite>sklearn.neigbors.KNeighborsClassifier</cite> should be passed.</p>
 </div></blockquote>
 <p><strong>n_seeds_S</strong> : int, optional (default=1)</p>
 <blockquote>
 <div><p>Number of samples to extract in order to build the set S.</p>
 </div></blockquote>
 <p><strong>n_jobs</strong> : int, optional (default=1)</p>
-<blockquote>
-<div><p>The number of threads to open if possible.</p>
-</div></blockquote>
-<p><strong>**kwargs</strong> : keywords</p>
 <blockquote class="last">
-<div><p>Parameter to use for the Neareast Neighbours object.</p>
+<div><p>The number of threads to open if possible.</p>
 </div></blockquote>
 </td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Notes</p>
-<p>The method is based on <a class="reference internal" href="#r30" id="id1">[R30]</a>.</p>
+<p>The method is based on <a class="reference internal" href="#r32" id="id1">[R32]</a>.</p>
 <p>This method support multiclass.</p>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r30" rules="none">
+<table class="docutils citation" frame="void" id="r32" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[R30]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> M. Kubat, S. Matwin, &#8220;Addressing the curse of imbalanced training
+<tr><td class="label">[R32]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> M. Kubat, S. Matwin, &#8220;Addressing the curse of imbalanced training
 sets: one-sided selection,&#8221; In ICML, vol. 97, pp. 179-186, 1997.</td></tr>
 </tbody>
 </table>
@@ -298,7 +297,7 @@ sets: one-sided selection,&#8221; In ICML, vol. 97, pp. 179-186, 1997.</td></tr>
 </table>
 <dl class="method">
 <dt id="imblearn.under_sampling.OneSidedSelection.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>return_indices=False</em>, <em>random_state=None</em>, <em>size_ngh=None</em>, <em>n_neighbors=1</em>, <em>n_seeds_S=1</em>, <em>n_jobs=1</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/one_sided_selection.html#OneSidedSelection.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.OneSidedSelection.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>return_indices=False</em>, <em>random_state=None</em>, <em>size_ngh=None</em>, <em>n_neighbors=None</em>, <em>n_seeds_S=1</em>, <em>n_jobs=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/one_sided_selection.html#OneSidedSelection.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.OneSidedSelection.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p class="rubric">Methods</p>
@@ -330,7 +329,7 @@ sets: one-sided selection,&#8221; In ICML, vol. 97, pp. 179-186, 1997.</td></tr>
 </table>
 <dl class="method">
 <dt id="imblearn.under_sampling.OneSidedSelection.fit">
-<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#imblearn.under_sampling.OneSidedSelection.fit" title="Permalink to this definition">¶</a></dt>
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/one_sided_selection.html#OneSidedSelection.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.OneSidedSelection.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find the classes statistics before to perform sampling.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -396,7 +395,7 @@ sets: one-sided selection,&#8221; In ICML, vol. 97, pp. 179-186, 1997.</td></tr>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>deep: boolean, optional</strong></p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>deep</strong> : boolean, optional</p>
 <blockquote>
 <div><p>If True, will return the parameters for this estimator and
 contained subobjects that are estimators.</p>

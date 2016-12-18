@@ -1,19 +1,19 @@
 
 
-.. _sphx_glr_auto_examples_under-sampling_plot_edited_nearest_neighbours.py:
+.. _sphx_glr_auto_examples_combine_plot_smote_tomek.py:
 
 
-=========================
-Edited nearest-neighbours
-=========================
+=============
+SMOTE + Tomek
+=============
 
-An illustration of the edited nearest-neighbours method.
-
-
+An illustration of the SMOTE + Tomek method.
 
 
 
-.. image:: /auto_examples/under-sampling/images/sphx_glr_plot_edited_nearest_neighbours_001.png
+
+
+.. image:: /auto_examples/combine/images/sphx_glr_plot_smote_tomek_001.png
     :align: center
 
 
@@ -23,21 +23,20 @@ An illustration of the edited nearest-neighbours method.
 .. code-block:: python
 
 
-    print(__doc__)
-
     import matplotlib.pyplot as plt
     import seaborn as sns
     from sklearn.datasets import make_classification
     from sklearn.decomposition import PCA
 
-    from imblearn.under_sampling import EditedNearestNeighbours
+    from imblearn.combine import SMOTETomek
+
+    print(__doc__)
 
     sns.set()
 
     # Define some color for the plotting
     almost_black = '#262626'
     palette = sns.color_palette()
-
 
 
     # Generate the dataset
@@ -51,9 +50,9 @@ An illustration of the edited nearest-neighbours method.
     # Fit and transform x to visualise inside a 2D feature space
     X_vis = pca.fit_transform(X)
 
-    # Apply Edited Nearest Neighbours
-    enn = EditedNearestNeighbours()
-    X_resampled, y_resampled = enn.fit_sample(X, y)
+    # Apply SMOTE + Tomek links
+    sm = SMOTETomek()
+    X_resampled, y_resampled = sm.fit_sample(X, y)
     X_res_vis = pca.transform(X_resampled)
 
     # Two subplots, unpack the axes array immediately
@@ -71,11 +70,11 @@ An illustration of the edited nearest-neighbours method.
     ax2.scatter(X_res_vis[y_resampled == 1, 0], X_res_vis[y_resampled == 1, 1],
                 label="Class #1", alpha=.5, edgecolor=almost_black,
                 facecolor=palette[2], linewidth=0.15)
-    ax2.set_title('Edited nearest neighbours')
+    ax2.set_title('SMOTE + Tomek')
 
     plt.show()
 
-**Total running time of the script:** ( 0 minutes  1.737 seconds)
+**Total running time of the script:** ( 0 minutes  2.342 seconds)
 
 
 
@@ -84,13 +83,13 @@ An illustration of the edited nearest-neighbours method.
 
   .. container:: sphx-glr-download
 
-     :download:`Download Python source code: plot_edited_nearest_neighbours.py <plot_edited_nearest_neighbours.py>`
+     :download:`Download Python source code: plot_smote_tomek.py <plot_smote_tomek.py>`
 
 
 
   .. container:: sphx-glr-download
 
-     :download:`Download Jupyter notebook: plot_edited_nearest_neighbours.ipynb <plot_edited_nearest_neighbours.ipynb>`
+     :download:`Download Jupyter notebook: plot_smote_tomek.ipynb <plot_smote_tomek.ipynb>`
 
 .. rst-class:: sphx-glr-signature
 

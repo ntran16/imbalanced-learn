@@ -1,19 +1,19 @@
 
 
-.. _sphx_glr_auto_examples_under-sampling_plot_one_sided_selection.py:
+.. _sphx_glr_auto_examples_under-sampling_plot_nearmiss_2.py:
 
 
-===================
-One-sided selection
-===================
+==========
+Nearmiss 2
+==========
 
-An illustration of the one-sided selection method.
-
-
+An illustration of the nearmiss 2 method.
 
 
 
-.. image:: /auto_examples/under-sampling/images/sphx_glr_plot_one_sided_selection_001.png
+
+
+.. image:: /auto_examples/under-sampling/images/sphx_glr_plot_nearmiss_2_001.png
     :align: center
 
 
@@ -23,21 +23,20 @@ An illustration of the one-sided selection method.
 .. code-block:: python
 
 
-    print(__doc__)
-
     import matplotlib.pyplot as plt
     import seaborn as sns
     from sklearn.datasets import make_classification
     from sklearn.decomposition import PCA
 
-    from imblearn.under_sampling import OneSidedSelection
+    from imblearn.under_sampling import NearMiss
+
+    print(__doc__)
 
     sns.set()
 
     # Define some color for the plotting
     almost_black = '#262626'
     palette = sns.color_palette()
-
 
 
     # Generate the dataset
@@ -51,9 +50,9 @@ An illustration of the one-sided selection method.
     # Fit and transform x to visualise inside a 2D feature space
     X_vis = pca.fit_transform(X)
 
-    # Apply One-Sided Selection
-    oss = OneSidedSelection()
-    X_resampled, y_resampled = oss.fit_sample(X, y)
+    # Apply Nearmiss 2
+    nm2 = NearMiss(version=2)
+    X_resampled, y_resampled = nm2.fit_sample(X, y)
     X_res_vis = pca.transform(X_resampled)
 
     # Two subplots, unpack the axes array immediately
@@ -71,11 +70,11 @@ An illustration of the one-sided selection method.
     ax2.scatter(X_res_vis[y_resampled == 1, 0], X_res_vis[y_resampled == 1, 1],
                 label="Class #1", alpha=.5, edgecolor=almost_black,
                 facecolor=palette[2], linewidth=0.15)
-    ax2.set_title('One-sided selection')
+    ax2.set_title('NearMiss 2')
 
     plt.show()
 
-**Total running time of the script:** ( 0 minutes  1.298 seconds)
+**Total running time of the script:** ( 0 minutes  0.962 seconds)
 
 
 
@@ -84,13 +83,13 @@ An illustration of the one-sided selection method.
 
   .. container:: sphx-glr-download
 
-     :download:`Download Python source code: plot_one_sided_selection.py <plot_one_sided_selection.py>`
+     :download:`Download Python source code: plot_nearmiss_2.py <plot_nearmiss_2.py>`
 
 
 
   .. container:: sphx-glr-download
 
-     :download:`Download Jupyter notebook: plot_one_sided_selection.ipynb <plot_one_sided_selection.ipynb>`
+     :download:`Download Jupyter notebook: plot_nearmiss_2.ipynb <plot_nearmiss_2.ipynb>`
 
 .. rst-class:: sphx-glr-signature
 

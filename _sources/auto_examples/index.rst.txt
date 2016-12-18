@@ -4,6 +4,8 @@ General examples
 ----------------
 
 General-purpose and introductory examples for the `imbalanced-learn` toolbox.
+
+
 .. raw:: html
 
     <div style='clear:both'></div>
@@ -14,6 +16,8 @@ Examples using combine class methods
 ====================================
 
 Combine methods mixed over- and under-sampling methods. Generally SMOTE is used for over-sampling while some cleaning methods (i.e., ENN and Tomek links) are used to under-sample.
+
+
 
 .. raw:: html
 
@@ -67,6 +71,8 @@ Under-sampling methods implies that samples of the majority class are lost durin
 Ensemble methods offer an alternative to use most of the samples.
 In fact, an ensemble of balanced sets is created and used to later train any classifier.
 
+
+
 .. raw:: html
 
     <div class="sphx-glr-thumbcontainer" tooltip="An illustration of the easy ensemble method.">
@@ -116,6 +122,8 @@ Example using over-sampling class methods
 =========================================
 
 Data balancing can be performed by over-sampling such that new samples are generated in the minority class to reach a given balancing ratio.
+
+
 
 .. raw:: html
 
@@ -236,6 +244,26 @@ Data balancing can be performed by over-sampling such that new samples are gener
    :hidden:
 
    /auto_examples/over-sampling/plot_random_over_sampling
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="In this face recognition example two faces are used from the LFW (Faces in the Wild) dataset. S...">
+
+.. only:: html
+
+    .. figure:: /auto_examples/over-sampling/images/thumb/sphx_glr_plot_over_sampling_benchmark_3nn_thumb.png
+
+        :ref:`sphx_glr_auto_examples_over-sampling_plot_over_sampling_benchmark_3nn.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/over-sampling/plot_over_sampling_benchmark_3nn
 .. raw:: html
 
     <div style='clear:both'></div>
@@ -246,6 +274,8 @@ Pipeline examples
 =================
 
 Example of how to use the a pipeline to include under-sampling with `scikit-learn` estimators.
+
+
 .. raw:: html
 
     <div class="sphx-glr-thumbcontainer" tooltip="An example of the Pipeline object working with transformers and resamplers.">
@@ -276,6 +306,8 @@ Example using under-sampling class methods
 
 Under-sampling refers to the process of reducing the number of samples in the majority classes.
 The implemented methods can be categorized into 2 groups: (i) fixed under-sampling and (ii) cleaning under-sampling.
+
+
 
 .. raw:: html
 

@@ -1,19 +1,19 @@
 
 
-.. _sphx_glr_auto_examples_over-sampling_plot_smote.py:
+.. _sphx_glr_auto_examples_over-sampling_plot_random_over_sampling.py:
 
 
-=============
-SMOTE regular
-=============
+====================
+Random over-sampling
+====================
 
-An illustration of the random SMOTE regular method.
-
-
+An illustration of the random over-sampling method.
 
 
 
-.. image:: /auto_examples/over-sampling/images/sphx_glr_plot_smote_001.png
+
+
+.. image:: /auto_examples/over-sampling/images/sphx_glr_plot_random_over_sampling_001.png
     :align: center
 
 
@@ -23,21 +23,20 @@ An illustration of the random SMOTE regular method.
 .. code-block:: python
 
 
-    print(__doc__)
-
     import matplotlib.pyplot as plt
     import seaborn as sns
     from sklearn.datasets import make_classification
     from sklearn.decomposition import PCA
 
-    from imblearn.over_sampling import SMOTE
+    from imblearn.over_sampling import RandomOverSampler
+
+    print(__doc__)
 
     sns.set()
 
     # Define some color for the plotting
     almost_black = '#262626'
     palette = sns.color_palette()
-
 
 
     # Generate the dataset
@@ -51,9 +50,9 @@ An illustration of the random SMOTE regular method.
     # Fit and transform x to visualise inside a 2D feature space
     X_vis = pca.fit_transform(X)
 
-    # Apply regular SMOTE
-    sm = SMOTE(kind='regular')
-    X_resampled, y_resampled = sm.fit_sample(X, y)
+    # Apply the random over-sampling
+    ros = RandomOverSampler()
+    X_resampled, y_resampled = ros.fit_sample(X, y)
     X_res_vis = pca.transform(X_resampled)
 
     # Two subplots, unpack the axes array immediately
@@ -71,11 +70,11 @@ An illustration of the random SMOTE regular method.
     ax2.scatter(X_res_vis[y_resampled == 1, 0], X_res_vis[y_resampled == 1, 1],
                 label="Class #1", alpha=.5, edgecolor=almost_black,
                 facecolor=palette[2], linewidth=0.15)
-    ax2.set_title('SMOTE regular')
+    ax2.set_title('Random over-sampling')
 
     plt.show()
 
-**Total running time of the script:** ( 0 minutes  0.774 seconds)
+**Total running time of the script:** ( 0 minutes  0.614 seconds)
 
 
 
@@ -84,13 +83,13 @@ An illustration of the random SMOTE regular method.
 
   .. container:: sphx-glr-download
 
-     :download:`Download Python source code: plot_smote.py <plot_smote.py>`
+     :download:`Download Python source code: plot_random_over_sampling.py <plot_random_over_sampling.py>`
 
 
 
   .. container:: sphx-glr-download
 
-     :download:`Download Jupyter notebook: plot_smote.ipynb <plot_smote.ipynb>`
+     :download:`Download Jupyter notebook: plot_random_over_sampling.ipynb <plot_random_over_sampling.ipynb>`
 
 .. rst-class:: sphx-glr-signature
 

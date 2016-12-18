@@ -102,6 +102,7 @@
 <li class="toctree-l4"><a class="reference internal" href="imblearn.under_sampling.CondensedNearestNeighbour.html">imblearn.under_sampling.CondensedNearestNeighbour</a></li>
 <li class="toctree-l4"><a class="reference internal" href="imblearn.under_sampling.EditedNearestNeighbours.html">imblearn.under_sampling.EditedNearestNeighbours</a></li>
 <li class="toctree-l4"><a class="reference internal" href="imblearn.under_sampling.RepeatedEditedNearestNeighbours.html">imblearn.under_sampling.RepeatedEditedNearestNeighbours</a></li>
+<li class="toctree-l4"><a class="reference internal" href="imblearn.under_sampling.AllKNN.html">imblearn.under_sampling.AllKNN</a></li>
 <li class="toctree-l4"><a class="reference internal" href="imblearn.under_sampling.InstanceHardnessThreshold.html">imblearn.under_sampling.InstanceHardnessThreshold</a></li>
 <li class="toctree-l4"><a class="reference internal" href="imblearn.under_sampling.NearMiss.html">imblearn.under_sampling.NearMiss</a></li>
 <li class="toctree-l4"><a class="reference internal" href="imblearn.under_sampling.NeighbourhoodCleaningRule.html">imblearn.under_sampling.NeighbourhoodCleaningRule</a></li>
@@ -165,7 +166,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/generated/imblearn.under_sampling.ClusterCentroids.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/generated/imblearn.under_sampling.ClusterCentroids.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -179,7 +180,7 @@
 <h1>imblearn.under_sampling.ClusterCentroids<a class="headerlink" href="#imblearn-under-sampling-clustercentroids" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="imblearn.under_sampling.ClusterCentroids">
-<em class="property">class </em><code class="descclassname">imblearn.under_sampling.</code><code class="descname">ClusterCentroids</code><span class="sig-paren">(</span><em>ratio='auto'</em>, <em>random_state=None</em>, <em>n_jobs=1</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/cluster_centroids.html#ClusterCentroids"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.ClusterCentroids" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">imblearn.under_sampling.</code><code class="descname">ClusterCentroids</code><span class="sig-paren">(</span><em>ratio='auto'</em>, <em>random_state=None</em>, <em>estimator=None</em>, <em>n_jobs=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/cluster_centroids.html#ClusterCentroids"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.ClusterCentroids" title="Permalink to this definition">¶</a></dt>
 <dd><p>Perform under-sampling by generating centroids based on
 clustering methods.</p>
 <p>Experimental method that under samples the majority class by replacing a
@@ -205,13 +206,13 @@ If RandomState instance, random_state is the random number generator;
 If None, the random number generator is the RandomState instance used
 by np.random.</p>
 </div></blockquote>
-<p><strong>n_jobs</strong> : int, optional (default=1)</p>
+<p><strong>estimator</strong> : object, optional(default=KMeans())</p>
 <blockquote>
-<div><p>The number of threads to open if possible.</p>
+<div><p>Pass a <cite>sklearn.cluster.KMeans</cite> estimator.</p>
 </div></blockquote>
-<p><strong>**kwargs</strong> : keywords</p>
+<p><strong>n_jobs</strong> : int, optional (default=1)</p>
 <blockquote class="last">
-<div><p>Parameter to use for the KMeans object.</p>
+<div><p>The number of threads to open if possible.</p>
 </div></blockquote>
 </td>
 </tr>
@@ -282,7 +283,7 @@ by np.random.</p>
 </table>
 <dl class="method">
 <dt id="imblearn.under_sampling.ClusterCentroids.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>ratio='auto'</em>, <em>random_state=None</em>, <em>n_jobs=1</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/cluster_centroids.html#ClusterCentroids.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.ClusterCentroids.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>ratio='auto'</em>, <em>random_state=None</em>, <em>estimator=None</em>, <em>n_jobs=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/cluster_centroids.html#ClusterCentroids.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.ClusterCentroids.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p class="rubric">Methods</p>
@@ -292,7 +293,7 @@ by np.random.</p>
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#imblearn.under_sampling.ClusterCentroids.__init__" title="imblearn.under_sampling.ClusterCentroids.__init__"><code class="xref py py-obj docutils literal"><span class="pre">__init__</span></code></a>([ratio,&nbsp;random_state,&nbsp;n_jobs])</td>
+<tr class="row-odd"><td><a class="reference internal" href="#imblearn.under_sampling.ClusterCentroids.__init__" title="imblearn.under_sampling.ClusterCentroids.__init__"><code class="xref py py-obj docutils literal"><span class="pre">__init__</span></code></a>([ratio,&nbsp;random_state,&nbsp;estimator,&nbsp;...])</td>
 <td></td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#imblearn.under_sampling.ClusterCentroids.fit" title="imblearn.under_sampling.ClusterCentroids.fit"><code class="xref py py-obj docutils literal"><span class="pre">fit</span></code></a>(X,&nbsp;y)</td>
@@ -314,7 +315,7 @@ by np.random.</p>
 </table>
 <dl class="method">
 <dt id="imblearn.under_sampling.ClusterCentroids.fit">
-<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#imblearn.under_sampling.ClusterCentroids.fit" title="Permalink to this definition">¶</a></dt>
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/cluster_centroids.html#ClusterCentroids.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.ClusterCentroids.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find the classes statistics before to perform sampling.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -380,7 +381,7 @@ by np.random.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>deep: boolean, optional</strong></p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>deep</strong> : boolean, optional</p>
 <blockquote>
 <div><p>If True, will return the parameters for this estimator and
 contained subobjects that are estimators.</p>

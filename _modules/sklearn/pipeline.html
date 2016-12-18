@@ -288,13 +288,13 @@
 <span class="sd">    Pipeline(steps=[...])</span>
 <span class="sd">    &gt;&gt;&gt; prediction = anova_svm.predict(X)</span>
 <span class="sd">    &gt;&gt;&gt; anova_svm.score(X, y)                        # doctest: +ELLIPSIS</span>
-<span class="sd">    0.77...</span>
+<span class="sd">    0.829...</span>
 <span class="sd">    &gt;&gt;&gt; # getting the selected features chosen by anova_filter</span>
 <span class="sd">    &gt;&gt;&gt; anova_svm.named_steps[&#39;anova&#39;].get_support()</span>
 <span class="sd">    ... # doctest: +NORMALIZE_WHITESPACE</span>
-<span class="sd">    array([ True,  True,  True, False, False,  True, False,  True,  True, True,</span>
-<span class="sd">           False, False,  True, False,  True, False, False, False, False,</span>
-<span class="sd">           True], dtype=bool)</span>
+<span class="sd">    array([False, False,  True,  True, False, False, True,  True, False,</span>
+<span class="sd">           True,  False,  True,  True, False, True,  False, True, True,</span>
+<span class="sd">           False, False], dtype=bool)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># BaseEstimator interface</span>
@@ -505,10 +505,7 @@
 <span class="sd">        -------</span>
 <span class="sd">        y_pred : array-like</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">Xt</span> <span class="o">=</span> <span class="n">X</span>
-        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">transform</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">steps</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
-            <span class="k">if</span> <span class="n">transform</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">Xt</span> <span class="o">=</span> <span class="n">transform</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">Xt</span><span class="p">)</span>
+        <span class="n">Xt</span><span class="p">,</span> <span class="n">fit_params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">steps</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">Xt</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span><span class="p">)</span>
 
     <span class="nd">@if_delegate_has_method</span><span class="p">(</span><span class="n">delegate</span><span class="o">=</span><span class="s1">&#39;_final_estimator&#39;</span><span class="p">)</span>

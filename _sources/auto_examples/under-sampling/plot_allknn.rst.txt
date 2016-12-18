@@ -1,19 +1,19 @@
 
 
-.. _sphx_glr_auto_examples_under-sampling_plot_repeated_edited_nearest_neighbours.py:
+.. _sphx_glr_auto_examples_under-sampling_plot_allknn.py:
 
 
 ==================================
-Repeated Edited nearest-neighbours
+AllKNN
 ==================================
 
-An illustration of the repeated edited nearest-neighbours method.
+An illustration of the AllKNN method.
 
 
 
 
 
-.. image:: /auto_examples/under-sampling/images/sphx_glr_plot_repeated_edited_nearest_neighbours_001.png
+.. image:: /auto_examples/under-sampling/images/sphx_glr_plot_allknn_001.png
     :align: center
 
 
@@ -22,7 +22,11 @@ An illustration of the repeated edited nearest-neighbours method.
  Out::
 
     ENN
+    Reduced 0.16\%
     RENN
+    Reduced 0.26\%
+    AllKNN
+    Reduced 0.20\%
 
 
 
@@ -33,22 +37,21 @@ An illustration of the repeated edited nearest-neighbours method.
 .. code-block:: python
 
 
-    print(__doc__)
-
     import matplotlib.pyplot as plt
     import seaborn as sns
     from sklearn.datasets import make_classification
     from sklearn.decomposition import PCA
 
-    from imblearn.under_sampling import (EditedNearestNeighbours,
+    from imblearn.under_sampling import (AllKNN, EditedNearestNeighbours,
                                          RepeatedEditedNearestNeighbours)
+
+    print(__doc__)
 
     sns.set()
 
     # Define some color for the plotting
     almost_black = '#262626'
     palette = sns.color_palette()
-
 
 
     # Generate the dataset
@@ -63,7 +66,7 @@ An illustration of the repeated edited nearest-neighbours method.
     X_vis = pca.fit_transform(X)
 
     # Three subplots, unpack the axes array immediately
-    f, (ax1, ax2, ax3) = plt.subplots(1, 3)
+    f, (ax1, ax2, ax3, ax4) = plt.subplots(1, 4)
 
     ax1.scatter(X_vis[y == 0, 0], X_vis[y == 0, 1], label="Class #0", alpha=.5,
                 edgecolor=almost_black, facecolor=palette[0], linewidth=0.15)
@@ -76,6 +79,7 @@ An illustration of the repeated edited nearest-neighbours method.
     enn = EditedNearestNeighbours()
     X_resampled, y_resampled = enn.fit_sample(X, y)
     X_res_vis = pca.transform(X_resampled)
+    print('Reduced {:.2f}\%'.format(100 * (1 - float(len(X_resampled)) / len(X))))
 
     ax2.scatter(X_res_vis[y_resampled == 0, 0], X_res_vis[y_resampled == 0, 1],
                 label="Class #0", alpha=.5, edgecolor=almost_black,
@@ -90,6 +94,7 @@ An illustration of the repeated edited nearest-neighbours method.
     renn = RepeatedEditedNearestNeighbours()
     X_resampled, y_resampled = renn.fit_sample(X, y)
     X_res_vis = pca.transform(X_resampled)
+    print('Reduced {:.2f}\%'.format(100 * (1 - float(len(X_resampled)) / len(X))))
 
     ax3.scatter(X_res_vis[y_resampled == 0, 0], X_res_vis[y_resampled == 0, 1],
                 label="Class #0", alpha=.5, edgecolor=almost_black,
@@ -99,9 +104,24 @@ An illustration of the repeated edited nearest-neighbours method.
                 facecolor=palette[2], linewidth=0.15)
     ax3.set_title('Repeated Edited nearest neighbours')
 
+    # Apply the AllKNN
+    print('AllKNN')
+    allknn = AllKNN()
+    X_resampled, y_resampled = allknn.fit_sample(X, y)
+    X_res_vis = pca.transform(X_resampled)
+    print('Reduced {:.2f}\%'.format(100 * (1 - float(len(X_resampled)) / len(X))))
+
+    ax4.scatter(X_res_vis[y_resampled == 0, 0], X_res_vis[y_resampled == 0, 1],
+                label="Class #0", alpha=.5, edgecolor=almost_black,
+                facecolor=palette[0], linewidth=0.15)
+    ax4.scatter(X_res_vis[y_resampled == 1, 0], X_res_vis[y_resampled == 1, 1],
+                label="Class #1", alpha=.5, edgecolor=almost_black,
+                facecolor=palette[2], linewidth=0.15)
+    ax4.set_title('AllKNN')
+
     plt.show()
 
-**Total running time of the script:** ( 0 minutes  1.533 seconds)
+**Total running time of the script:** ( 0 minutes  1.971 seconds)
 
 
 
@@ -110,13 +130,13 @@ An illustration of the repeated edited nearest-neighbours method.
 
   .. container:: sphx-glr-download
 
-     :download:`Download Python source code: plot_repeated_edited_nearest_neighbours.py <plot_repeated_edited_nearest_neighbours.py>`
+     :download:`Download Python source code: plot_allknn.py <plot_allknn.py>`
 
 
 
   .. container:: sphx-glr-download
 
-     :download:`Download Jupyter notebook: plot_repeated_edited_nearest_neighbours.ipynb <plot_repeated_edited_nearest_neighbours.ipynb>`
+     :download:`Download Jupyter notebook: plot_allknn.ipynb <plot_allknn.ipynb>`
 
 .. rst-class:: sphx-glr-signature
 
