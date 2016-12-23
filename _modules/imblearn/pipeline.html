@@ -183,8 +183,8 @@
             <span class="ow">not</span> <span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="s2">&quot;transform&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="s2">&quot;sample&quot;</span><span class="p">))):</span>
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
             <span class="s2">&quot;All intermediate steps of the chain should &quot;</span>
-            <span class="s2">&quot;be estimators that implement fit and transform or sample (but not both)&quot;</span>
-            <span class="s2">&quot; &#39;</span><span class="si">%s</span><span class="s2">&#39; (type </span><span class="si">%s</span><span class="s2">) doesn&#39;t)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">t</span><span class="p">)))</span>
+            <span class="s2">&quot;be estimators that implement fit and transform or sample&quot;</span>
+            <span class="s2">&quot;(but not both) &#39;</span><span class="si">%s</span><span class="s2">&#39; (type </span><span class="si">%s</span><span class="s2">) doesn&#39;t)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">step</span><span class="p">)))</span>
 
 
 <span class="k">def</span> <span class="nf">_validate_step_behaviour</span><span class="p">(</span><span class="n">step</span><span class="p">):</span>
@@ -203,7 +203,6 @@
 
 
 <div class="viewcode-block" id="Pipeline"><a class="viewcode-back" href="../../generated/imblearn.pipeline.Pipeline.html#imblearn.pipeline.Pipeline">[docs]</a><span class="k">class</span> <span class="nc">Pipeline</span><span class="p">(</span><span class="n">pipeline</span><span class="o">.</span><span class="n">Pipeline</span><span class="p">):</span>
-
     <span class="sd">&quot;&quot;&quot;Pipeline of transforms and resamples with a final estimator.</span>
 
 <span class="sd">    Sequentially apply a list of transforms, samples and a final estimator.</span>
@@ -239,11 +238,10 @@
 <span class="sd">    &gt;&gt;&gt; from sklearn.neighbors import KNeighborsClassifier as KNN</span>
 <span class="sd">    &gt;&gt;&gt; from sklearn.metrics import classification_report</span>
 <span class="sd">    &gt;&gt;&gt; from imblearn.over_sampling import SMOTE</span>
-<span class="sd">    &gt;&gt;&gt; from imblearn.pipeline import Pipeline</span>
-<span class="sd">    &gt;&gt;&gt; X, y = make_classification(n_classes=2, class_sep=2, weights=[0.1, 0.9],</span>
-<span class="sd">    ...                            n_informative=3, n_redundant=1, flip_y=0,</span>
-<span class="sd">    ...                            n_features=20, n_clusters_per_class=1,</span>
-<span class="sd">    ...                            n_samples=1000, random_state=10)</span>
+<span class="sd">    &gt;&gt;&gt; from imblearn.pipeline import Pipeline # doctest: +NORMALIZE_WHITESPACE</span>
+<span class="sd">    &gt;&gt;&gt; X, y = make_classification(n_classes=2, class_sep=2,</span>
+<span class="sd">    ... weights=[0.1, 0.9], n_informative=3, n_redundant=1, flip_y=0,</span>
+<span class="sd">    ... n_features=20, n_clusters_per_class=1, n_samples=1000, random_state=10)</span>
 <span class="sd">    &gt;&gt;&gt; print(&#39;Original dataset shape {}&#39;.format(Counter(y)))</span>
 <span class="sd">    Original dataset shape Counter({1: 900, 0: 100})</span>
 <span class="sd">    &gt;&gt;&gt; pca = PCA()</span>
@@ -251,11 +249,8 @@
 <span class="sd">    &gt;&gt;&gt; knn = KNN()</span>
 <span class="sd">    &gt;&gt;&gt; pipeline = Pipeline([(&#39;smt&#39;, smt), (&#39;pca&#39;, pca), (&#39;knn&#39;, knn)])</span>
 <span class="sd">    &gt;&gt;&gt; X_train, X_test, y_train, y_test = tts(X, y, random_state=42)</span>
-<span class="sd">    &gt;&gt;&gt; pipeline.fit(X_train, y_train)</span>
-<span class="sd">    Pipeline(steps=[(&#39;smt&#39;, SMOTE(k=None, k_neighbors=5, kind=&#39;regular&#39;, m=None, m_neighbors=10, n_jobs=1,</span>
-<span class="sd">       out_step=0.5, random_state=42, ratio=&#39;auto&#39;, svm_estimator=None)), (&#39;pca&#39;, PCA(copy=True, n_components=None, whiten=False)), (&#39;knn&#39;, KNeighborsClassifier(algorithm=&#39;auto&#39;, leaf_size=30, metric=&#39;minkowski&#39;,</span>
-<span class="sd">               metric_params=None, n_jobs=1, n_neighbors=5, p=2,</span>
-<span class="sd">               weights=&#39;uniform&#39;))])</span>
+<span class="sd">    &gt;&gt;&gt; pipeline.fit(X_train, y_train) # doctest: +ELLIPSIS</span>
+<span class="sd">    Pipeline(...)</span>
 <span class="sd">    &gt;&gt;&gt; y_hat = pipeline.predict(X_test)</span>
 <span class="sd">    &gt;&gt;&gt; print(classification_report(y_test, y_hat))</span>
 <span class="sd">                 precision    recall  f1-score   support</span>
@@ -273,8 +268,8 @@
 <div class="viewcode-block" id="Pipeline.__init__"><a class="viewcode-back" href="../../generated/imblearn.pipeline.Pipeline.html#imblearn.pipeline.Pipeline.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">steps</span><span class="p">):</span>
         <span class="n">names</span><span class="p">,</span> <span class="n">estimators</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">steps</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">steps</span><span class="p">))</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">steps</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Provided step names are not unique: </span><span class="si">%s</span><span class="s2">&quot;</span>
-                             <span class="o">%</span> <span class="p">(</span><span class="n">names</span><span class="p">,))</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Provided step names are not unique: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
+                             <span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="p">))</span>
 
         <span class="c1"># shallow copy of steps</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">steps</span> <span class="o">=</span> <span class="n">tosequence</span><span class="p">(</span><span class="n">steps</span><span class="p">)</span>
@@ -288,8 +283,8 @@
 
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="s2">&quot;fit&quot;</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Last step of chain should implement fit &quot;</span>
-                            <span class="s2">&quot;&#39;</span><span class="si">%s</span><span class="s2">&#39; (type </span><span class="si">%s</span><span class="s2">) doesn&#39;t)&quot;</span>
-                            <span class="o">%</span> <span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">estimator</span><span class="p">)))</span></div>
+                            <span class="s2">&quot;&#39;</span><span class="si">%s</span><span class="s2">&#39; (type </span><span class="si">%s</span><span class="s2">) doesn&#39;t)&quot;</span> <span class="o">%</span>
+                            <span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">estimator</span><span class="p">)))</span></div>
 
     <span class="c1"># Estimator interface</span>
 
@@ -383,7 +378,7 @@
         <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">transform</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">steps</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
             <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">transform</span><span class="p">,</span> <span class="s2">&quot;fit_sample&quot;</span><span class="p">):</span>
                 <span class="c1"># XXX: Calling sample in pipeline it means that the</span>
-                <span class="c1"># last estimator is a sampler. Samplers don&#39;t carry </span>
+                <span class="c1"># last estimator is a sampler. Samplers don&#39;t carry</span>
                 <span class="c1"># the sampled data. So, call &#39;fit_sample&#39; in all intermediate</span>
                 <span class="c1"># steps to get the sampled data for the last estimator.</span>
                 <span class="n">Xt</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">transform</span><span class="o">.</span><span class="n">fit_sample</span><span class="p">(</span><span class="n">Xt</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>

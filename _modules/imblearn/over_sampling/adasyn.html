@@ -164,7 +164,6 @@
 
 
 <div class="viewcode-block" id="ADASYN"><a class="viewcode-back" href="../../../generated/imblearn.over_sampling.ADASYN.html#imblearn.over_sampling.ADASYN">[docs]</a><span class="k">class</span> <span class="nc">ADASYN</span><span class="p">(</span><span class="n">BaseBinarySampler</span><span class="p">):</span>
-
     <span class="sd">&quot;&quot;&quot;Perform over-sampling using ADASYN.</span>
 
 <span class="sd">    Perform over-sampling using Adaptive Synthetic Sampling Approach for</span>
@@ -226,11 +225,12 @@
 
 <span class="sd">    &gt;&gt;&gt; from collections import Counter</span>
 <span class="sd">    &gt;&gt;&gt; from sklearn.datasets import make_classification</span>
-<span class="sd">    &gt;&gt;&gt; from imblearn.over_sampling import ADASYN</span>
-<span class="sd">    &gt;&gt;&gt; X, y = make_classification(n_classes=2, class_sep=2, weights=[0.1, 0.9],</span>
-<span class="sd">    ...                            n_informative=3, n_redundant=1, flip_y=0,</span>
-<span class="sd">    ...                            n_features=20, n_clusters_per_class=1,</span>
-<span class="sd">    ...                            n_samples=1000, random_state=10)</span>
+<span class="sd">    &gt;&gt;&gt; from imblearn.over_sampling import \</span>
+<span class="sd">    ADASYN # doctest: +NORMALIZE_WHITESPACE</span>
+<span class="sd">    &gt;&gt;&gt; X, y = make_classification(n_classes=2, class_sep=2,</span>
+<span class="sd">    ... weights=[0.1, 0.9], n_informative=3, n_redundant=1, flip_y=0,</span>
+<span class="sd">    ... n_features=20, n_clusters_per_class=1, n_samples=1000,</span>
+<span class="sd">    ... random_state=10)</span>
 <span class="sd">    &gt;&gt;&gt; print(&#39;Original dataset shape {}&#39;.format(Counter(y)))</span>
 <span class="sd">    Original dataset shape Counter({1: 900, 0: 100})</span>
 <span class="sd">    &gt;&gt;&gt; ada = ADASYN(random_state=42)</span>
@@ -247,7 +247,11 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="ADASYN.__init__"><a class="viewcode-back" href="../../../generated/imblearn.over_sampling.ADASYN.html#imblearn.over_sampling.ADASYN.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ratio</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+<div class="viewcode-block" id="ADASYN.__init__"><a class="viewcode-back" href="../../../generated/imblearn.over_sampling.ADASYN.html#imblearn.over_sampling.ADASYN.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">ratio</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span>
+                 <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">k</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
                  <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">ADASYN</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">ratio</span><span class="o">=</span><span class="n">ratio</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="o">=</span> <span class="n">k</span>
@@ -258,8 +262,8 @@
         <span class="sd">&quot;&quot;&quot;Private function to create the NN estimator&quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_neighbors</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">nn_</span> <span class="o">=</span> <span class="n">NearestNeighbors</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_neighbors</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
-                                        <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nn_</span> <span class="o">=</span> <span class="n">NearestNeighbors</span><span class="p">(</span>
+                <span class="n">n_neighbors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_neighbors</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">)</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_neighbors</span><span class="p">,</span> <span class="n">KNeighborsMixin</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">nn_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_neighbors</span>
         <span class="k">else</span><span class="p">:</span>
@@ -319,8 +323,8 @@
         <span class="c1"># Define the number of sample to create</span>
         <span class="c1"># We handle only two classes problem for the moment.</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ratio</span> <span class="o">==</span> <span class="s1">&#39;auto&#39;</span><span class="p">:</span>
-            <span class="n">num_samples</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stats_c_</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">maj_c_</span><span class="p">]</span> <span class="o">-</span>
-                           <span class="bp">self</span><span class="o">.</span><span class="n">stats_c_</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">min_c_</span><span class="p">])</span>
+            <span class="n">num_samples</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">stats_c_</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">maj_c_</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">stats_c_</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">min_c_</span><span class="p">])</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">num_samples</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">ratio</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">stats_c_</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">maj_c_</span><span class="p">])</span> <span class="o">-</span>
                               <span class="bp">self</span><span class="o">.</span><span class="n">stats_c_</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">min_c_</span><span class="p">])</span>
@@ -359,8 +363,8 @@
         <span class="k">for</span> <span class="n">x_i</span><span class="p">,</span> <span class="n">x_i_nn</span><span class="p">,</span> <span class="n">num_sample_i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">X_min</span><span class="p">,</span> <span class="n">ind_nn</span><span class="p">,</span> <span class="n">num_samples_nn</span><span class="p">):</span>
 
             <span class="c1"># Pick-up the neighbors wanted</span>
-            <span class="n">nn_zs</span> <span class="o">=</span> <span class="n">random_state</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">nn_</span><span class="o">.</span><span class="n">n_neighbors</span><span class="p">,</span>
-                                         <span class="n">size</span><span class="o">=</span><span class="n">num_sample_i</span><span class="p">)</span>
+            <span class="n">nn_zs</span> <span class="o">=</span> <span class="n">random_state</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span>
+                <span class="mi">1</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">nn_</span><span class="o">.</span><span class="n">n_neighbors</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">num_sample_i</span><span class="p">)</span>
 
             <span class="c1"># Create a new sample</span>
             <span class="k">for</span> <span class="n">nn_z</span> <span class="ow">in</span> <span class="n">nn_zs</span><span class="p">:</span>
@@ -369,8 +373,7 @@
                 <span class="n">X_resampled</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">X_resampled</span><span class="p">,</span> <span class="n">x_gen</span><span class="p">))</span>
                 <span class="n">y_resampled</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">y_resampled</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_c_</span><span class="p">))</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Over-sampling performed: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">Counter</span><span class="p">(</span>
-            <span class="n">y_resampled</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Over-sampling performed: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">Counter</span><span class="p">(</span><span class="n">y_resampled</span><span class="p">))</span>
 
         <span class="k">return</span> <span class="n">X_resampled</span><span class="p">,</span> <span class="n">y_resampled</span></div>
 </pre></div>
