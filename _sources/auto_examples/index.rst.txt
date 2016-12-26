@@ -10,6 +10,38 @@ General-purpose and introductory examples for the `imbalanced-learn` toolbox.
 
     <div style='clear:both'></div>
 
+.. _realword_examples:
+
+Examples based on real world datasets
+-------------------------------------
+
+Examples which use real-word dataset.
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="In this face recognition example two faces are used from the LFW (Faces in the Wild) dataset. S...">
+
+.. only:: html
+
+    .. figure:: /auto_examples/applications/images/thumb/sphx_glr_plot_over_sampling_benchmark_lfw_thumb.png
+
+        :ref:`sphx_glr_auto_examples_applications_plot_over_sampling_benchmark_lfw.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/applications/plot_over_sampling_benchmark_lfw
+.. raw:: html
+
+    <div style='clear:both'></div>
+
 .. _combine_examples:
 
 Examples using combine class methods
@@ -112,6 +144,50 @@ In fact, an ensemble of balanced sets is created and used to later train any cla
    :hidden:
 
    /auto_examples/ensemble/plot_balance_cascade
+.. raw:: html
+
+    <div style='clear:both'></div>
+
+.. _evaluation_examples:
+
+Evaluation examples
+-------------------
+
+Examples illustrating how classification using imbalanced dataset can be done.
+
+
+.. raw:: html
+
+    <div style='clear:both'></div>
+
+.. _model_selection_examples:
+
+Model Selection
+---------------
+
+Examples related to the selection of balancing methods.
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="In this example the impact of the SMOTE's k_neighbors parameter is examined. In the plot you ca...">
+
+.. only:: html
+
+    .. figure:: /auto_examples/model_selection/images/thumb/sphx_glr_plot_validation_curve_thumb.png
+
+        :ref:`sphx_glr_auto_examples_model_selection_plot_validation_curve.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/model_selection/plot_validation_curve
 .. raw:: html
 
     <div style='clear:both'></div>
@@ -244,26 +320,6 @@ Data balancing can be performed by over-sampling such that new samples are gener
    :hidden:
 
    /auto_examples/over-sampling/plot_random_over_sampling
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="In this face recognition example two faces are used from the LFW (Faces in the Wild) dataset. S...">
-
-.. only:: html
-
-    .. figure:: /auto_examples/over-sampling/images/thumb/sphx_glr_plot_over_sampling_benchmark_3nn_thumb.png
-
-        :ref:`sphx_glr_auto_examples_over-sampling_plot_over_sampling_benchmark_3nn.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /auto_examples/over-sampling/plot_over_sampling_benchmark_3nn
 .. raw:: html
 
     <div style='clear:both'></div>

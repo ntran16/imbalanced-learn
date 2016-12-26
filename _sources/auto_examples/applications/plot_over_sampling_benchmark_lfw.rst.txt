@@ -1,6 +1,6 @@
 
 
-.. _sphx_glr_auto_examples_over-sampling_plot_over_sampling_benchmark_3nn.py:
+.. _sphx_glr_auto_examples_applications_plot_over_sampling_benchmark_lfw.py:
 
 
 ==========================================================
@@ -17,7 +17,7 @@ by using an over-sampler.
 
 
 
-.. image:: /auto_examples/over-sampling/images/sphx_glr_plot_over_sampling_benchmark_3nn_001.png
+.. image:: /auto_examples/applications/images/sphx_glr_plot_over_sampling_benchmark_lfw_001.png
     :align: center
 
 
@@ -115,7 +115,7 @@ by using an over-sampler.
 
     plt.show()
 
-**Total running time of the script:** ( 1 minutes  17.312 seconds)
+**Total running time of the script:** ( 0 minutes  59.118 seconds)
 
 
 
@@ -124,13 +124,13 @@ by using an over-sampler.
 
   .. container:: sphx-glr-download
 
-     :download:`Download Python source code: plot_over_sampling_benchmark_3nn.py <plot_over_sampling_benchmark_3nn.py>`
+     :download:`Download Python source code: plot_over_sampling_benchmark_lfw.py <plot_over_sampling_benchmark_lfw.py>`
 
 
 
   .. container:: sphx-glr-download
 
-     :download:`Download Jupyter notebook: plot_over_sampling_benchmark_3nn.ipynb <plot_over_sampling_benchmark_3nn.ipynb>`
+     :download:`Download Jupyter notebook: plot_over_sampling_benchmark_lfw.ipynb <plot_over_sampling_benchmark_lfw.ipynb>`
 
 .. rst-class:: sphx-glr-signature
 
