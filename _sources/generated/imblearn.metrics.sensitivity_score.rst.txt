@@ -1,0 +1,6 @@
+imblearn.metrics.sensitivity_score
+==================================
+
+.. currentmodule:: imblearn.metrics
+
+.. autofunction:: sensitivity_score

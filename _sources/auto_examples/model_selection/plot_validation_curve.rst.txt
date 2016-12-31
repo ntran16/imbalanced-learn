@@ -45,7 +45,7 @@ different values of the SMOTE's k_neighbors parameter.
                                         weights=[0.1, 0.9], n_informative=10,
                                         n_redundant=1, flip_y=0, n_features=20,
                                         n_clusters_per_class=4, n_samples=5000,
-                                        random_state=10)
+                                        random_state=RANDOM_STATE)
     smote = os.SMOTE(random_state=RANDOM_STATE)
     cart = tree.DecisionTreeClassifier(random_state=RANDOM_STATE)
     pipeline = pl.make_pipeline(smote, cart)
@@ -66,7 +66,7 @@ different values of the SMOTE's k_neighbors parameter.
     plt.legend(loc="best")
     plt.show()
 
-**Total running time of the script:** ( 0 minutes  4.918 seconds)
+**Total running time of the script:** ( 0 minutes  5.811 seconds)
 
 
 

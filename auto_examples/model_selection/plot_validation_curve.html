@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Plotting Validation Curves &mdash; imbalanced-learn 0.2.0.dev0 documentation</title>
+  <title>Plotting Validation Curves &mdash; imbalanced-learn 0.2.0 documentation</title>
   
 
   
@@ -37,10 +37,10 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="imbalanced-learn 0.2.0.dev0 documentation" href="../../index.html"/>
+    <link rel="top" title="imbalanced-learn 0.2.0 documentation" href="../../index.html"/>
         <link rel="up" title="General examples" href="../index.html"/>
         <link rel="next" title="SMOTE SVM" href="../over-sampling/plot_smote_svm.html"/>
-        <link rel="prev" title="Balance cascade" href="../ensemble/plot_balance_cascade.html"/> 
+        <link rel="prev" title="Metrics specific to imbalanced learning" href="../evaluation/plot_metrics.html"/> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -68,7 +68,7 @@
             
             
               <div class="version">
-                0.2.0.dev0
+                0.2.0
               </div>
             
           
@@ -102,6 +102,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../index.html">General examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#examples-based-on-real-world-datasets">Examples based on real world datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#dataset-examples">Dataset examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#evaluation-examples">Evaluation examples</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html#model-selection">Model Selection</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Plotting Validation Curves</a></li>
@@ -188,7 +189,7 @@ different values of the SMOTE&#8217;s k_neighbors parameter.</p>
                                     <span class="n">weights</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">],</span> <span class="n">n_informative</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
                                     <span class="n">n_redundant</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">flip_y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
                                     <span class="n">n_clusters_per_class</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span>
-                                    <span class="n">random_state</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+                                    <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">)</span>
 <span class="n">smote</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">SMOTE</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">)</span>
 <span class="n">cart</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">)</span>
 <span class="n">pipeline</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">make_pipeline</span><span class="p">(</span><span class="n">smote</span><span class="p">,</span> <span class="n">cart</span><span class="p">)</span>
@@ -210,7 +211,7 @@ different values of the SMOTE&#8217;s k_neighbors parameter.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  4.918 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  5.811 seconds)</p>
 <div class="sphx-glr-footer docutils container">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" href="../../_downloads/plot_validation_curve.py" download=""><code class="xref download docutils literal"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_validation_curve.py</span></code></a></div>
@@ -230,7 +231,7 @@ different values of the SMOTE&#8217;s k_neighbors parameter.</p>
         <a href="../over-sampling/plot_smote_svm.html" class="btn btn-neutral float-right" title="SMOTE SVM" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../ensemble/plot_balance_cascade.html" class="btn btn-neutral" title="Balance cascade" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../evaluation/plot_metrics.html" class="btn btn-neutral" title="Metrics specific to imbalanced learning" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -261,7 +262,7 @@ different values of the SMOTE&#8217;s k_neighbors parameter.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'0.2.0.dev0',
+            VERSION:'0.2.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

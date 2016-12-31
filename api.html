@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>imbalanced-learn API &mdash; imbalanced-learn 0.2.0.dev0 documentation</title>
+  <title>imbalanced-learn API &mdash; imbalanced-learn 0.2.0 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="imbalanced-learn 0.2.0.dev0 documentation" href="index.html"/>
+    <link rel="top" title="imbalanced-learn 0.2.0 documentation" href="index.html"/>
         <link rel="next" title="imblearn.under_sampling.ClusterCentroids" href="generated/imblearn.under_sampling.ClusterCentroids.html"/>
         <link rel="prev" title="Support" href="support.html"/> 
 
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.2.0.dev0
+                0.2.0
               </div>
             
           
@@ -150,7 +150,14 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#module-imblearn.metrics">Metrics</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id5">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/imblearn.metrics.sensitivity_specificity_support.html">imblearn.metrics.sensitivity_specificity_support</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/imblearn.metrics.sensitivity_score.html">imblearn.metrics.sensitivity_score</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/imblearn.metrics.specificity_score.html">imblearn.metrics.specificity_score</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/imblearn.metrics.geometric_mean_score.html">imblearn.metrics.geometric_mean_score</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/imblearn.metrics.make_index_balanced_accuracy.html">imblearn.metrics.make_index_balanced_accuracy</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#module-imblearn.datasets">Datasets</a><ul>
@@ -167,6 +174,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="auto_examples/index.html">General examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="auto_examples/index.html#examples-based-on-real-world-datasets">Examples based on real world datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auto_examples/index.html#dataset-examples">Dataset examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="auto_examples/index.html#evaluation-examples">Evaluation examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="auto_examples/index.html#model-selection">Model Selection</a></li>
 </ul>
@@ -385,18 +393,20 @@ metrics and pairwise metrics and distance computations.</p>
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-</tbody>
-</table>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">toctree:</th><td class="field-body">generated/
-metrics.sensitivity_specificity_support
-metrics.sensitivity_score
-metrics.specificity_score
-metrics.geometric_mean_score
-metrics.make_index_balanced_accuracy</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/imblearn.metrics.sensitivity_specificity_support.html#imblearn.metrics.sensitivity_specificity_support" title="imblearn.metrics.sensitivity_specificity_support"><code class="xref py py-obj docutils literal"><span class="pre">metrics.sensitivity_specificity_support</span></code></a>(...)</td>
+<td>Compute sensitivity, specificity, and support for each class</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/imblearn.metrics.sensitivity_score.html#imblearn.metrics.sensitivity_score" title="imblearn.metrics.sensitivity_score"><code class="xref py py-obj docutils literal"><span class="pre">metrics.sensitivity_score</span></code></a>(y_true,&nbsp;y_pred[,&nbsp;...])</td>
+<td>Compute the sensitivity</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/imblearn.metrics.specificity_score.html#imblearn.metrics.specificity_score" title="imblearn.metrics.specificity_score"><code class="xref py py-obj docutils literal"><span class="pre">metrics.specificity_score</span></code></a>(y_true,&nbsp;y_pred[,&nbsp;...])</td>
+<td>Compute the specificity</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/imblearn.metrics.geometric_mean_score.html#imblearn.metrics.geometric_mean_score" title="imblearn.metrics.geometric_mean_score"><code class="xref py py-obj docutils literal"><span class="pre">metrics.geometric_mean_score</span></code></a>(y_true,&nbsp;y_pred)</td>
+<td>Compute the geometric mean</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/imblearn.metrics.make_index_balanced_accuracy.html#imblearn.metrics.make_index_balanced_accuracy" title="imblearn.metrics.make_index_balanced_accuracy"><code class="xref py py-obj docutils literal"><span class="pre">metrics.make_index_balanced_accuracy</span></code></a>([...])</td>
+<td>Balance any scoring function using the index balanced accuracy</td>
 </tr>
 </tbody>
 </table>
@@ -464,7 +474,7 @@ imbalanced data.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.2.0.dev0',
+            VERSION:'0.2.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
