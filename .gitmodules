@@ -1,0 +1,3 @@
+[submodule "imblearn/externals/scikit-learn"]
+	path = imblearn/externals/scikit-learn
+	url = https://github.com/scikit-learn/scikit-learn.git

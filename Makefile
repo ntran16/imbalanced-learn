@@ -42,7 +42,7 @@ conda:
 	conda-build conda-recipe
 
 code-analysis:
-	flake8 imblearn | grep -v __init__
+	flake8 imblearn | grep -v __init__ | grep -v external
 	pylint -E imblearn/ -d E1103,E0611,E1101
 
 flake8-diff:
