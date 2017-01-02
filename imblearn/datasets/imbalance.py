@@ -4,7 +4,7 @@ import logging
 from collections import Counter
 
 import numpy as np
-from sklearn.utils import check_random_state, check_X_y
+from ..externals.sklearn.utils import check_random_state, check_X_y
 
 LOGGER = logging.getLogger(__name__)
 
