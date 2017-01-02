@@ -18,16 +18,18 @@ from inspect import getcallargs
 
 import numpy as np
 
-from sklearn.metrics.classification import (_check_targets, _prf_divide,
-                                            precision_recall_fscore_support)
-from sklearn.preprocessing import LabelEncoder
-from sklearn.utils.fixes import bincount
-from sklearn.utils.multiclass import unique_labels
+from ..externals.sklearn.metrics.classification import (
+    _check_targets,
+    _prf_divide,
+    precision_recall_fscore_support)
+from ..externals.sklearn.preprocessing import LabelEncoder
+from ..externals.sklearn.utils.fixes import bincount
+from ..externals.sklearn.utils.multiclass import unique_labels
 
 try:
     from inspect import signature
 except ImportError:
-    from sklearn.externals.funcsigs import signature
+    from ..externals.sklearn.externals.funcsigs import signature
 
 
 LOGGER = logging.getLogger(__name__)

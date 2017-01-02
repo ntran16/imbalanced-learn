@@ -4,11 +4,13 @@ from __future__ import division, print_function
 from collections import Counter
 
 import numpy as np
-from sklearn.neighbors import KNeighborsClassifier, NearestNeighbors
-from sklearn.utils import check_random_state
 
 from ..base import BaseBinarySampler
 from .tomek_links import TomekLinks
+
+from ..externals.sklearn.neighbors import (KNeighborsClassifier,
+                                           NearestNeighbors)
+from ..externals.sklearn.utils import check_random_state
 
 
 class OneSidedSelection(BaseBinarySampler):

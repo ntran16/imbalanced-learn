@@ -4,10 +4,11 @@ from __future__ import division, print_function
 from collections import Counter
 
 import numpy as np
-from sklearn.neighbors import NearestNeighbors
-from sklearn.neighbors.base import KNeighborsMixin
 
 from ..base import BaseMulticlassSampler
+
+from ..externals.sklearn.neighbors import NearestNeighbors
+from ..externals.sklearn.neighbors.base import KNeighborsMixin
 
 
 class NeighbourhoodCleaningRule(BaseMulticlassSampler):

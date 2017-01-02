@@ -4,9 +4,10 @@ from __future__ import division, print_function
 from collections import Counter
 
 import numpy as np
-from sklearn.neighbors import NearestNeighbors
 
 from ..base import BaseBinarySampler
+
+from ..externals.sklearn.utils import check_random_state
 
 
 class TomekLinks(BaseBinarySampler):

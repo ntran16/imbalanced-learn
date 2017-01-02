@@ -8,10 +8,10 @@ from abc import ABCMeta, abstractmethod
 from collections import Counter
 
 import numpy as np
-from sklearn.base import BaseEstimator
-from sklearn.externals import six
-from sklearn.utils import check_X_y
-from sklearn.utils.multiclass import type_of_target
+from .externals.sklearn.base import BaseEstimator
+from .externals.sklearn.externals import six
+from .externals.sklearn.utils import check_X_y
+from .externals.sklearn.utils.multiclass import type_of_target
 
 
 class SamplerMixin(six.with_metaclass(ABCMeta, BaseEstimator)):

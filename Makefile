@@ -21,7 +21,7 @@ inplace:
 	$(PYTHON) setup.py build_ext -i
 
 test-code:
-	$(NOSETESTS) -s -v imblearn
+	$(NOSETESTS) -s -v --exclude-dir=imblearn/externals imblearn
 
 test-doc:
 ifeq ($(BITS),64)
@@ -30,7 +30,7 @@ endif
 
 test-coverage:
 	rm -rf coverage .coverage
-	$(NOSETESTS) imblearn -s -v --with-coverage --cover-package=imblearn
+	$(NOSETESTS) --exclude-dir=imblearn/externals imblearn -s -v --with-coverage --cover-package=imblearn
 
 test: test-coverage test-doc
 

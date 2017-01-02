@@ -5,10 +5,11 @@ from __future__ import division, print_function
 from collections import Counter
 
 import numpy as np
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.utils import check_random_state
 
 from ..base import BaseMulticlassSampler
+
+from ..externals.sklearn.neighbors import KNeighborsClassifier
+from ..externals.sklearn.utils import check_random_state
 
 
 class CondensedNearestNeighbour(BaseMulticlassSampler):

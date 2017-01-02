@@ -5,9 +5,10 @@ from __future__ import division, print_function
 from collections import Counter
 
 import numpy as np
-from sklearn.cluster import KMeans
 
 from ..base import BaseMulticlassSampler
+
+from ..externals.sklearn.cluster import KMeans
 
 
 class ClusterCentroids(BaseMulticlassSampler):

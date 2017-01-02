@@ -2,12 +2,13 @@
 from __future__ import division, print_function
 
 import numpy as np
-from sklearn.neighbors import NearestNeighbors
-from sklearn.neighbors.base import KNeighborsMixin
-from sklearn.svm import SVC
-from sklearn.utils import check_array, check_random_state
 
 from ..base import BaseBinarySampler
+
+from ..externals.sklearn.neighbors import NearestNeighbors
+from ..externals.sklearn.neighbors.base import KNeighborsMixin
+from ..externals.sklearn.svm import SVC
+from ..externals.sklearn.utils import check_array, check_random_state
 
 SMOTE_KIND = ('regular', 'borderline1', 'borderline2', 'svm')
 

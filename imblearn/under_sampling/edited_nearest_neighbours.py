@@ -6,10 +6,11 @@ from collections import Counter
 
 import numpy as np
 from scipy.stats import mode
-from sklearn.neighbors import NearestNeighbors
-from sklearn.neighbors.base import KNeighborsMixin
 
 from ..base import BaseMulticlassSampler
+
+from ..externals.sklearn.neighbors import NearestNeighbors
+from ..externals.sklearn.neighbors.base import KNeighborsMixin
 
 SEL_KIND = ('all', 'mode')
 

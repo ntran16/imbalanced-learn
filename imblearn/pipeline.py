@@ -16,10 +16,10 @@ from __future__ import division, print_function
 
 from warnings import warn
 
-from sklearn import pipeline
-from sklearn.externals import six
-from sklearn.utils import tosequence
-from sklearn.utils.metaestimators import if_delegate_has_method
+from .externals.sklearn import pipeline
+from .externals.sklearn.externals import six
+from .externals.sklearn.utils import tosequence
+from .externals.sklearn.utils.metaestimators import if_delegate_has_method
 
 __all__ = ['Pipeline']
 

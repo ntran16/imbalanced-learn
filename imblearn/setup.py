@@ -16,6 +16,9 @@ def configuration(parent_package='', top_path=None):
 
     config.add_subpackage('tests')
 
+    # Modules which have their own setup
+    config.add_subpackage('externals')
+
     return config
 
 

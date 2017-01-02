@@ -4,9 +4,10 @@ from __future__ import division, print_function
 from collections import Counter
 
 import numpy as np
-from sklearn.utils import check_random_state
 
 from ..base import BaseMulticlassSampler
+
+from ..externals.sklearn.utils import check_random_state
 
 
 class RandomUnderSampler(BaseMulticlassSampler):

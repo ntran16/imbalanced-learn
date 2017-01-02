@@ -10,6 +10,8 @@ combine
 ensemble
     Module which provides methods generating an ensemble of
     under-sampled subsets.
+externals
+    Module which provides the external libraries.
 metrics
     Module which provides metrics to quantified the classification performance
     with imbalanced dataset.
@@ -34,6 +36,6 @@ CHECK_CACHE_VERSION = True
 
 # list all submodules available in imblearn and version
 __all__ = [
-    'combine', 'ensemble', 'metrics', 'over_sampling', 'under_sampling',
-    'pipeline', '__version__'
+    'combine', 'ensemble', 'externals', 'metrics', 'over_sampling',
+    'under_sampling', 'pipeline', '__version__'
 ]

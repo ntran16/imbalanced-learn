@@ -5,13 +5,13 @@ import warnings
 
 import numpy as np
 
-from sklearn.base import ClassifierMixin
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.utils import check_random_state
-from sklearn.utils.validation import has_fit_parameter
-from sklearn.externals.six import string_types
-
 from ..base import BaseBinarySampler
+
+from ..externals.sklearn.base import ClassifierMixin
+from ..externals.sklearn.neighbors import KNeighborsClassifier
+from ..externals.sklearn.utils import check_random_state
+from ..externals.sklearn.utils.validation import has_fit_parameter
+from ..externals.sklearn.externals.six import string_types
 
 
 class BalanceCascade(BaseBinarySampler):
@@ -157,23 +157,24 @@ class BalanceCascade(BaseBinarySampler):
             if self.estimator == 'knn':
                 self.estimator_ = KNeighborsClassifier(**self.kwargs)
             elif self.estimator == 'decision-tree':
-                from sklearn.tree import DecisionTreeClassifier
+                from ..externals.sklearn.tree import DecisionTreeClassifier
                 self.estimator_ = DecisionTreeClassifier(
                     random_state=self.random_state, **self.kwargs)
             elif self.estimator == 'random-forest':
-                from sklearn.ensemble import RandomForestClassifier
+                from ..externals.sklearn.ensemble import RandomForestClassifier
                 self.estimator_ = RandomForestClassifier(
                     random_state=self.random_state, **self.kwargs)
             elif self.estimator == 'adaboost':
-                from sklearn.ensemble import AdaBoostClassifier
+                from ..externals.sklearn.ensemble import AdaBoostClassifier
                 self.estimator_ = AdaBoostClassifier(
                     random_state=self.random_state, **self.kwargs)
             elif self.estimator == 'gradient-boosting':
-                from sklearn.ensemble import GradientBoostingClassifier
+                from ..externals.sklearn.ensemble import \
+                    GradientBoostingClassifier
                 self.estimator_ = GradientBoostingClassifier(
                     random_state=self.random_state, **self.kwargs)
             elif self.estimator == 'linear-svm':
-                from sklearn.svm import LinearSVC
+                from ..externals.sklearn.svm import LinearSVC
                 self.estimator_ = LinearSVC(
                     random_state=self.random_state, **self.kwargs)
             else:

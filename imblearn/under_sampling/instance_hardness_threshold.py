@@ -6,25 +6,13 @@ import warnings
 from collections import Counter
 
 import numpy as np
-import sklearn
-from sklearn.base import ClassifierMixin
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.externals.six import string_types
 
 from ..base import BaseBinarySampler
 
-
-def _get_cv_splits(X, y, cv, random_state):
-    if hasattr(sklearn, 'model_selection'):
-        from sklearn.model_selection import StratifiedKFold
-        cv_iterator = StratifiedKFold(
-            n_splits=cv, shuffle=False, random_state=random_state).split(X, y)
-    else:
-        from sklearn.cross_validation import StratifiedKFold
-        cv_iterator = StratifiedKFold(
-            y, n_folds=cv, shuffle=False, random_state=random_state)
-
-    return cv_iterator
+from ..externals.sklearn.base import ClassifierMixin
+from ..externals.sklearn.ensemble import RandomForestClassifier
+from ..externals.sklearn.externals.six import string_types
+from ..externals.sklearn.model_selection import StratifiedKFold
 
 
 class InstanceHardnessThreshold(BaseBinarySampler):
@@ -234,7 +222,8 @@ class InstanceHardnessThreshold(BaseBinarySampler):
         """
 
         # Create the different folds
-        skf = _get_cv_splits(X, y, self.cv, self.random_state)
+        skf = StratifiedKFold(n_splits=self.cv, shuffle=False,
+                              random_state=self.random_state).split(X, y)
 
         probabilities = np.zeros(y.shape[0], dtype=float)
 
