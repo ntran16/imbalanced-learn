@@ -68,9 +68,10 @@ An illustration of the make_imbalance function
                    linewidth=0.15)
         ax.set_title('make_imbalance ratio ({})'.format(ratio))
 
+    plt.tight_layout()
     plt.show()
 
-**Total running time of the script:** ( 0 minutes  0.369 seconds)
+**Total running time of the script:** ( 0 minutes  0.723 seconds)
 
 
 
