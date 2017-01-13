@@ -173,6 +173,7 @@
 <span class="kn">from</span> <span class="nn">inspect</span> <span class="k">import</span> <span class="n">getcallargs</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
 
 <span class="kn">from</span> <span class="nn">sklearn.metrics.classification</span> <span class="k">import</span> <span class="p">(</span><span class="n">_check_targets</span><span class="p">,</span> <span class="n">_prf_divide</span><span class="p">,</span>
                                             <span class="n">precision_recall_fscore_support</span><span class="p">)</span>
@@ -616,20 +617,27 @@
                          <span class="n">y_pred</span><span class="p">,</span>
                          <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                          <span class="n">pos_label</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                         <span class="n">average</span><span class="o">=</span><span class="s1">&#39;binary&#39;</span><span class="p">,</span>
-                         <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+                         <span class="n">average</span><span class="o">=</span><span class="s1">&#39;multiclass&#39;</span><span class="p">,</span>
+                         <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                         <span class="n">correction</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Compute the geometric mean</span>
 
-<span class="sd">    The geometric mean is the squared root of the product of the sensitivity</span>
-<span class="sd">    and specificity. This measure tries to maximize the accuracy on each</span>
-<span class="sd">    of the two classes while keeping these accuracies balanced.</span>
+<span class="sd">    The geometric mean (G-mean) is the root of the product of class-wise</span>
+<span class="sd">    sensitivity. This measure tries to maximize the accuracy on each of the</span>
+<span class="sd">    classes while keeping these accuracies balanced. For binary classification</span>
+<span class="sd">    G-mean is the squared root of the product of the sensitivity</span>
+<span class="sd">    and specificity. For multi-class problems it is a higher root of the</span>
+<span class="sd">    product of sensitivity for each class.</span>
 
-<span class="sd">    The specificity is the ratio ``tp / (tp + fn)`` where ``tp`` is the number</span>
-<span class="sd">    of true positives and ``fn`` the number of false negatives. The specificity</span>
-<span class="sd">    is intuitively the ability of the classifier to find all the positive</span>
-<span class="sd">    samples.</span>
+<span class="sd">    For compatibility with other imbalance performance measures, G-mean can</span>
+<span class="sd">    calculated for each class separately on a one-vs-rest basis when</span>
+<span class="sd">    ``average != &#39;multiclass&#39;``.</span>
 
-<span class="sd">    The best value is 1 and the worst value is 0.</span>
+<span class="sd">    The best value is 1 and the worst value is 0. Traditionally if at least one</span>
+<span class="sd">    class is unrecognized by the classifier, G-mean resolves to zero. To</span>
+<span class="sd">    alleviate this property, for highly multi-class the sensitivity of</span>
+<span class="sd">    unrecognized classes can be &quot;corrected&quot; to be a user specified value</span>
+<span class="sd">    (instead of zero). This option works only if ``average == &#39;multiclass&#39;``.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -648,11 +656,11 @@
 
 <span class="sd">    pos_label : str or int, optional (default=1)</span>
 <span class="sd">        The class to report if ``average=&#39;binary&#39;`` and the data is binary.</span>
-<span class="sd">        If the data are multiclass or multilabel, this will be ignored;</span>
+<span class="sd">        If the data are multiclass, this will be ignored;</span>
 <span class="sd">        setting ``labels=[pos_label]`` and ``average != &#39;binary&#39;`` will report</span>
 <span class="sd">        scores for that label only.</span>
 
-<span class="sd">    average : str or None, optional (default=None)</span>
+<span class="sd">    average : str or None, optional (default=``&#39;multiclass&#39;``)</span>
 <span class="sd">        If ``None``, the scores for each class are returned. Otherwise, this</span>
 <span class="sd">        determines the type of averaging performed on the data:</span>
 
@@ -675,24 +683,26 @@
 <span class="sd">            meaningful for multilabel classification where this differs from</span>
 <span class="sd">            :func:`accuracy_score`).</span>
 
-<span class="sd">    warn_for : tuple or set, for internal use</span>
-<span class="sd">        This determines which warnings will be made in the case that this</span>
-<span class="sd">        function is being used to return only one of its metrics.</span>
-
 <span class="sd">    sample_weight : ndarray, shape (n_samples, )</span>
 <span class="sd">        Sample weights.</span>
 
+<span class="sd">    correction: float, optional (default=0.0)</span>
+<span class="sd">        Substitutes sensitivity of unrecognized classes from zero to a given</span>
+<span class="sd">        value.</span>
+
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    geometric_mean : float (if ``average`` = None) or ndarray, \</span>
-<span class="sd">        shape (n_unique_labels, )</span>
+<span class="sd">    geometric_mean : float</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
 <span class="sd">    &gt;&gt;&gt; from imblearn.metrics import geometric_mean_score</span>
 <span class="sd">    &gt;&gt;&gt; y_true = [0, 1, 2, 0, 1, 2]</span>
 <span class="sd">    &gt;&gt;&gt; y_pred = [0, 2, 1, 0, 0, 1]</span>
+<span class="sd">    &gt;&gt;&gt; geometric_mean_score(y_true, y_pred)</span>
+<span class="sd">    0.0</span>
+<span class="sd">    &gt;&gt;&gt; geometric_mean_score(y_true, y_pred, correction=0.001)</span>
+<span class="sd">    0.010000000000000004</span>
 <span class="sd">    &gt;&gt;&gt; geometric_mean_score(y_true, y_pred, average=&#39;macro&#39;)</span>
 <span class="sd">    0.47140452079103168</span>
 <span class="sd">    &gt;&gt;&gt; geometric_mean_score(y_true, y_pred, average=&#39;micro&#39;)</span>
@@ -712,18 +722,66 @@
 <span class="sd">       36(3), (2003), pp 849-851.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">sen</span><span class="p">,</span> <span class="n">spe</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">sensitivity_specificity_support</span><span class="p">(</span>
-        <span class="n">y_true</span><span class="p">,</span>
-        <span class="n">y_pred</span><span class="p">,</span>
-        <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span>
-        <span class="n">pos_label</span><span class="o">=</span><span class="n">pos_label</span><span class="p">,</span>
-        <span class="n">average</span><span class="o">=</span><span class="n">average</span><span class="p">,</span>
-        <span class="n">warn_for</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;specificity&#39;</span><span class="p">,</span> <span class="s1">&#39;specificity&#39;</span><span class="p">),</span>
-        <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">average</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">average</span> <span class="o">!=</span> <span class="s1">&#39;multiclass&#39;</span><span class="p">:</span>
+        <span class="n">sen</span><span class="p">,</span> <span class="n">spe</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">sensitivity_specificity_support</span><span class="p">(</span>
+            <span class="n">y_true</span><span class="p">,</span>
+            <span class="n">y_pred</span><span class="p">,</span>
+            <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span>
+            <span class="n">pos_label</span><span class="o">=</span><span class="n">pos_label</span><span class="p">,</span>
+            <span class="n">average</span><span class="o">=</span><span class="n">average</span><span class="p">,</span>
+            <span class="n">warn_for</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;specificity&#39;</span><span class="p">,</span> <span class="s1">&#39;specificity&#39;</span><span class="p">),</span>
+            <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">)</span>
 
-    <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;The sensitivity and specificity are : </span><span class="si">%s</span><span class="s1"> - </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">sen</span><span class="p">,</span> <span class="n">spe</span><span class="p">))</span>
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;The sensitivity and specificity are : </span><span class="si">%s</span><span class="s1"> - </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span>
+                     <span class="p">(</span><span class="n">sen</span><span class="p">,</span> <span class="n">spe</span><span class="p">))</span>
 
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sen</span> <span class="o">*</span> <span class="n">spe</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sen</span> <span class="o">*</span> <span class="n">spe</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">present_labels</span> <span class="o">=</span> <span class="n">unique_labels</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">labels</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">labels</span> <span class="o">=</span> <span class="n">present_labels</span>
+            <span class="n">n_labels</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">n_labels</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
+            <span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">labels</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">setdiff1d</span><span class="p">(</span><span class="n">present_labels</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span>
+                                                     <span class="n">assume_unique</span><span class="o">=</span><span class="kc">True</span><span class="p">)])</span>
+
+        <span class="n">le</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+        <span class="n">le</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
+        <span class="n">y_true</span> <span class="o">=</span> <span class="n">le</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">y_true</span><span class="p">)</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">le</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+        <span class="n">sorted_labels</span> <span class="o">=</span> <span class="n">le</span><span class="o">.</span><span class="n">classes_</span>
+
+        <span class="c1"># labels are now from 0 to len(labels) - 1 -&gt; use bincount</span>
+        <span class="n">tp</span> <span class="o">=</span> <span class="n">y_true</span> <span class="o">==</span> <span class="n">y_pred</span>
+        <span class="n">tp_bins</span> <span class="o">=</span> <span class="n">y_true</span><span class="p">[</span><span class="n">tp</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">sample_weight</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">tp_bins_weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">sample_weight</span><span class="p">)[</span><span class="n">tp</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">tp_bins_weights</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">tp_bins</span><span class="p">):</span>
+            <span class="n">tp_sum</span> <span class="o">=</span> <span class="n">bincount</span><span class="p">(</span><span class="n">tp_bins</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">tp_bins_weights</span><span class="p">,</span>
+                              <span class="n">minlength</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Pathological case</span>
+            <span class="n">true_sum</span> <span class="o">=</span> <span class="n">tp_sum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">))</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_true</span><span class="p">):</span>
+            <span class="n">true_sum</span> <span class="o">=</span> <span class="n">bincount</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span>
+                                <span class="n">minlength</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">))</span>
+
+        <span class="c1"># Retain only selected labels</span>
+        <span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">sorted_labels</span><span class="p">,</span> <span class="n">labels</span><span class="p">[:</span><span class="n">n_labels</span><span class="p">])</span>
+        <span class="n">tp_sum</span> <span class="o">=</span> <span class="n">tp_sum</span><span class="p">[</span><span class="n">indices</span><span class="p">]</span>
+        <span class="n">true_sum</span> <span class="o">=</span> <span class="n">true_sum</span><span class="p">[</span><span class="n">indices</span><span class="p">]</span>
+
+        <span class="n">recall</span> <span class="o">=</span> <span class="n">_prf_divide</span><span class="p">(</span><span class="n">tp_sum</span><span class="p">,</span> <span class="n">true_sum</span><span class="p">,</span> <span class="s2">&quot;recall&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span>
+                             <span class="s2">&quot;recall&quot;</span><span class="p">)</span>
+        <span class="n">recall</span><span class="p">[</span><span class="n">recall</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">correction</span>
+
+        <span class="k">return</span> <span class="n">sp</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">mstats</span><span class="o">.</span><span class="n">gmean</span><span class="p">(</span><span class="n">recall</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="make_index_balanced_accuracy"><a class="viewcode-back" href="../../../generated/imblearn.metrics.make_index_balanced_accuracy.html#imblearn.metrics.make_index_balanced_accuracy">[docs]</a><span class="k">def</span> <span class="nf">make_index_balanced_accuracy</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">squared</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
@@ -772,7 +830,14 @@
             <span class="c1"># Get the signature of the sens/spec function</span>
             <span class="n">sens_spec_sig</span> <span class="o">=</span> <span class="n">signature</span><span class="p">(</span><span class="n">sensitivity_specificity_support</span><span class="p">)</span>
             <span class="c1"># Filter the inputs required by the sens/spec function</span>
-            <span class="n">tags_sens_spec</span> <span class="o">=</span> <span class="n">sens_spec_sig</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="o">**</span><span class="n">tags_scoring_func</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">scoring_func</span> <span class="o">!=</span> <span class="n">geometric_mean_score</span><span class="p">:</span>
+                <span class="n">tags_sens_spec</span> <span class="o">=</span> <span class="n">sens_spec_sig</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="o">**</span><span class="n">tags_scoring_func</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># Adapt the parameters to sens/spec function</span>
+                <span class="k">del</span> <span class="n">tags_scoring_func</span><span class="p">[</span><span class="s1">&#39;correction&#39;</span><span class="p">]</span>
+                <span class="k">if</span> <span class="s2">&quot;average&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                    <span class="n">tags_scoring_func</span><span class="p">[</span><span class="s1">&#39;average&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;binary&#39;</span>
+                <span class="n">tags_sens_spec</span> <span class="o">=</span> <span class="n">sens_spec_sig</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="o">**</span><span class="n">tags_scoring_func</span><span class="p">)</span>
             <span class="c1"># Call the sens/spec function</span>
             <span class="n">sen</span><span class="p">,</span> <span class="n">spe</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">sensitivity_specificity_support</span><span class="p">(</span>
                 <span class="o">*</span><span class="n">tags_sens_spec</span><span class="o">.</span><span class="n">args</span><span class="p">,</span>

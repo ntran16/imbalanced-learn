@@ -117,7 +117,7 @@ imbalanced learning problems.
     The IBA using alpha = 0.5 and the geometric mean: 0.853880941845
 
 
-**Total running time of the script:** ( 0 minutes  0.911 seconds)
+**Total running time of the script:** ( 0 minutes  0.811 seconds)
 
 
 
