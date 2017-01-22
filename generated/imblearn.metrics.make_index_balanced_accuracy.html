@@ -185,6 +185,9 @@
 <p>This factory function wraps scoring function to express it as the
 index balanced accuracy (IBA). You need to use this function to
 decorate any scoring function.</p>
+<p>Only metrics requiring <code class="docutils literal"><span class="pre">y_pred</span></code> can be corrected with the index
+balanced accuracy. <code class="docutils literal"><span class="pre">y_score</span></code> cannot be used since the dominance
+cannot be computed.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
