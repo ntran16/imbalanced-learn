@@ -281,7 +281,7 @@
                  <span class="n">ver3_samp_ngh</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">n_neighbors_ver3</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
                  <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">NearMiss</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">ratio</span><span class="o">=</span><span class="n">ratio</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">NearMiss</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">ratio</span><span class="o">=</span><span class="n">ratio</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">return_indices</span> <span class="o">=</span> <span class="n">return_indices</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">version</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">size_ngh</span> <span class="o">=</span> <span class="n">size_ngh</span>
@@ -356,7 +356,7 @@
 
         <span class="n">sorted_idx</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span>
             <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dist_avg_vec</span><span class="p">)),</span>
-            <span class="n">key</span><span class="o">=</span><span class="n">dist_avg_vec</span><span class="o">.</span><span class="n">__getitem__</span><span class="p">,</span>
+            <span class="n">key</span><span class="o">=</span><span class="n">dist_avg_vec</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">,</span>
             <span class="n">reverse</span><span class="o">=</span><span class="n">sort_way</span><span class="p">)</span>
 
         <span class="c1"># Throw a warning to tell the user that we did not have enough samples</span>

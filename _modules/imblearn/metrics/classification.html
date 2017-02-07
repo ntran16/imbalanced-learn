@@ -187,7 +187,7 @@
     <span class="kn">from</span> <span class="nn">sklearn.externals.funcsigs</span> <span class="k">import</span> <span class="n">signature</span>
 
 
-<span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="sensitivity_specificity_support"><a class="viewcode-back" href="../../../generated/imblearn.metrics.sensitivity_specificity_support.html#imblearn.metrics.sensitivity_specificity_support">[docs]</a><span class="k">def</span> <span class="nf">sensitivity_specificity_support</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span>
@@ -852,14 +852,14 @@
             <span class="n">tags_scoring_func</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">((</span><span class="n">k</span><span class="p">,</span> <span class="n">tags_scoring_func</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
                                      <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">sel_params</span><span class="p">)</span>
             <span class="c1"># Check if the metric is the geometric mean</span>
-            <span class="k">if</span> <span class="n">scoring_func</span><span class="o">.</span><span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;geometric_mean_score&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">scoring_func</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;geometric_mean_score&#39;</span><span class="p">:</span>
                 <span class="k">if</span> <span class="s1">&#39;average&#39;</span> <span class="ow">in</span> <span class="n">tags_scoring_func</span><span class="p">:</span>
                     <span class="k">if</span> <span class="n">tags_scoring_func</span><span class="p">[</span><span class="s1">&#39;average&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;multiclass&#39;</span><span class="p">:</span>
                         <span class="n">tags_scoring_func</span><span class="p">[</span><span class="s1">&#39;average&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;macro&#39;</span>
             <span class="c1"># We do not support multilabel so the only average supported</span>
             <span class="c1"># is binary</span>
-            <span class="k">elif</span> <span class="p">(</span><span class="n">scoring_func</span><span class="o">.</span><span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;accuracy_score&#39;</span> <span class="ow">or</span>
-                  <span class="n">scoring_func</span><span class="o">.</span><span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;jaccard_similarity_score&#39;</span><span class="p">):</span>
+            <span class="k">elif</span> <span class="p">(</span><span class="n">scoring_func</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;accuracy_score&#39;</span> <span class="ow">or</span>
+                  <span class="n">scoring_func</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;jaccard_similarity_score&#39;</span><span class="p">):</span>
                 <span class="n">tags_scoring_func</span><span class="p">[</span><span class="s1">&#39;average&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;binary&#39;</span>
             <span class="c1"># Create the list of parameters through signature binding</span>
             <span class="n">tags_sens_spec</span> <span class="o">=</span> <span class="n">sens_spec_sig</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span>

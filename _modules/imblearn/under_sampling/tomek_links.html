@@ -229,7 +229,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="TomekLinks.__init__"><a class="viewcode-back" href="../../../generated/imblearn.under_sampling.TomekLinks.html#imblearn.under_sampling.TomekLinks.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">return_indices</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">TomekLinks</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TomekLinks</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">return_indices</span> <span class="o">=</span> <span class="n">return_indices</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span> <span class="o">=</span> <span class="n">n_jobs</span></div>
 
@@ -259,9 +259,8 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="c1"># Initialize the boolean result as false, and also a counter</span>
+        <span class="c1"># Initialize the boolean result as false.</span>
         <span class="n">links</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
-        <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
 
         <span class="c1"># Loop through each sample and looks whether it belongs to the minority</span>
         <span class="c1"># class. If it does, we don&#39;t consider it since we want to keep all</span>
@@ -275,11 +274,9 @@
 
             <span class="k">if</span> <span class="n">y</span><span class="p">[</span><span class="n">nn_index</span><span class="p">[</span><span class="n">ind</span><span class="p">]]</span> <span class="o">==</span> <span class="n">class_type</span><span class="p">:</span>
 
-                <span class="c1"># If they form a tomek link, put a True marker on this</span>
-                <span class="c1"># sample, and increase counter by one.</span>
+                <span class="c1"># If they form a tomek link, put a True marker on this sample.</span>
                 <span class="k">if</span> <span class="n">nn_index</span><span class="p">[</span><span class="n">nn_index</span><span class="p">[</span><span class="n">ind</span><span class="p">]]</span> <span class="o">==</span> <span class="n">ind</span><span class="p">:</span>
                     <span class="n">links</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-                    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
 
         <span class="k">return</span> <span class="n">links</span></div>
 
