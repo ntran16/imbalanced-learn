@@ -13,6 +13,8 @@
 
   
   
+  
+  
 
   
 
@@ -47,6 +49,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -87,7 +90,10 @@
           
             
             
-                <p class="caption"><span class="caption-text">User Documentation</span></p>
+              
+            
+            
+              <p class="caption"><span class="caption-text">User Documentation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../install.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../support.html">Support</a></li>
@@ -121,8 +127,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../index.html">imbalanced-learn</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">imbalanced-learn</a>
+        
       </nav>
 
 
@@ -135,19 +143,36 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="../../index.html">Docs</a> &raquo;</li>
-      
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
           <li><a href="../index.html">Module code</a> &raquo;</li>
-      
-    <li>imblearn.pipeline</li>
+        
+      <li>imblearn.pipeline</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
+            
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -281,6 +306,8 @@
         <span class="n">estimator</span> <span class="o">=</span> <span class="n">estimators</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
         <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">transforms</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">t</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">continue</span>
             <span class="n">_validate_step_methods</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
             <span class="n">_validate_step_behaviour</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
             <span class="n">_validate_step_class</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
@@ -300,6 +327,8 @@
         <span class="n">Xt</span> <span class="o">=</span> <span class="n">X</span>
         <span class="n">yt</span> <span class="o">=</span> <span class="n">y</span>
         <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">transform</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">steps</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">transform</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">continue</span>
             <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">transform</span><span class="p">,</span> <span class="s2">&quot;fit_transform&quot;</span><span class="p">):</span>
                 <span class="n">Xt</span> <span class="o">=</span> <span class="n">transform</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">Xt</span><span class="p">,</span> <span class="n">yt</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params_steps</span><span class="p">[</span><span class="n">name</span><span class="p">])</span>
             <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">transform</span><span class="p">,</span> <span class="s2">&quot;fit_sample&quot;</span><span class="p">):</span>
@@ -380,6 +409,8 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">Xt</span> <span class="o">=</span> <span class="n">X</span>
         <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">transform</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">steps</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">transform</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">continue</span>
             <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">transform</span><span class="p">,</span> <span class="s2">&quot;fit_sample&quot;</span><span class="p">):</span>
                 <span class="c1"># XXX: Calling sample in pipeline it means that the</span>
                 <span class="c1"># last estimator is a sampler. Samplers don&#39;t carry</span>
@@ -404,6 +435,8 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">Xt</span> <span class="o">=</span> <span class="n">X</span>
         <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">transform</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">steps</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">transform</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">continue</span>
             <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">transform</span><span class="p">,</span> <span class="s2">&quot;fit_sample&quot;</span><span class="p">):</span>
                 <span class="k">pass</span>
             <span class="k">else</span><span class="p">:</span>
@@ -445,6 +478,8 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">Xt</span> <span class="o">=</span> <span class="n">X</span>
         <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">transform</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">steps</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">transform</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">continue</span>
             <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">transform</span><span class="p">,</span> <span class="s2">&quot;fit_sample&quot;</span><span class="p">):</span>
                 <span class="k">pass</span>
             <span class="k">else</span><span class="p">:</span>
@@ -465,6 +500,8 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">Xt</span> <span class="o">=</span> <span class="n">X</span>
         <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">transform</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">steps</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">transform</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">continue</span>
             <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">transform</span><span class="p">,</span> <span class="s2">&quot;fit_sample&quot;</span><span class="p">):</span>
                 <span class="k">pass</span>
             <span class="k">else</span><span class="p">:</span>
@@ -485,6 +522,8 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">Xt</span> <span class="o">=</span> <span class="n">X</span>
         <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">transform</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">steps</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">transform</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">continue</span>
             <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">transform</span><span class="p">,</span> <span class="s2">&quot;fit_sample&quot;</span><span class="p">):</span>
                 <span class="k">pass</span>
             <span class="k">else</span><span class="p">:</span>
@@ -505,6 +544,8 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">Xt</span> <span class="o">=</span> <span class="n">X</span>
         <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">transform</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">steps</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">transform</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">continue</span>
             <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">transform</span><span class="p">,</span> <span class="s2">&quot;fit_sample&quot;</span><span class="p">):</span>
                 <span class="k">pass</span>
             <span class="k">else</span><span class="p">:</span>
@@ -530,6 +571,8 @@
             <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span>
         <span class="n">Xt</span> <span class="o">=</span> <span class="n">X</span>
         <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">step</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">steps</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">step</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">continue</span>
             <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="s2">&quot;fit_sample&quot;</span><span class="p">):</span>
                 <span class="k">pass</span>
             <span class="k">else</span><span class="p">:</span>
@@ -554,6 +597,8 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">Xt</span> <span class="o">=</span> <span class="n">X</span>
         <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">transform</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">steps</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">transform</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">continue</span>
             <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">transform</span><span class="p">,</span> <span class="s2">&quot;fit_sample&quot;</span><span class="p">):</span>
                 <span class="k">pass</span>
             <span class="k">else</span><span class="p">:</span>
@@ -575,6 +620,9 @@
     <span class="k">return</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">pipeline</span><span class="o">.</span><span class="n">_name_estimators</span><span class="p">(</span><span class="n">steps</span><span class="p">))</span></div>
 </pre></div>
 
+           </div>
+           <div class="articleComments">
+            
            </div>
           </div>
           <footer>
@@ -609,7 +657,8 @@
             VERSION:'0.2.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../../_static/jquery.js"></script>

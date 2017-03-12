@@ -13,6 +13,8 @@
 
   
   
+  
+  
 
   
 
@@ -47,6 +49,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -87,7 +90,10 @@
           
             
             
-                <p class="caption"><span class="caption-text">User Documentation</span></p>
+              
+            
+            
+              <p class="caption"><span class="caption-text">User Documentation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../install.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../support.html">Support</a></li>
@@ -146,8 +152,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../index.html">imbalanced-learn</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">imbalanced-learn</a>
+        
       </nav>
 
 
@@ -156,25 +164,42 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="../index.html">Docs</a> &raquo;</li>
-      
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
           <li><a href="../api.html"><cite>imbalanced-learn</cite> API</a> &raquo;</li>
-      
-    <li>imblearn.under_sampling.NeighbourhoodCleaningRule</li>
+        
+      <li>imblearn.under_sampling.NeighbourhoodCleaningRule</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
+            
             <a href="../_sources/generated/imblearn.under_sampling.NeighbourhoodCleaningRule.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -248,7 +273,7 @@ by balancing class distribution,&#8221; Springer Berlin Heidelberg, 2001.</td></
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ncr</span> <span class="o">=</span> <span class="n">NeighbourhoodCleaningRule</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">X_res</span><span class="p">,</span> <span class="n">y_res</span> <span class="o">=</span> <span class="n">ncr</span><span class="o">.</span><span class="n">fit_sample</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Resampled dataset shape </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">Counter</span><span class="p">(</span><span class="n">y_res</span><span class="p">)))</span>
-<span class="go">Resampled dataset shape Counter({1: 891, 0: 100})</span>
+<span class="go">Resampled dataset shape Counter({1: 889, 0: 100})</span>
 </pre></div>
 </div>
 <p class="rubric">Attributes</p>
@@ -469,6 +494,9 @@ component of a nested object.</p>
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
@@ -502,7 +530,8 @@ component of a nested object.</p>
             VERSION:'0.2.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>
