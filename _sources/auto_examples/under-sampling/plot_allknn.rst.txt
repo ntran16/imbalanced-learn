@@ -122,7 +122,7 @@ An illustration of the AllKNN method.
     plt.tight_layout()
     plt.show()
 
-**Total running time of the script:** ( 0 minutes  1.972 seconds)
+**Total running time of the script:** ( 0 minutes  1.935 seconds)
 
 
 
