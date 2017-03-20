@@ -1,0 +1,6 @@
+imblearn.utils.estimator_checks.check_estimator
+===============================================
+
+.. currentmodule:: imblearn.utils.estimator_checks
+
+.. autofunction:: check_estimator

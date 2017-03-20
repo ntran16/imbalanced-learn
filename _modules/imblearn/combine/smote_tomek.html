@@ -354,7 +354,8 @@
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">smote</span><span class="p">,</span> <span class="n">SMOTE</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">smote_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">smote</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;smote needs to be a SMOTE object.&#39;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;smote needs to be a SMOTE object.&#39;</span>
+                                 <span class="s1">&#39;Got </span><span class="si">{}</span><span class="s1"> instead.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">smote</span><span class="p">)))</span>
         <span class="c1"># Otherwise create a default SMOTE</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">smote_</span> <span class="o">=</span> <span class="n">SMOTE</span><span class="p">(</span>
@@ -373,8 +374,9 @@
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tomek</span><span class="p">,</span> <span class="n">TomekLinks</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">tomek_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tomek</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;tomek needs to be a TomekLinks object.&#39;</span><span class="p">)</span>
-        <span class="c1"># Otherwise create a default EditedNearestNeighbours</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;tomek needs to be a TomekLinks object.&#39;</span>
+                                 <span class="s1">&#39;Got </span><span class="si">{}</span><span class="s1"> instead.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tomek</span><span class="p">)))</span>
+        <span class="c1"># Otherwise create a default TomekLinks</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">tomek_</span> <span class="o">=</span> <span class="n">TomekLinks</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state</span><span class="p">)</span>
 

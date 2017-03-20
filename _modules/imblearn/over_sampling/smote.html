@@ -183,12 +183,12 @@
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="k">import</span> <span class="n">NearestNeighbors</span>
-<span class="kn">from</span> <span class="nn">sklearn.neighbors.base</span> <span class="k">import</span> <span class="n">KNeighborsMixin</span>
 <span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="k">import</span> <span class="n">SVC</span>
 <span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="k">import</span> <span class="n">check_array</span><span class="p">,</span> <span class="n">check_random_state</span>
 
 <span class="kn">from</span> <span class="nn">..base</span> <span class="k">import</span> <span class="n">BaseBinarySampler</span>
+<span class="kn">from</span> <span class="nn">..utils</span> <span class="k">import</span> <span class="n">check_neighbors_object</span>
+<span class="kn">from</span> <span class="nn">..exceptions</span> <span class="k">import</span> <span class="n">raise_isinstance_error</span>
 
 <span class="n">SMOTE_KIND</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;regular&#39;</span><span class="p">,</span> <span class="s1">&#39;borderline1&#39;</span><span class="p">,</span> <span class="s1">&#39;borderline2&#39;</span><span class="p">,</span> <span class="s1">&#39;svm&#39;</span><span class="p">)</span>
 
@@ -469,14 +469,12 @@
             <span class="c1"># Regular smote does not look for samples in danger, instead it</span>
             <span class="c1"># creates synthetic samples directly from the k-th nearest</span>
             <span class="c1"># neighbours with not filtering</span>
-            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">k_neighbors</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">nn_k_</span> <span class="o">=</span> <span class="n">NearestNeighbors</span><span class="p">(</span>
-                    <span class="n">n_neighbors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">k_neighbors</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">)</span>
-            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">k_neighbors</span><span class="p">,</span> <span class="n">KNeighborsMixin</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">nn_k_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">k_neighbors</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;`n_neighbors` has to be be either int or a&#39;</span>
-                                 <span class="s1">&#39; subclass of KNeighborsMixin.&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nn_k_</span> <span class="o">=</span> <span class="n">check_neighbors_object</span><span class="p">(</span><span class="s1">&#39;k_neighbors&#39;</span><span class="p">,</span>
+                                                <span class="bp">self</span><span class="o">.</span><span class="n">k_neighbors</span><span class="p">,</span>
+                                                <span class="n">additional_neighbor</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="c1"># set the number of jobs</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nn_k_</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s1">&#39;n_jobs&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">})</span>
+
         <span class="k">else</span><span class="p">:</span>
             <span class="c1"># Borderline1, 2 and SVM variations of smote must first look for</span>
             <span class="c1"># samples that could be considered noise and samples that live</span>
@@ -484,23 +482,17 @@
             <span class="c1"># creating synthetic samples from the k-th nns, it first look</span>
             <span class="c1"># for m nearest neighbors to decide whether or not a sample is</span>
             <span class="c1"># noise or near the boundary.</span>
-            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">k_neighbors</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">nn_k_</span> <span class="o">=</span> <span class="n">NearestNeighbors</span><span class="p">(</span>
-                    <span class="n">n_neighbors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">k_neighbors</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">)</span>
-            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">k_neighbors</span><span class="p">,</span> <span class="n">KNeighborsMixin</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">nn_k_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">k_neighbors</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;`n_neighbors` has to be be either int or a&#39;</span>
-                                 <span class="s1">&#39; subclass of KNeighborsMixin.&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nn_k_</span> <span class="o">=</span> <span class="n">check_neighbors_object</span><span class="p">(</span><span class="s1">&#39;k_neighbors&#39;</span><span class="p">,</span>
+                                                <span class="bp">self</span><span class="o">.</span><span class="n">k_neighbors</span><span class="p">,</span>
+                                                <span class="n">additional_neighbor</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="c1"># set the number of jobs</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nn_k_</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s1">&#39;n_jobs&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">})</span>
 
-            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">m_neighbors</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">nn_m_</span> <span class="o">=</span> <span class="n">NearestNeighbors</span><span class="p">(</span>
-                    <span class="n">n_neighbors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">m_neighbors</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">)</span>
-            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">m_neighbors</span><span class="p">,</span> <span class="n">KNeighborsMixin</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">nn_m_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_neighbors</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;`n_neighbors` has to be be either int or a&#39;</span>
-                                 <span class="s1">&#39; subclass of KNeighborsMixin.&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nn_m_</span> <span class="o">=</span> <span class="n">check_neighbors_object</span><span class="p">(</span><span class="s1">&#39;m_neighbors&#39;</span><span class="p">,</span>
+                                                <span class="bp">self</span><span class="o">.</span><span class="n">m_neighbors</span><span class="p">,</span>
+                                                <span class="n">additional_neighbor</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="c1"># set the number of jobs</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nn_m_</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s1">&#39;n_jobs&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">})</span>
 
         <span class="c1"># --- SVM smote</span>
         <span class="c1"># Unlike the borderline variations, the SVM variation uses the support</span>
@@ -516,7 +508,8 @@
             <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">svm_estimator</span><span class="p">,</span> <span class="n">SVC</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">svm_estimator_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">svm_estimator</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;`svm_estimator` has to be an SVC object&#39;</span><span class="p">)</span>
+                <span class="n">raise_isinstance_error</span><span class="p">(</span><span class="s1">&#39;svm_estimator&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">SVC</span><span class="p">],</span>
+                                       <span class="bp">self</span><span class="o">.</span><span class="n">svm_estimator</span><span class="p">)</span>
 
 <div class="viewcode-block" id="SMOTE.fit"><a class="viewcode-back" href="../../../generated/imblearn.over_sampling.SMOTE.html#imblearn.over_sampling.SMOTE.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Find the classes statistics before to perform sampling.</span>
@@ -564,7 +557,9 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">kind</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">SMOTE_KIND</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Unknown kind for SMOTE algorithm.&#39;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Unknown kind for SMOTE algorithm.&#39;</span>
+                             <span class="s1">&#39; Choices are </span><span class="si">{}</span><span class="s1">. Got </span><span class="si">{}</span><span class="s1"> instead.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                                 <span class="n">SMOTE_KIND</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kind</span><span class="p">))</span>
 
         <span class="n">random_state</span> <span class="o">=</span> <span class="n">check_random_state</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state</span><span class="p">)</span>
 
