@@ -461,6 +461,26 @@ The implemented methods can be categorized into 2 groups: (i) fixed under-sampli
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="An illustration of the Tomek links method.">
+
+.. only:: html
+
+    .. figure:: /auto_examples/under-sampling/images/thumb/sphx_glr_plot_tomek_links_thumb.png
+
+        :ref:`sphx_glr_auto_examples_under-sampling_plot_tomek_links.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/under-sampling/plot_tomek_links
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="An illustration of the nearmiss 1 method.">
 
 .. only:: html
@@ -518,26 +538,6 @@ The implemented methods can be categorized into 2 groups: (i) fixed under-sampli
    :hidden:
 
    /auto_examples/under-sampling/plot_nearmiss_3
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="An illustration of the Tomek links method.">
-
-.. only:: html
-
-    .. figure:: /auto_examples/under-sampling/images/thumb/sphx_glr_plot_tomek_links_thumb.png
-
-        :ref:`sphx_glr_auto_examples_under-sampling_plot_tomek_links.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /auto_examples/under-sampling/plot_tomek_links
 
 .. raw:: html
 
