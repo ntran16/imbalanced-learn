@@ -229,20 +229,21 @@
 
 <span class="sd">    m : int, optional (default=None)</span>
 <span class="sd">        Number of nearest neighbours to use to determine if a minority sample</span>
-<span class="sd">        is in danger.</span>
+<span class="sd">        is in danger. Used with kind={&#39;borderline1&#39;, &#39;borderline2&#39;, &#39;svm&#39;}.</span>
 
 <span class="sd">        NOTE: `m` is deprecated from 0.2 and will be replaced in 0.4</span>
 <span class="sd">        Use ``m_neighbors`` instead.</span>
 
 <span class="sd">    m_neighbors : int int or object, optional (default=10)</span>
 <span class="sd">        If int, number of nearest neighbours to use to determine if a minority</span>
-<span class="sd">        sample is in danger.</span>
+<span class="sd">        sample is in danger. Used with kind={&#39;borderline1&#39;, &#39;borderline2&#39;,</span>
+<span class="sd">        &#39;svm&#39;}.</span>
 <span class="sd">        If object, an estimator that inherits from</span>
 <span class="sd">        `sklearn.neighbors.base.KNeighborsMixin` that will be used to find</span>
 <span class="sd">        the k_neighbors.</span>
 
 <span class="sd">    out_step : float, optional (default=0.5)</span>
-<span class="sd">        Step size when extrapolating.</span>
+<span class="sd">        Step size when extrapolating. Used with kind=&#39;svm&#39;.</span>
 
 <span class="sd">    kind : str, optional (default=&#39;regular&#39;)</span>
 <span class="sd">        The type of SMOTE algorithm to use one of the following options:</span>

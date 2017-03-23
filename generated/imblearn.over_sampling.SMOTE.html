@@ -242,21 +242,22 @@ the k_neighbors.</p>
 <p><strong>m</strong> : int, optional (default=None)</p>
 <blockquote>
 <div><p>Number of nearest neighbours to use to determine if a minority sample
-is in danger.</p>
+is in danger. Used with kind={&#8216;borderline1&#8217;, &#8216;borderline2&#8217;, &#8216;svm&#8217;}.</p>
 <p>NOTE: <cite>m</cite> is deprecated from 0.2 and will be replaced in 0.4
 Use <code class="docutils literal"><span class="pre">m_neighbors</span></code> instead.</p>
 </div></blockquote>
 <p><strong>m_neighbors</strong> : int int or object, optional (default=10)</p>
 <blockquote>
 <div><p>If int, number of nearest neighbours to use to determine if a minority
-sample is in danger.
+sample is in danger. Used with kind={&#8216;borderline1&#8217;, &#8216;borderline2&#8217;,
+&#8216;svm&#8217;}.
 If object, an estimator that inherits from
 <cite>sklearn.neighbors.base.KNeighborsMixin</cite> that will be used to find
 the k_neighbors.</p>
 </div></blockquote>
 <p><strong>out_step</strong> : float, optional (default=0.5)</p>
 <blockquote>
-<div><p>Step size when extrapolating.</p>
+<div><p>Step size when extrapolating. Used with kind=&#8217;svm&#8217;.</p>
 </div></blockquote>
 <p><strong>kind</strong> : str, optional (default=&#8217;regular&#8217;)</p>
 <blockquote>
