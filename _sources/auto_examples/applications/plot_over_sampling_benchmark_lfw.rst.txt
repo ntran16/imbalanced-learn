@@ -70,7 +70,6 @@ by using an over-sampler.
     y[y == majority_person] = 0
     y[y == minority_person] = 1
 
-
     classifier = ['3NN', neighbors.KNeighborsClassifier(3)]
 
     samplers = [
@@ -115,7 +114,7 @@ by using an over-sampler.
 
     plt.show()
 
-**Total running time of the script:** ( 1 minutes  16.335 seconds)
+**Total running time of the script:** ( 1 minutes  0.309 seconds)
 
 
 

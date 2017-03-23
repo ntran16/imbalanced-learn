@@ -461,7 +461,7 @@ The implemented methods can be categorized into 2 groups: (i) fixed under-sampli
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="An illustration of the Tomek links method.">
+    <div class="sphx-glr-thumbcontainer" tooltip="An illustration of the Tomek links method. ">
 
 .. only:: html
 
