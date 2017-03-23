@@ -214,11 +214,12 @@
 <em class="property">class </em><code class="descclassname">imblearn.under_sampling.</code><code class="descname">ClusterCentroids</code><span class="sig-paren">(</span><em>ratio='auto'</em>, <em>random_state=None</em>, <em>estimator=None</em>, <em>n_jobs=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/cluster_centroids.html#ClusterCentroids"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.ClusterCentroids" title="Permalink to this definition">¶</a></dt>
 <dd><p>Perform under-sampling by generating centroids based on
 clustering methods.</p>
-<p>Experimental method that under samples the majority class by replacing a
-cluster of majority samples by the cluster centroid of a KMeans algorithm.
-This algorithm keeps N majority samples by fitting the KMeans algorithm
-with N cluster to the majority class and using the coordinates of the N
-cluster centroids as the new majority samples.</p>
+<p>Method that under samples the majority class by replacing a
+cluster of majority samples by the cluster centroid of a KMeans
+algorithm.  This algorithm keeps N majority samples by fitting the
+KMeans algorithm with N cluster to the majority class and using
+the coordinates of the N cluster centroids as the new majority
+samples.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
