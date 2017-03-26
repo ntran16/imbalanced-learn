@@ -180,13 +180,16 @@
             
   <h1>Source code for imblearn.under_sampling.neighbourhood_cleaning_rule</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Class performing under-sampling based on the neighbourhood cleaning rule.&quot;&quot;&quot;</span>
+
+<span class="c1"># Authors: Guillaume Lemaitre &lt;g.lemaitre58@gmail.com&gt;</span>
+<span class="c1">#          Christos Aridas</span>
+<span class="c1"># License: MIT</span>
+
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span>
 
 <span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">Counter</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="k">import</span> <span class="n">NearestNeighbors</span>
-<span class="kn">from</span> <span class="nn">sklearn.neighbors.base</span> <span class="k">import</span> <span class="n">KNeighborsMixin</span>
 
 <span class="kn">from</span> <span class="nn">..base</span> <span class="k">import</span> <span class="n">BaseMulticlassSampler</span>
 <span class="kn">from</span> <span class="nn">..utils</span> <span class="k">import</span> <span class="n">check_neighbors_object</span>
