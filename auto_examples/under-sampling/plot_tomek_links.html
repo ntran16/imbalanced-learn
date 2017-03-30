@@ -41,7 +41,7 @@
         <link rel="search" title="Search" href="../../search.html"/>
     <link rel="top" title="imbalanced-learn 0.3.0.dev0 documentation" href="../../index.html"/>
         <link rel="up" title="General examples" href="../index.html"/>
-        <link rel="next" title="Nearmiss 1" href="plot_nearmiss_1.html"/>
+        <link rel="next" title="One-sided selection" href="plot_one_sided_selection.html"/>
         <link rel="prev" title="Pipeline Object" href="../pipeline/plot_pipeline_classification.html"/> 
 
   
@@ -116,18 +116,14 @@
 <li class="toctree-l2"><a class="reference internal" href="../index.html#pipeline-examples">Pipeline examples</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#example-using-under-sampling-class-methods">Example using under-sampling class methods</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Tomek links</a></li>
-<li class="toctree-l3"><a class="reference internal" href="plot_nearmiss_1.html">Nearmiss 1</a></li>
-<li class="toctree-l3"><a class="reference internal" href="plot_nearmiss_2.html">Nearmiss 2</a></li>
-<li class="toctree-l3"><a class="reference internal" href="plot_nearmiss_3.html">Nearmiss 3</a></li>
-<li class="toctree-l3"><a class="reference internal" href="plot_cluster_centroids.html">Cluster centroids</a></li>
 <li class="toctree-l3"><a class="reference internal" href="plot_one_sided_selection.html">One-sided selection</a></li>
 <li class="toctree-l3"><a class="reference internal" href="plot_random_under_sampler.html">Random under-sampling</a></li>
-<li class="toctree-l3"><a class="reference internal" href="plot_edited_nearest_neighbours.html">Edited nearest-neighbours</a></li>
 <li class="toctree-l3"><a class="reference internal" href="plot_neighbourhood_cleaning_rule.html">Neighbourhood Cleaning Rule</a></li>
 <li class="toctree-l3"><a class="reference internal" href="plot_condensed_nearest_neighbour.html">Condensed nearest-neighbour</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_cluster_centroids.html">Cluster centroids</a></li>
 <li class="toctree-l3"><a class="reference internal" href="plot_instance_hardness_threshold.html">Instance Hardness Threshold</a></li>
-<li class="toctree-l3"><a class="reference internal" href="plot_repeated_edited_nearest_neighbours.html">Repeated Edited nearest-neighbours</a></li>
-<li class="toctree-l3"><a class="reference internal" href="plot_allknn.html">AllKNN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_nearmiss.html">Nearmiss 1 &amp; 2 &amp; 3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_enn_renn_allknn.html">ENN, RENN, All-KNN</a></li>
 </ul>
 </li>
 </ul>
@@ -207,7 +203,13 @@
 <span id="sphx-glr-auto-examples-under-sampling-plot-tomek-links-py"></span><h1>Tomek links<a class="headerlink" href="#tomek-links" title="Permalink to this headline">¶</a></h1>
 <p>An illustration of the Tomek links method.</p>
 <img alt="../../_images/sphx_glr_plot_tomek_links_001.png" class="align-center" src="../../_images/sphx_glr_plot_tomek_links_001.png" />
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Authors: Andreas Mueller</span>
+<span class="c1">#          Christos Aridas</span>
+<span class="c1">#          Guillaume Lemaitre &lt;g.lemaitre58@gmail.com&gt;</span>
+<span class="c1"># License: MIT</span>
+
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <a href="http://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html#sklearn.model_selection.train_test_split" title="View documentation for sklearn.model_selection.train_test_split"><span class="n">train_test_split</span></a>
@@ -262,7 +264,7 @@
 <a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.show" title="View documentation for matplotlib.pyplot.show"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  0.130 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  0.136 seconds)</p>
 <div class="sphx-glr-footer docutils container">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" href="../../_downloads/plot_tomek_links.py" download=""><code class="xref download docutils literal"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_tomek_links.py</span></code></a></div>
@@ -282,7 +284,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="plot_nearmiss_1.html" class="btn btn-neutral float-right" title="Nearmiss 1" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="plot_one_sided_selection.html" class="btn btn-neutral float-right" title="One-sided selection" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../pipeline/plot_pipeline_classification.html" class="btn btn-neutral" title="Pipeline Object" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

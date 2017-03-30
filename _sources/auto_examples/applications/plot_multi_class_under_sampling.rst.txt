@@ -37,6 +37,9 @@ not differ from the binary case.
 .. code-block:: python
 
 
+    # Authors: Guillaume Lemaitre <g.lemaitre58@gmail.com>
+    # License: MIT
+
     from sklearn.datasets import load_iris
     from sklearn.svm import LinearSVC
     from sklearn.model_selection import train_test_split
@@ -67,7 +70,7 @@ not differ from the binary case.
     # Classify and report the results
     print(classification_report_imbalanced(y_test, pipeline.predict(X_test)))
 
-**Total running time of the script:** ( 0 minutes  0.336 seconds)
+**Total running time of the script:** ( 0 minutes  0.316 seconds)
 
 
 

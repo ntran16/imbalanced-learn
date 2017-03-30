@@ -297,26 +297,6 @@ Data balancing can be performed by over-sampling such that new samples are gener
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="An illustration of the random SMOTE SVM method.">
-
-.. only:: html
-
-    .. figure:: /auto_examples/over-sampling/images/thumb/sphx_glr_plot_smote_svm_thumb.png
-
-        :ref:`sphx_glr_auto_examples_over-sampling_plot_smote_svm.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /auto_examples/over-sampling/plot_smote_svm
-
-.. raw:: html
-
     <div class="sphx-glr-thumbcontainer" tooltip="An illustration of the Adaptive Synthetic Sampling Approach for Imbalanced Learning ADASYN meth...">
 
 .. only:: html
@@ -337,66 +317,6 @@ Data balancing can be performed by over-sampling such that new samples are gener
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="An illustration of the random SMOTE regular method.">
-
-.. only:: html
-
-    .. figure:: /auto_examples/over-sampling/images/thumb/sphx_glr_plot_smote_thumb.png
-
-        :ref:`sphx_glr_auto_examples_over-sampling_plot_smote.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /auto_examples/over-sampling/plot_smote
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="An illustration of the random SMOTE borderline 1 method.">
-
-.. only:: html
-
-    .. figure:: /auto_examples/over-sampling/images/thumb/sphx_glr_plot_smote_bordeline_1_thumb.png
-
-        :ref:`sphx_glr_auto_examples_over-sampling_plot_smote_bordeline_1.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /auto_examples/over-sampling/plot_smote_bordeline_1
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="An illustration of the random SMOTE borderline 2 method.">
-
-.. only:: html
-
-    .. figure:: /auto_examples/over-sampling/images/thumb/sphx_glr_plot_smote_bordeline_2_thumb.png
-
-        :ref:`sphx_glr_auto_examples_over-sampling_plot_smote_bordeline_2.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /auto_examples/over-sampling/plot_smote_bordeline_2
-
-.. raw:: html
-
     <div class="sphx-glr-thumbcontainer" tooltip="An illustration of the random over-sampling method.">
 
 .. only:: html
@@ -414,6 +334,26 @@ Data balancing can be performed by over-sampling such that new samples are gener
    :hidden:
 
    /auto_examples/over-sampling/plot_random_over_sampling
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="An illustration of the SMOTE method and its variant.">
+
+.. only:: html
+
+    .. figure:: /auto_examples/over-sampling/images/thumb/sphx_glr_plot_smote_thumb.png
+
+        :ref:`sphx_glr_auto_examples_over-sampling_plot_smote.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/over-sampling/plot_smote
 .. raw:: html
 
     <div style='clear:both'></div>
@@ -481,86 +421,6 @@ The implemented methods can be categorized into 2 groups: (i) fixed under-sampli
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="An illustration of the nearmiss 1 method.">
-
-.. only:: html
-
-    .. figure:: /auto_examples/under-sampling/images/thumb/sphx_glr_plot_nearmiss_1_thumb.png
-
-        :ref:`sphx_glr_auto_examples_under-sampling_plot_nearmiss_1.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /auto_examples/under-sampling/plot_nearmiss_1
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="An illustration of the nearmiss 2 method.">
-
-.. only:: html
-
-    .. figure:: /auto_examples/under-sampling/images/thumb/sphx_glr_plot_nearmiss_2_thumb.png
-
-        :ref:`sphx_glr_auto_examples_under-sampling_plot_nearmiss_2.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /auto_examples/under-sampling/plot_nearmiss_2
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="An illustration of the nearmiss 3 method.">
-
-.. only:: html
-
-    .. figure:: /auto_examples/under-sampling/images/thumb/sphx_glr_plot_nearmiss_3_thumb.png
-
-        :ref:`sphx_glr_auto_examples_under-sampling_plot_nearmiss_3.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /auto_examples/under-sampling/plot_nearmiss_3
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="An illustration of the cluster centroids method.">
-
-.. only:: html
-
-    .. figure:: /auto_examples/under-sampling/images/thumb/sphx_glr_plot_cluster_centroids_thumb.png
-
-        :ref:`sphx_glr_auto_examples_under-sampling_plot_cluster_centroids.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /auto_examples/under-sampling/plot_cluster_centroids
-
-.. raw:: html
-
     <div class="sphx-glr-thumbcontainer" tooltip="An illustration of the one-sided selection method.">
 
 .. only:: html
@@ -598,26 +458,6 @@ The implemented methods can be categorized into 2 groups: (i) fixed under-sampli
    :hidden:
 
    /auto_examples/under-sampling/plot_random_under_sampler
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="An illustration of the edited nearest-neighbours method.">
-
-.. only:: html
-
-    .. figure:: /auto_examples/under-sampling/images/thumb/sphx_glr_plot_edited_nearest_neighbours_thumb.png
-
-        :ref:`sphx_glr_auto_examples_under-sampling_plot_edited_nearest_neighbours.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /auto_examples/under-sampling/plot_edited_nearest_neighbours
 
 .. raw:: html
 
@@ -661,6 +501,26 @@ The implemented methods can be categorized into 2 groups: (i) fixed under-sampli
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="An illustration of the cluster centroids method.">
+
+.. only:: html
+
+    .. figure:: /auto_examples/under-sampling/images/thumb/sphx_glr_plot_cluster_centroids_thumb.png
+
+        :ref:`sphx_glr_auto_examples_under-sampling_plot_cluster_centroids.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/under-sampling/plot_cluster_centroids
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="An illustration of the instance hardness threshold method.">
 
 .. only:: html
@@ -681,13 +541,13 @@ The implemented methods can be categorized into 2 groups: (i) fixed under-sampli
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="An illustration of the repeated edited nearest-neighbours method.">
+    <div class="sphx-glr-thumbcontainer" tooltip="An illustration of the nearmiss 1 & 2 & 3 method.">
 
 .. only:: html
 
-    .. figure:: /auto_examples/under-sampling/images/thumb/sphx_glr_plot_repeated_edited_nearest_neighbours_thumb.png
+    .. figure:: /auto_examples/under-sampling/images/thumb/sphx_glr_plot_nearmiss_thumb.png
 
-        :ref:`sphx_glr_auto_examples_under-sampling_plot_repeated_edited_nearest_neighbours.py`
+        :ref:`sphx_glr_auto_examples_under-sampling_plot_nearmiss.py`
 
 .. raw:: html
 
@@ -697,17 +557,17 @@ The implemented methods can be categorized into 2 groups: (i) fixed under-sampli
 .. toctree::
    :hidden:
 
-   /auto_examples/under-sampling/plot_repeated_edited_nearest_neighbours
+   /auto_examples/under-sampling/plot_nearmiss
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="An illustration of the AllKNN method.">
+    <div class="sphx-glr-thumbcontainer" tooltip="An illustration of the ENN, RENN, and All-KNN method.">
 
 .. only:: html
 
-    .. figure:: /auto_examples/under-sampling/images/thumb/sphx_glr_plot_allknn_thumb.png
+    .. figure:: /auto_examples/under-sampling/images/thumb/sphx_glr_plot_enn_renn_allknn_thumb.png
 
-        :ref:`sphx_glr_auto_examples_under-sampling_plot_allknn.py`
+        :ref:`sphx_glr_auto_examples_under-sampling_plot_enn_renn_allknn.py`
 
 .. raw:: html
 
@@ -717,7 +577,7 @@ The implemented methods can be categorized into 2 groups: (i) fixed under-sampli
 .. toctree::
    :hidden:
 
-   /auto_examples/under-sampling/plot_allknn
+   /auto_examples/under-sampling/plot_enn_renn_allknn
 .. raw:: html
 
     <div style='clear:both'></div>

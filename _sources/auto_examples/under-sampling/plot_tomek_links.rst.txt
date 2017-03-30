@@ -22,6 +22,12 @@ An illustration of the Tomek links method.
 .. code-block:: python
 
 
+    # Authors: Andreas Mueller
+    #          Christos Aridas
+    #          Guillaume Lemaitre <g.lemaitre58@gmail.com>
+    # License: MIT
+
+
     import numpy as np
     import matplotlib.pyplot as plt
 
@@ -76,7 +82,7 @@ An illustration of the Tomek links method.
 
     plt.show()
 
-**Total running time of the script:** ( 0 minutes  0.130 seconds)
+**Total running time of the script:** ( 0 minutes  0.136 seconds)
 
 
 

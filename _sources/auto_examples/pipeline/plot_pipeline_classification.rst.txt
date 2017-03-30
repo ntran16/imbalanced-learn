@@ -35,6 +35,10 @@ An example of the Pipeline object working with transformers and resamplers.
 .. code-block:: python
 
 
+    # Authors: Christos Aridas
+    #          Guillaume Lemaitre <g.lemaitre58@gmail.com>
+    # License: MIT
+
     from sklearn.cross_validation import train_test_split as tts
     from sklearn.datasets import make_classification
     from sklearn.decomposition import PCA
@@ -60,9 +64,8 @@ An example of the Pipeline object working with transformers and resamplers.
     enn = EditedNearestNeighbours()
     renn = RepeatedEditedNearestNeighbours()
 
-    # Create teh classifier
+    # Create the classifier
     knn = KNN(1)
-
 
     # Make the splits
     X_train, X_test, y_train, y_test = tts(X, y, random_state=42)
@@ -75,7 +78,7 @@ An example of the Pipeline object working with transformers and resamplers.
 
     print(classification_report(y_test, y_hat))
 
-**Total running time of the script:** ( 0 minutes  0.734 seconds)
+**Total running time of the script:** ( 0 minutes  0.714 seconds)
 
 
 
