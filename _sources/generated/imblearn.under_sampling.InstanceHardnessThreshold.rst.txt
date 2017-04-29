@@ -1,5 +1,5 @@
-imblearn.under_sampling.InstanceHardnessThreshold
-=================================================
+imblearn\.under\_sampling\.InstanceHardnessThreshold
+====================================================
 
 .. currentmodule:: imblearn.under_sampling
 

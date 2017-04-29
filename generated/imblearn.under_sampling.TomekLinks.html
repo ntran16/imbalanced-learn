@@ -102,8 +102,8 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../api.html"><cite>imbalanced-learn</cite> API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../api.html#module-imblearn.under_sampling">Under-sampling methods</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="../api.html#classes">Classes</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="imblearn.under_sampling.ClusterCentroids.html">imblearn.under_sampling.ClusterCentroids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#module-imblearn.under_sampling.prototype_generation">Prototype generation</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../api.html#module-imblearn.under_sampling.prototype_selection">Prototype selection</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="imblearn.under_sampling.CondensedNearestNeighbour.html">imblearn.under_sampling.CondensedNearestNeighbour</a></li>
 <li class="toctree-l4"><a class="reference internal" href="imblearn.under_sampling.EditedNearestNeighbours.html">imblearn.under_sampling.EditedNearestNeighbours</a></li>
 <li class="toctree-l4"><a class="reference internal" href="imblearn.under_sampling.RepeatedEditedNearestNeighbours.html">imblearn.under_sampling.RepeatedEditedNearestNeighbours</a></li>
@@ -210,7 +210,7 @@
 <h1>imblearn.under_sampling.TomekLinks<a class="headerlink" href="#imblearn-under-sampling-tomeklinks" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="imblearn.under_sampling.TomekLinks">
-<em class="property">class </em><code class="descclassname">imblearn.under_sampling.</code><code class="descname">TomekLinks</code><span class="sig-paren">(</span><em>return_indices=False</em>, <em>random_state=None</em>, <em>n_jobs=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/tomek_links.html#TomekLinks"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.TomekLinks" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">imblearn.under_sampling.</code><code class="descname">TomekLinks</code><span class="sig-paren">(</span><em>return_indices=False</em>, <em>random_state=None</em>, <em>n_jobs=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/prototype_selection/tomek_links.html#TomekLinks"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.TomekLinks" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class to perform under-sampling by removing Tomek&#8217;s links.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -237,13 +237,13 @@ by np.random.</p>
 </tbody>
 </table>
 <p class="rubric">Notes</p>
-<p>This method is based on <a class="reference internal" href="#r40" id="id1">[R40]</a>.</p>
+<p>This method is based on <a class="reference internal" href="#r42" id="id1">[R42]</a>.</p>
 <p>It does not support multi-class sampling.</p>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r40" rules="none">
+<table class="docutils citation" frame="void" id="r42" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[R40]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> I. Tomek, &#8220;Two modifications of CNN,&#8221; In Systems, Man, and
+<tr><td class="label">[R42]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> I. Tomek, &#8220;Two modifications of CNN,&#8221; In Systems, Man, and
 Cybernetics, IEEE Transactions on, vol. 6, pp 769-772, 2010.</td></tr>
 </tbody>
 </table>
@@ -312,7 +312,7 @@ Cybernetics, IEEE Transactions on, vol. 6, pp 769-772, 2010.</td></tr>
 </table>
 <dl class="method">
 <dt id="imblearn.under_sampling.TomekLinks.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>return_indices=False</em>, <em>random_state=None</em>, <em>n_jobs=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/tomek_links.html#TomekLinks.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.TomekLinks.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>return_indices=False</em>, <em>random_state=None</em>, <em>n_jobs=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/prototype_selection/tomek_links.html#TomekLinks.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.TomekLinks.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p class="rubric">Methods</p>
@@ -432,7 +432,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="staticmethod">
 <dt id="imblearn.under_sampling.TomekLinks.is_tomek">
-<em class="property">static </em><code class="descname">is_tomek</code><span class="sig-paren">(</span><em>y</em>, <em>nn_index</em>, <em>class_type</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/tomek_links.html#TomekLinks.is_tomek"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.TomekLinks.is_tomek" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="descname">is_tomek</code><span class="sig-paren">(</span><em>y</em>, <em>nn_index</em>, <em>class_type</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/prototype_selection/tomek_links.html#TomekLinks.is_tomek"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.TomekLinks.is_tomek" title="Permalink to this definition">¶</a></dt>
 <dd><p>is_tomek uses the target vector and the first neighbour of every
 sample point and looks for Tomek pairs. Returning a boolean vector with
 True for majority Tomek links.</p>

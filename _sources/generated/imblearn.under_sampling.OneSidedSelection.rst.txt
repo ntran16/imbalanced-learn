@@ -1,5 +1,5 @@
-imblearn.under_sampling.OneSidedSelection
-=========================================
+imblearn\.under\_sampling\.OneSidedSelection
+============================================
 
 .. currentmodule:: imblearn.under_sampling
 

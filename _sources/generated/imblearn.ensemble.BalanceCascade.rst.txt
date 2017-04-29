@@ -1,5 +1,5 @@
-imblearn.ensemble.BalanceCascade
-================================
+imblearn\.ensemble\.BalanceCascade
+==================================
 
 .. currentmodule:: imblearn.ensemble
 

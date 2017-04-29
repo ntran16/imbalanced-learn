@@ -102,8 +102,8 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../api.html"><cite>imbalanced-learn</cite> API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../api.html#module-imblearn.under_sampling">Under-sampling methods</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="../api.html#classes">Classes</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="imblearn.under_sampling.ClusterCentroids.html">imblearn.under_sampling.ClusterCentroids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#module-imblearn.under_sampling.prototype_generation">Prototype generation</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../api.html#module-imblearn.under_sampling.prototype_selection">Prototype selection</a><ul class="current">
 <li class="toctree-l4 current"><a class="current reference internal" href="#">imblearn.under_sampling.CondensedNearestNeighbour</a></li>
 <li class="toctree-l4"><a class="reference internal" href="imblearn.under_sampling.EditedNearestNeighbours.html">imblearn.under_sampling.EditedNearestNeighbours</a></li>
 <li class="toctree-l4"><a class="reference internal" href="imblearn.under_sampling.RepeatedEditedNearestNeighbours.html">imblearn.under_sampling.RepeatedEditedNearestNeighbours</a></li>
@@ -210,7 +210,7 @@
 <h1>imblearn.under_sampling.CondensedNearestNeighbour<a class="headerlink" href="#imblearn-under-sampling-condensednearestneighbour" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="imblearn.under_sampling.CondensedNearestNeighbour">
-<em class="property">class </em><code class="descclassname">imblearn.under_sampling.</code><code class="descname">CondensedNearestNeighbour</code><span class="sig-paren">(</span><em>return_indices=False</em>, <em>random_state=None</em>, <em>size_ngh=None</em>, <em>n_neighbors=None</em>, <em>n_seeds_S=1</em>, <em>n_jobs=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/condensed_nearest_neighbour.html#CondensedNearestNeighbour"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.CondensedNearestNeighbour" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">imblearn.under_sampling.</code><code class="descname">CondensedNearestNeighbour</code><span class="sig-paren">(</span><em>return_indices=False</em>, <em>random_state=None</em>, <em>size_ngh=None</em>, <em>n_neighbors=None</em>, <em>n_seeds_S=1</em>, <em>n_jobs=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/prototype_selection/condensed_nearest_neighbour.html#CondensedNearestNeighbour"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.CondensedNearestNeighbour" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class to perform under-sampling based on the condensed nearest neighbour
 method.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -257,13 +257,13 @@ If object, an object inherited from
 </tbody>
 </table>
 <p class="rubric">Notes</p>
-<p>The method is based on <a class="reference internal" href="#r33" id="id1">[R33]</a>.</p>
+<p>The method is based on <a class="reference internal" href="#r35" id="id1">[R35]</a>.</p>
 <p>This class supports multi-class.</p>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r33" rules="none">
+<table class="docutils citation" frame="void" id="r35" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[R33]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> P. Hart, &#8220;The condensed nearest neighbor rule,&#8221;
+<tr><td class="label">[R35]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> P. Hart, &#8220;The condensed nearest neighbor rule,&#8221;
 In Information Theory, IEEE Transactions on, vol. 14(3),
 pp. 515-516, 1968.</td></tr>
 </tbody>
@@ -330,7 +330,7 @@ pp. 515-516, 1968.</td></tr>
 </table>
 <dl class="method">
 <dt id="imblearn.under_sampling.CondensedNearestNeighbour.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>return_indices=False</em>, <em>random_state=None</em>, <em>size_ngh=None</em>, <em>n_neighbors=None</em>, <em>n_seeds_S=1</em>, <em>n_jobs=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/condensed_nearest_neighbour.html#CondensedNearestNeighbour.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.CondensedNearestNeighbour.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>return_indices=False</em>, <em>random_state=None</em>, <em>size_ngh=None</em>, <em>n_neighbors=None</em>, <em>n_seeds_S=1</em>, <em>n_jobs=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/prototype_selection/condensed_nearest_neighbour.html#CondensedNearestNeighbour.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.CondensedNearestNeighbour.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p class="rubric">Methods</p>
@@ -362,7 +362,7 @@ pp. 515-516, 1968.</td></tr>
 </table>
 <dl class="method">
 <dt id="imblearn.under_sampling.CondensedNearestNeighbour.fit">
-<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/condensed_nearest_neighbour.html#CondensedNearestNeighbour.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.CondensedNearestNeighbour.fit" title="Permalink to this definition">¶</a></dt>
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/prototype_selection/condensed_nearest_neighbour.html#CondensedNearestNeighbour.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.CondensedNearestNeighbour.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find the classes statistics before to perform sampling.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />

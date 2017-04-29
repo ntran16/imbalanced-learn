@@ -1,5 +1,5 @@
-imblearn.under_sampling.RandomUnderSampler
-==========================================
+imblearn\.under\_sampling\.RandomUnderSampler
+=============================================
 
 .. currentmodule:: imblearn.under_sampling
 

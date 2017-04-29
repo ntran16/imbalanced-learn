@@ -1,5 +1,5 @@
-imblearn.over_sampling.RandomOverSampler
-========================================
+imblearn\.over\_sampling\.RandomOverSampler
+===========================================
 
 .. currentmodule:: imblearn.over_sampling
 

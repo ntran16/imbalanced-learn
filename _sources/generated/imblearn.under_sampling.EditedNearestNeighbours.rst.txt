@@ -1,5 +1,5 @@
-imblearn.under_sampling.EditedNearestNeighbours
-===============================================
+imblearn\.under\_sampling\.EditedNearestNeighbours
+==================================================
 
 .. currentmodule:: imblearn.under_sampling
 

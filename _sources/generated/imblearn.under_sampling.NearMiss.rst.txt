@@ -1,5 +1,5 @@
-imblearn.under_sampling.NearMiss
-================================
+imblearn\.under\_sampling\.NearMiss
+===================================
 
 .. currentmodule:: imblearn.under_sampling
 

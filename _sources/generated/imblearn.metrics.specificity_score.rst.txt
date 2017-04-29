@@ -1,5 +1,5 @@
-imblearn.metrics.specificity_score
-==================================
+imblearn\.metrics\.specificity\_score
+=====================================
 
 .. currentmodule:: imblearn.metrics
 

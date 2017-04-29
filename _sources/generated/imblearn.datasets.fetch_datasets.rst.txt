@@ -1,6 +1,6 @@
-imblearn\.datasets\.make\_imbalance
+imblearn\.datasets\.fetch\_datasets
 ===================================
 
 .. currentmodule:: imblearn.datasets
 
-.. autofunction:: make_imbalance
+.. autofunction:: fetch_datasets

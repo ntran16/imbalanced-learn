@@ -102,8 +102,8 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../api.html"><cite>imbalanced-learn</cite> API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../api.html#module-imblearn.under_sampling">Under-sampling methods</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="../api.html#classes">Classes</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="imblearn.under_sampling.ClusterCentroids.html">imblearn.under_sampling.ClusterCentroids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#module-imblearn.under_sampling.prototype_generation">Prototype generation</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../api.html#module-imblearn.under_sampling.prototype_selection">Prototype selection</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="imblearn.under_sampling.CondensedNearestNeighbour.html">imblearn.under_sampling.CondensedNearestNeighbour</a></li>
 <li class="toctree-l4"><a class="reference internal" href="imblearn.under_sampling.EditedNearestNeighbours.html">imblearn.under_sampling.EditedNearestNeighbours</a></li>
 <li class="toctree-l4"><a class="reference internal" href="imblearn.under_sampling.RepeatedEditedNearestNeighbours.html">imblearn.under_sampling.RepeatedEditedNearestNeighbours</a></li>
@@ -210,7 +210,7 @@
 <h1>imblearn.under_sampling.NearMiss<a class="headerlink" href="#imblearn-under-sampling-nearmiss" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="imblearn.under_sampling.NearMiss">
-<em class="property">class </em><code class="descclassname">imblearn.under_sampling.</code><code class="descname">NearMiss</code><span class="sig-paren">(</span><em>ratio='auto'</em>, <em>return_indices=False</em>, <em>random_state=None</em>, <em>version=1</em>, <em>size_ngh=None</em>, <em>n_neighbors=3</em>, <em>ver3_samp_ngh=None</em>, <em>n_neighbors_ver3=3</em>, <em>n_jobs=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/nearmiss.html#NearMiss"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.NearMiss" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">imblearn.under_sampling.</code><code class="descname">NearMiss</code><span class="sig-paren">(</span><em>ratio='auto'</em>, <em>return_indices=False</em>, <em>random_state=None</em>, <em>version=1</em>, <em>size_ngh=None</em>, <em>n_neighbors=3</em>, <em>ver3_samp_ngh=None</em>, <em>n_neighbors_ver3=3</em>, <em>n_jobs=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/prototype_selection/nearmiss.html#NearMiss"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.NearMiss" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class to perform under-sampling based on NearMiss methods.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -281,13 +281,13 @@ the k_neighbors.</p>
 </tbody>
 </table>
 <p class="rubric">Notes</p>
-<p>The methods are based on <a class="reference internal" href="#r36" id="id1">[R36]</a>.</p>
+<p>The methods are based on <a class="reference internal" href="#r38" id="id1">[R38]</a>.</p>
 <p>The class support multi-classes.</p>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r36" rules="none">
+<table class="docutils citation" frame="void" id="r38" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[R36]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> I. Mani, I. Zhang. &#8220;kNN approach to unbalanced data distributions:
+<tr><td class="label">[R38]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> I. Mani, I. Zhang. &#8220;kNN approach to unbalanced data distributions:
 a case study involving information extraction,&#8221; In Proceedings of
 workshop on learning from imbalanced datasets, 2003.</td></tr>
 </tbody>
@@ -354,7 +354,7 @@ workshop on learning from imbalanced datasets, 2003.</td></tr>
 </table>
 <dl class="method">
 <dt id="imblearn.under_sampling.NearMiss.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>ratio='auto'</em>, <em>return_indices=False</em>, <em>random_state=None</em>, <em>version=1</em>, <em>size_ngh=None</em>, <em>n_neighbors=3</em>, <em>ver3_samp_ngh=None</em>, <em>n_neighbors_ver3=3</em>, <em>n_jobs=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/nearmiss.html#NearMiss.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.NearMiss.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>ratio='auto'</em>, <em>return_indices=False</em>, <em>random_state=None</em>, <em>version=1</em>, <em>size_ngh=None</em>, <em>n_neighbors=3</em>, <em>ver3_samp_ngh=None</em>, <em>n_neighbors_ver3=3</em>, <em>n_jobs=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/prototype_selection/nearmiss.html#NearMiss.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.NearMiss.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p class="rubric">Methods</p>
@@ -386,7 +386,7 @@ workshop on learning from imbalanced datasets, 2003.</td></tr>
 </table>
 <dl class="method">
 <dt id="imblearn.under_sampling.NearMiss.fit">
-<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/nearmiss.html#NearMiss.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.NearMiss.fit" title="Permalink to this definition">¶</a></dt>
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/prototype_selection/nearmiss.html#NearMiss.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.NearMiss.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find the classes statistics before to perform sampling.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />

@@ -1,5 +1,5 @@
-imblearn.metrics.make_index_balanced_accuracy
-=============================================
+imblearn\.metrics\.make\_index\_balanced\_accuracy
+==================================================
 
 .. currentmodule:: imblearn.metrics
 

@@ -1,5 +1,5 @@
-imblearn.over_sampling.ADASYN
-=============================
+imblearn\.over\_sampling\.ADASYN
+================================
 
 .. currentmodule:: imblearn.over_sampling
 

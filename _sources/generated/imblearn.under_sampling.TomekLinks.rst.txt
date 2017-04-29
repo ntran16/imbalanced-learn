@@ -1,5 +1,5 @@
-imblearn.under_sampling.TomekLinks
-==================================
+imblearn\.under\_sampling\.TomekLinks
+=====================================
 
 .. currentmodule:: imblearn.under_sampling
 

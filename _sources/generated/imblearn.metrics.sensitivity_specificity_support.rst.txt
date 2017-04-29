@@ -1,5 +1,5 @@
-imblearn.metrics.sensitivity_specificity_support
-================================================
+imblearn\.metrics\.sensitivity\_specificity\_support
+====================================================
 
 .. currentmodule:: imblearn.metrics
 

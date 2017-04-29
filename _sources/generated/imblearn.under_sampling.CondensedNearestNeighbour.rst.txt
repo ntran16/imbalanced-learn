@@ -1,5 +1,5 @@
-imblearn.under_sampling.CondensedNearestNeighbour
-=================================================
+imblearn\.under\_sampling\.CondensedNearestNeighbour
+====================================================
 
 .. currentmodule:: imblearn.under_sampling
 

@@ -1,5 +1,5 @@
-imblearn.ensemble.EasyEnsemble
-==============================
+imblearn\.ensemble\.EasyEnsemble
+================================
 
 .. currentmodule:: imblearn.ensemble
 

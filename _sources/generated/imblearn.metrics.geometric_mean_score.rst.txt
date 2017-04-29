@@ -1,5 +1,5 @@
-imblearn.metrics.geometric_mean_score
-=====================================
+imblearn\.metrics\.geometric\_mean\_score
+=========================================
 
 .. currentmodule:: imblearn.metrics
 

@@ -1,5 +1,5 @@
-imblearn.under_sampling.ClusterCentroids
-========================================
+imblearn\.under\_sampling\.ClusterCentroids
+===========================================
 
 .. currentmodule:: imblearn.under_sampling
 

@@ -1,5 +1,5 @@
-imblearn.over_sampling.SMOTE
-============================
+imblearn\.over\_sampling\.SMOTE
+===============================
 
 .. currentmodule:: imblearn.over_sampling
 

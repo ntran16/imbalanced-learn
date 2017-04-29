@@ -1,5 +1,5 @@
-imblearn.under_sampling.AllKNN
-==============================
+imblearn\.under\_sampling\.AllKNN
+=================================
 
 .. currentmodule:: imblearn.under_sampling
 

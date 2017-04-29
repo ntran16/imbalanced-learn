@@ -1,5 +1,5 @@
-imblearn.metrics.sensitivity_score
-==================================
+imblearn\.metrics\.sensitivity\_score
+=====================================
 
 .. currentmodule:: imblearn.metrics
 

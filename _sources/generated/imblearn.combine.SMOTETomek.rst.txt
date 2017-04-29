@@ -1,5 +1,5 @@
-imblearn.combine.SMOTETomek
-===========================
+imblearn\.combine\.SMOTETomek
+=============================
 
 .. currentmodule:: imblearn.combine
 

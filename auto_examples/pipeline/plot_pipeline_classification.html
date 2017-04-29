@@ -218,7 +218,7 @@
 
 <span class="kn">from</span> <span class="nn">imblearn.pipeline</span> <span class="kn">import</span> <a href="../../generated/imblearn.pipeline.make_pipeline.html#imblearn.pipeline.make_pipeline" title="View documentation for imblearn.pipeline.make_pipeline"><span class="n">make_pipeline</span></a>
 <span class="kn">from</span> <span class="nn">imblearn.under_sampling</span> <span class="kn">import</span> <span class="p">(</span><a href="../../generated/imblearn.under_sampling.EditedNearestNeighbours.html#imblearn.under_sampling.EditedNearestNeighbours" title="View documentation for imblearn.under_sampling.EditedNearestNeighbours"><span class="n">EditedNearestNeighbours</span></a><span class="p">,</span>
-                                     <span class="n">RepeatedEditedNearestNeighbours</span><span class="p">)</span>
+                                     <a href="../../generated/imblearn.under_sampling.RepeatedEditedNearestNeighbours.html#imblearn.under_sampling.RepeatedEditedNearestNeighbours" title="View documentation for imblearn.under_sampling.RepeatedEditedNearestNeighbours"><span class="n">RepeatedEditedNearestNeighbours</span></a><span class="p">)</span>
 
 <span class="k">print</span><span class="p">(</span><span class="vm">__doc__</span><span class="p">)</span>
 
@@ -233,7 +233,7 @@
 
 <span class="c1"># Create the samplers</span>
 <span class="n">enn</span> <span class="o">=</span> <a href="../../generated/imblearn.under_sampling.EditedNearestNeighbours.html#imblearn.under_sampling.EditedNearestNeighbours" title="View documentation for imblearn.under_sampling.EditedNearestNeighbours"><span class="n">EditedNearestNeighbours</span></a><span class="p">()</span>
-<span class="n">renn</span> <span class="o">=</span> <span class="n">RepeatedEditedNearestNeighbours</span><span class="p">()</span>
+<span class="n">renn</span> <span class="o">=</span> <a href="../../generated/imblearn.under_sampling.RepeatedEditedNearestNeighbours.html#imblearn.under_sampling.RepeatedEditedNearestNeighbours" title="View documentation for imblearn.under_sampling.RepeatedEditedNearestNeighbours"><span class="n">RepeatedEditedNearestNeighbours</span></a><span class="p">()</span>
 
 <span class="c1"># Create the classifier</span>
 <span class="n">knn</span> <span class="o">=</span> <a href="http://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html#sklearn.neighbors.KNeighborsClassifier" title="View documentation for sklearn.neighbors.KNeighborsClassifier"><span class="n">KNN</span></a><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -250,7 +250,7 @@
 <span class="k">print</span><span class="p">(</span><a href="http://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html#sklearn.metrics.classification_report" title="View documentation for sklearn.metrics.classification_report"><span class="n">classification_report</span></a><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_hat</span><span class="p">))</span>
 </pre></div>
 </div>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  0.714 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  0.827 seconds)</p>
 <div class="sphx-glr-footer docutils container">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" href="../../_downloads/plot_pipeline_classification.py" download=""><code class="xref download docutils literal"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_pipeline_classification.py</span></code></a></div>

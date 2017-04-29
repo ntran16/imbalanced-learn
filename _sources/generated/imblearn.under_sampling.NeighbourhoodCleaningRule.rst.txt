@@ -1,5 +1,5 @@
-imblearn.under_sampling.NeighbourhoodCleaningRule
-=================================================
+imblearn\.under\_sampling\.NeighbourhoodCleaningRule
+====================================================
 
 .. currentmodule:: imblearn.under_sampling
 

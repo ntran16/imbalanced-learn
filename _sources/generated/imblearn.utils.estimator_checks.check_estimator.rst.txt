@@ -1,5 +1,5 @@
-imblearn.utils.estimator_checks.check_estimator
-===============================================
+imblearn\.utils\.estimator\_checks\.check\_estimator
+====================================================
 
 .. currentmodule:: imblearn.utils.estimator_checks
 

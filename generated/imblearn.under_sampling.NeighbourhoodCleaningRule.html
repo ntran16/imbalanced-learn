@@ -102,8 +102,8 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../api.html"><cite>imbalanced-learn</cite> API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../api.html#module-imblearn.under_sampling">Under-sampling methods</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="../api.html#classes">Classes</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="imblearn.under_sampling.ClusterCentroids.html">imblearn.under_sampling.ClusterCentroids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#module-imblearn.under_sampling.prototype_generation">Prototype generation</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../api.html#module-imblearn.under_sampling.prototype_selection">Prototype selection</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="imblearn.under_sampling.CondensedNearestNeighbour.html">imblearn.under_sampling.CondensedNearestNeighbour</a></li>
 <li class="toctree-l4"><a class="reference internal" href="imblearn.under_sampling.EditedNearestNeighbours.html">imblearn.under_sampling.EditedNearestNeighbours</a></li>
 <li class="toctree-l4"><a class="reference internal" href="imblearn.under_sampling.RepeatedEditedNearestNeighbours.html">imblearn.under_sampling.RepeatedEditedNearestNeighbours</a></li>
@@ -210,7 +210,7 @@
 <h1>imblearn.under_sampling.NeighbourhoodCleaningRule<a class="headerlink" href="#imblearn-under-sampling-neighbourhoodcleaningrule" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="imblearn.under_sampling.NeighbourhoodCleaningRule">
-<em class="property">class </em><code class="descclassname">imblearn.under_sampling.</code><code class="descname">NeighbourhoodCleaningRule</code><span class="sig-paren">(</span><em>return_indices=False</em>, <em>random_state=None</em>, <em>size_ngh=None</em>, <em>n_neighbors=3</em>, <em>n_jobs=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/neighbourhood_cleaning_rule.html#NeighbourhoodCleaningRule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.NeighbourhoodCleaningRule" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">imblearn.under_sampling.</code><code class="descname">NeighbourhoodCleaningRule</code><span class="sig-paren">(</span><em>return_indices=False</em>, <em>random_state=None</em>, <em>size_ngh=None</em>, <em>n_neighbors=3</em>, <em>n_jobs=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/prototype_selection/neighbourhood_cleaning_rule.html#NeighbourhoodCleaningRule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.NeighbourhoodCleaningRule" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class performing under-sampling based on the neighbourhood cleaning
 rule.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -255,10 +255,10 @@ the k_neighbors.</p>
 <p class="rubric">Notes</p>
 <p>This class support multi-class.</p>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r37" rules="none">
+<table class="docutils citation" frame="void" id="r39" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[R37]</a></td><td>J. Laurikkala, &#8220;Improving identification of difficult small classes
+<tr><td class="label"><a class="fn-backref" href="#id1">[R39]</a></td><td>J. Laurikkala, &#8220;Improving identification of difficult small classes
 by balancing class distribution,&#8221; Springer Berlin Heidelberg, 2001.</td></tr>
 </tbody>
 </table>
@@ -324,7 +324,7 @@ by balancing class distribution,&#8221; Springer Berlin Heidelberg, 2001.</td></
 </table>
 <dl class="method">
 <dt id="imblearn.under_sampling.NeighbourhoodCleaningRule.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>return_indices=False</em>, <em>random_state=None</em>, <em>size_ngh=None</em>, <em>n_neighbors=3</em>, <em>n_jobs=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/neighbourhood_cleaning_rule.html#NeighbourhoodCleaningRule.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.NeighbourhoodCleaningRule.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>return_indices=False</em>, <em>random_state=None</em>, <em>size_ngh=None</em>, <em>n_neighbors=3</em>, <em>n_jobs=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/prototype_selection/neighbourhood_cleaning_rule.html#NeighbourhoodCleaningRule.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.NeighbourhoodCleaningRule.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p class="rubric">Methods</p>
@@ -356,7 +356,7 @@ by balancing class distribution,&#8221; Springer Berlin Heidelberg, 2001.</td></
 </table>
 <dl class="method">
 <dt id="imblearn.under_sampling.NeighbourhoodCleaningRule.fit">
-<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/neighbourhood_cleaning_rule.html#NeighbourhoodCleaningRule.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.NeighbourhoodCleaningRule.fit" title="Permalink to this definition">¶</a></dt>
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/imblearn/under_sampling/prototype_selection/neighbourhood_cleaning_rule.html#NeighbourhoodCleaningRule.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imblearn.under_sampling.NeighbourhoodCleaningRule.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find the classes statistics before to perform sampling.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />

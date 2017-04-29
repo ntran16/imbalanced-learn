@@ -9,11 +9,19 @@ Release history
 Changelog
 ---------
 
+Bug fixes
+---------
+
+- Fixed a bug in :class:`under_sampling.NearMiss` version 3. The
+  indices returned were wrong. By `Guillaume Lemaitre`_.
+
 New features
 ~~~~~~~~~~~~
 
 - Turn off steps in :class:`pipeline.Pipeline` using the `None`
   object. By `Christos Aridas`_.
+- Add a fetching function `datasets.fetch_datasets` in order to get some
+  imbalanced datasets useful for benchmarking. By `Guillaume Lemaitre`_.
 
 Enhancement
 ~~~~~~~~~~~
@@ -34,6 +42,9 @@ API changes summary
   errors. By `Guillaume Lemaitre`_.
 - creation of a module `utils.validation` to make checking of
   recurrent patterns. By `Guillaume Lemaitre`_.
+- move the under-sampling methods in `prototype_selection` and
+  `prototype_generation` submodule to make a clearer dinstinction. By
+  `Guillaume Lemaitre`_.
 
 
 .. _changes_0_2:
